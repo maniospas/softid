@@ -89,15 +89,13 @@ It performs <strong>explainable AI (XAI)-driven supervised clustering of patient
 <h4 class="subtitle is-4 mt-5"><p>Odyssey <img src="man/figures/logo_nobg.png" align="right" width="180" alt="Odyssey Logo"/></p></h4>
 <p>Odyssey is an R shiny application for the exploration of Molecular Biodiversity in Greece and Norway.</p>
 <h4 class="subtitle is-4 mt-5"><p>Installation</p></h4>
-<p>``` r</p>
-<h4 class="subtitle is-4 mt-5"><p>install.packages("remotes")</p></h4>
-<p>remotes::install_github("BiodataAnalysisGroup/ELIXIR-BFSP-Odyssey")
-```</p>
+<pre class="codehilite"><code class="language-r"># install.packages(&quot;remotes&quot;)
+remotes::install_github(&quot;BiodataAnalysisGroup/ELIXIR-BFSP-Odyssey&quot;)
+</code></pre>
 <h4 class="subtitle is-4 mt-5"><p>Usage</p></h4>
-<p>``` r</p>
-<h4 class="subtitle is-4 mt-5"><p>library(Odyssey)</p></h4>
-<p>Odyssey::run_odyssey()
-```</p>
+<pre class="codehilite"><code class="language-r"># library(Odyssey)
+Odyssey::run_odyssey()
+</code></pre>
 <h4 class="subtitle is-4 mt-5"><p>Contributing</p></h4>
 <p>If you would like to contribute to this pipeline, please see the <a href="CONTRIBUTING.md">Contribution Guidelines</a>.</p>
 <h4 class="subtitle is-4 mt-5"><p>License</p></h4>
@@ -222,10 +220,9 @@ build/bin/bam-readcount --help</code></p>
 </div>
 </div>
 <p>Lineagespot is a framework written in <a href="https://www.r-project.org/">R</a>, and aims to identify SARS-CoV-2 related mutations based on a single (or a list) of variant(s) file(s) (i.e., <a href="https://gatk.broadinstitute.org/hc/en-us/articles/360035531692-VCF-Variant-Call-Format">variant calling format</a>).</p><h4 class="subtitle is-4 mt-5"><p>Installation</p></h4>
-<p>```r</p>
-<h4 class="subtitle is-4 mt-5"><p>install.packages("devtools")</p></h4>
-<p>devtools::install_github("BiodataAnalysisGroup/lineagespot")
-```</p>
+<pre class="codehilite"><code class="language-r"># install.packages(&quot;devtools&quot;)
+devtools::install_github(&quot;BiodataAnalysisGroup/lineagespot&quot;)
+</code></pre>
 <h4 class="subtitle is-4 mt-5"><p>Raw data analysis</p></h4>
 <p>The processing steps of the raw fastq files can be found <a href="inst/scripts/raw-data-analysis.md">here</a>.</p>
 <h4 class="subtitle is-4 mt-5"><p>Citation</p></h4>
@@ -275,14 +272,15 @@ package and requires <code>R</code> (version "4.5"), which can be installed on a
 operating system from <a href="https://cran.r-project.org/">CRAN</a>, and 
 Bioconductor (version "3.21").</p>
 <p>To install <code>tripr</code> package enter the following commands in your <code>R</code> session:</p>
-<p>```r
-if (!requireNamespace("BiocManager", quietly = TRUE)) {
-    install.packages("BiocManager")
-}</p>
-<p>BiocManager::install("tripr")</p>
-<h4 class="subtitle is-4 mt-5"><p>Check that you have a valid Bioconductor installation</p></h4>
-<p>BiocManager::valid()
-```</p>
+<pre class="codehilite"><code class="language-r">if (!requireNamespace(&quot;BiocManager&quot;, quietly = TRUE)) {
+    install.packages(&quot;BiocManager&quot;)
+}
+
+BiocManager::install(&quot;tripr&quot;)
+
+## Check that you have a valid Bioconductor installation
+BiocManager::valid()
+</code></pre>
 <h4 class="subtitle is-4 mt-5"><p>Launching the app</p></h4>
 <p>Once <code>tripr</code> is successfully installed, it can be loaded as follow:</p>
 <pre class="codehilite"><code class="language-r">library(tripr)
@@ -428,6 +426,63 @@ License - see the <a href="LICENSE">LICENSE</a> file for details</p>
 <div class="tags"><span class="tag is-info is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/miRkit.git">github</a></span>
 </div>
 </div>
+<p>miRkit was implemented in <a href="https://www.r-project.org/">R</a>.</p><h4 class="subtitle is-4 mt-5"><p>Structure</p></h4>
+<p>miRkit repository consists of three folders:
+- <code>data</code>: This is where all the input files are stored.
+- <code>R</code>: This is where all the R scripts are stored.
+- <code>output</code>: This is where all the output files are stored. This folder is created automatically while executing the project.</p>
+<h4 class="subtitle is-4 mt-5"><p>Dependencies</p></h4>
+<p>Execute the following lines to install the required packages:
+- from CRAN:</p>
+<pre class="codehilite"><code>install.packages(c(&quot;data.table&quot;, &quot;tidyverse&quot;, &quot;gsubfn&quot;, &quot;yaml&quot;, &quot;enrichR&quot;, &quot;lubridate&quot;))
+</code></pre>
+
+<ul>
+<li>from Bioconductor:</li>
+</ul>
+<pre class="codehilite"><code>BiocManager::install(c(&quot;naniar&quot;, &quot;prada&quot;, &quot;ComplexHeatmap&quot;, &quot;multiMiR&quot;, &quot;limma&quot;))
+</code></pre>
+<h4 class="subtitle is-4 mt-5"><p>Installing</p></h4>
+<p>The project can be downloaded using git:</p>
+<pre class="codehilite"><code>git clone https://github.com/BiodataAnalysisGroup/miRkit.git
+</code></pre>
+<h4 class="subtitle is-4 mt-5"><p>Running the project</p></h4>
+<p><code>miRkit</code> is a collection of R scripts/functions as listed bellow:</p>
+<ul>
+<li><code>01_miRkit.R</code></li>
+<li><code>02a_qc.R</code> </li>
+<li><code>02b_diff_analysis.R</code></li>
+<li><code>02c_fa.R</code></li>
+<li><code>03a_save_as_pdf.R</code> </li>
+<li><code>03b_save_image.R</code></li>
+</ul>
+<p>In order to run the project:</p>
+<ol>
+<li>Set the <a href="https://github.com/BiodataAnalysisGroup/miRNAtool/tree/main/R">R</a> folder as your working directory</li>
+<li>Place the required input files inside the <code>data</code> directory and set the parameters inside the .yaml file. See instructions <a href="https://github.com/BiodataAnalysisGroup/miRNAtool/tree/main/data">here</a>. </li>
+<li>Use the first script which works as a wrapper by calling the required functions:</li>
+</ol>
+<pre class="codehilite"><code>source(&quot;01_miRkit.R&quot;)
+</code></pre>
+<h4 class="subtitle is-4 mt-5"><p>Additional scripts</p></h4>
+<ul>
+<li><code>initial_script.R</code>: Contains the full code of the initial version of the project. There is no need to execute this file.</li>
+</ul>
+<h4 class="subtitle is-4 mt-5"><p>Input</p></h4>
+<ul>
+<li>For extra details about the input please move to the <code>data</code> <a href="https://github.com/BiodataAnalysisGroup/miRNAtool/tree/main/data">folder</a> and checkout the correpsonding README.md file.</li>
+</ul>
+<h4 class="subtitle is-4 mt-5"><p>Output</p></h4>
+<ul>
+<li>For extra details about the output please move to the <code>output</code> <a href="https://github.com/BiodataAnalysisGroup/miRNAtool/tree/main/output">folder</a> and checkout the correpsonding README.md file</li>
+</ul>
+<h4 class="subtitle is-4 mt-5"><p>Acknowledgements</p></h4>
+<ul>
+<li><a href="https://github.com/nikopech/">nikopech</a><br />
+Scripts <code>save_as_pdf.R</code> and <code>save_image.R</code> were taken from nikopech's project <a href="https://github.com/nikopech/saveImageHigh">saveImageHigh</a></li>
+</ul>
+<h4 class="subtitle is-4 mt-5"><p>License</p></h4>
+<p>This project is licensed under the MIT License - see the <a href="https://github.com/BiodataAnalysisGroup/miRNAtool/blob/main/LICENSE">LICENSE</a> file for details.</p>
 </article></div>
 
 <div class="cell p-2 mt-5 mb-5" id="Goedel numbering"><article class="box"><div><h1 class="title">Goedel numbering</h1>
@@ -547,6 +602,48 @@ License - see the <a href="LICENSE">LICENSE</a> file for details</p>
 <div class="tags"><span class="tag is-info is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/k-taxatree">github</a></span>
 </div>
 </div>
+<p>k-taxatree is a classification workflow written in <a href="https://www.r-project.org/">R</a>, predicting the labels of the first four taxonomic levels (kingdom, phylum, class, order) of metagenomic data with a multi-label Random Forest as the underlying model. The latter accepts as input 6-mer count vectors and as such a method to determine the appropriate k-length was also implemented.</p><h4 class="subtitle is-4 mt-5"><p>Dataset</p></h4>
+<p>The project utilizes data from the Earth Microbiome Project and retrieved using the R package <a href="https://github.com/nikopech/empdata">empdata</a>. A dataset of 91k sequences of 150bp-length targeted on the 16S rRNA gene of the V4 region. The dataset was split in two subsets, train-test and validation, consisting of 30% and 70% of the initial dataset respectefully. The subsets are available in the <a href="https://github.com/BiodataAnalysisGroup/k-taxatree/tree/main/emp-data">emp-data</a> folder.</p>
+<p>All data sets were collected from the ftp site of the Earth Microbiome Project.</p>
+<p>Sample processing, sequencing, and core amplicon data analysis were performed by the Earth Microbiome Project 
+(www.earthmicrobiome.org), and all amplicon sequence data and metadata have been made public through 
+the EMP data portal (qiita.microbio.me/emp).</p>
+<p>Please cite the following publication if you use any of them:</p>
+<p>Thompson, L., Sanders, J., McDonald, D. et al. A communal catalogue reveals
+Earth’s multiscale microbial diversity. Nature 551, 457–463 (2017).
+https://doi.org/10.1038/nature24621</p>
+<h4 class="subtitle is-4 mt-5"><p>Prerequisites</p></h4>
+<p>The packages needed to be installed, in order to run the project are:
+- from CRAN</p>
+<pre class="codehilite"><code>install.packages(c(&quot;parallel&quot;, &quot;data.table&quot;, &quot;cluster&quot;, &quot;Rfast&quot;, &quot;plyr&quot;, &quot;caret&quot;, &quot;stats&quot;, &quot;UBL&quot;, &quot;splitstackshape&quot;, &quot;mlr&quot;, &quot;mldr&quot;, &quot;dplyr&quot;, &quot;hash&quot;, &quot;stringr&quot;, &quot;randomForestSRC&quot;))
+</code></pre>
+<h4 class="subtitle is-4 mt-5"><p>Installing</p></h4>
+<p>The project can be downloaded using git:</p>
+<pre class="codehilite"><code>git clone https://github.com/BiodataAnalysisGroup/k-taxatree
+</code></pre>
+<h4 class="subtitle is-4 mt-5"><p>Running the project</p></h4>
+<p>The project consists of 9 main scripts in the folder <a href="https://github.com/BiodataAnalysisGroup/k-taxatree/tree/main/R-scripts">R-scripts</a> containing the code required to perform all the steps from selecting the appropriate k-length and constructing the kmer matrix to predicting the labels of the validation subset. In detail:
+- <code>01_k_selection_tool.R</code>: selection of the optimal k-length 
+- <code>02_kmer_matrix_creation.R</code>: creation of the whole 6-mer matrix (4095 features)
+- <code>03_feature_selection.R</code>: steps to select the most informative features (340 features)
+- <code>04_model_hp_optimization.R</code>: stratified 10 times repeated holdout framework to determine the <code>mtry</code>, <code>ntree</code>, <code>predict.threshold</code> to achive the highest macro f1-score 
+- <code>05_final_model.R</code>: creation of the final model
+- <code>06_unassigned_predictions.R</code>: utilizing the final model to predict labels for the yet unassigned sequences of the input dataset
+- <code>07_validation_predictions.R</code>: utilizing the final model to make predictions for the validation subset
+- <code>count_kmers_functions.R</code>: helper functions for creating the kmer matrix
+- <code>multilabel_functions.R</code>: helper functions for the machine learning workflow.</p>
+<p>The folder <a href="https://github.com/BiodataAnalysisGroup/k-taxatree/tree/main/extra-scripts">extra-scripts</a> contains a few extra scripts used to:
+- <code>0_data_for_local_usage.R</code>: create a subset of the training-test set for local usage, used to test the rest of the workflow in a local machine
+- <code>creating_train_test_validation.R</code>: perform the split on the initial dataset
+- <code>blast_results.R</code>: assign taxonomies on the yet unassigned sequences of the dataset using BLAST 
+- <code>compare_unassigned_blast.R</code>: compare the k-taxatree predictions with the BLAST results on the unassigned sequences
+- <code>compare_unassigned_rdp.R</code>: compare the RDP predictions with the BLAST results on the unassigned sequences.</p>
+<p>The project provides the input datasets and the outputs generated in every step of the workflow. The folder <a href="https://github.com/BiodataAnalysisGroup/k-taxatree/tree/main/emp-data">emp-data</a> includes the datasets retrieved from the Earth Microbiome Project Repository. The <a href="https://github.com/BiodataAnalysisGroup/k-taxatree/tree/main/Output">Output</a> folder contains several subfolders with the outputs generated by the different scripts. </p>
+<p>The workflow was run on an Ubuntu server of 141GB RAM and 32 cores and required a total of approximately 20 days. </p>
+<p>Given the optimal hyperparameters (<code>mtry</code> = 17, <code>ntree</code> = 300, <code>predict.threshold</code> = 0.2) the user can recreate the final-model using the <code>05_final_model.R</code> script. Alternatively, the model is provided in the <code>model.rds</code> file in the <a href="https://github.com/BiodataAnalysisGroup/k-taxatree/tree/main/Output/final-model">final-model</a> folder and can be used to make predictions. The latter is fully implemented in the scripts <code>06_unassigned_predictions.R</code> and <code>07_validation_predictions.R</code>.</p>
+<p>For more details of the individual scripts, please refer to the <a href="https://github.com/BiodataAnalysisGroup/k-taxatree/wiki">wiki</a>.</p>
+<h4 class="subtitle is-4 mt-5"><p>License</p></h4>
+<p>This project is licensed under the MIT License - see the <a href="LICENSE">LICENSE</a> file for details.</p>
 </article></div>
 
 <div class="cell p-2 mt-5 mb-5" id="Odysseus"><article class="box"><div><h1 class="title">Odysseus</h1>
@@ -950,15 +1047,17 @@ stable (currently 3.12).</em></p>
 analysis through the MAI‑BIAS toolkit without writing code.
 See the higher-level toolkit <a href="https://mammoth-eu.github.io/mammoth-commons/examples/model.html">workflow</a>
 and <a href="https://mammoth-eu.github.io/mammoth-commons/examples/share.html">example results</a>.</p>
-<p>```python
-import fairbench as fb</p>
-<p>x, y, yhat = fb.bench.tabular.compas(test_size=0.5, predict="probabilities")
-sensitive = fb.Dimensions(fb.categories @ x["race"])</p>
-<h4 class="subtitle is-4 mt-5"><p>more than 300 standardized measures generated by name and packed into a report</p></h4>
-<p>abroca = fb.quick.pairwise_maxbarea_auc(scores=yhat, labels=y, sensitive=sensitive)
+<pre class="codehilite"><code class="language-python">import fairbench as fb
+
+x, y, yhat = fb.bench.tabular.compas(test_size=0.5, predict=&quot;probabilities&quot;)
+sensitive = fb.Dimensions(fb.categories @ x[&quot;race&quot;])
+
+# more than 300 standardized measures generated by name and packed into a report
+abroca = fb.quick.pairwise_maxbarea_auc(scores=yhat, labels=y, sensitive=sensitive)
 print(abroca.float())
 abroca.roc.show()
-```</p>
+</code></pre>
+
 <p><img alt="docs/simplest.png" src="docs/simplest.png" /></p>
 <h4 class="subtitle is-4 mt-5"><p>⚡ Full report</p></h4>
 <p>Non‑technical users can run the same 

@@ -1,9 +1,10 @@
 import re
 import requests
 from tqdm import tqdm
-from typing import Callable
+from typing import Callable, Any
 
 _tools: dict[str, Callable] = dict()
+shared_config: dict[str, Any] = dict()
 
 class Entry:
     def __init__(self, name: str):
