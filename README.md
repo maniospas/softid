@@ -114,7 +114,8 @@ pipeline information, like below.
                                │
                                ▼
 ┌──────────────────────────────────────────────────────────────┐
-│ builder.tools.index.keywords: None                           │
+│ builder.tools.index.keywords: identifies and tf-idf weighs   │
+│ keywords by considering all sections across all software     │
 └──────────────────────────────────────────────────────────────┘
                                │
                                ▼

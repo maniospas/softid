@@ -20,6 +20,7 @@ def keep_common_sections(entries: list[Entry], min_section_count: float|int=3):
 
 @raw_tool
 def keywords(entries: list[Entry], cutoff=0.8):
+    """identifies and tf-idf weighs keywords by considering all sections across all software"""
     import nltk
     nltk.download('stopwords')
     from nltk.corpus import stopwords
@@ -38,6 +39,8 @@ def keywords(entries: list[Entry], cutoff=0.8):
     stop_words.add("h3")
     stop_words.add("h4")
     stop_words.add("h5")
+    stop_words.add("em")
+    stop_words.add("it")
 
     df: dict[str,int] = dict()
 
