@@ -52,6 +52,10 @@ if __name__ == "__main__":
         "builder.tools.github.add_license",
         "builder.tools.generic.cache",
         "builder.tools.generic.get_md",
+        "builder.tools.generic.remove_section_images",
+        "builder.tools.index.keywords",
+        #"builder.tools.index.keep_common_sections",
+        "builder.tools.format.bulma.keywords",
         "builder.tools.format.bulma.sections",
         "builder.tools.format.bulma.container",
     ]
@@ -72,6 +76,7 @@ Run `python -m main.py` and you will obtain a file
 pipeline information, like below.
 
 ```text
+
 ┌──────────────────────────────────────────────────────────────┐
 │ builder.tools.format.bulma.banner: constructs a banner using │
 │ the entry's name and the urls as tags                        │
@@ -99,6 +104,23 @@ pipeline information, like below.
 ┌──────────────────────────────────────────────────────────────┐
 │ builder.tools.generic.get_md: gathers all .md file contents  │
 │ as sections (these are not yet added to html results)        │
+└──────────────────────────────────────────────────────────────┘
+                               │
+                               ▼
+┌──────────────────────────────────────────────────────────────┐
+│ builder.tools.generic.remove_section_images: removes images  │
+│ from section html                                            │
+└──────────────────────────────────────────────────────────────┘
+                               │
+                               ▼
+┌──────────────────────────────────────────────────────────────┐
+│ builder.tools.index.keywords: None                           │
+└──────────────────────────────────────────────────────────────┘
+                               │
+                               ▼
+┌──────────────────────────────────────────────────────────────┐
+│ builder.tools.format.bulma.keywords: adds the top keywords   │
+│ as tags                                                      │
 └──────────────────────────────────────────────────────────────┘
                                │
                                ▼
