@@ -1,6 +1,6 @@
 import re
 import requests
-import functools
+from tqdm import tqdm
 from typing import Callable
 
 _tools: dict[str, Callable] = dict()
@@ -32,22 +32,30 @@ class Entry:
             self.unparsed_sections[title] = section
         section.extend(contents)
 
-    def process(self, tools: list[str]):
-        for tool in tools:
-            runner = _tools.get(tool)
-            assert runner, f"Not found tool '{tool}' among:\n"+"\n".join(_tools.keys())
-            runner(self)
+def process(entries: list[Entry], tools: list[str]):
+    for tool in tools:
+        runner = _tools.get(tool)
+        assert runner, f"Not found tool '{tool}' among:\n"+"\n".join(_tools.keys())
+        runner(entries)
+    return "\n".join(entry.contents for entry in entries)
 
 def tool(func):
     name = func.__module__+"."+func.__name__
-    @functools.wraps(func)
-    def wrapper(entry: Entry, **kwargs):
-        ret = func(entry, **kwargs)
-        if ret:
-            assert isinstance(ret, list), name+" returned a non-None and non-List value"
-            entry.section(name, ret)
+    def wrapper(entries: Entry, **kwargs):
+        assert isinstance(entries, list), "@tool definitions apply to all entries"
+        for entry in tqdm(entries, name.ljust(40)):
+            ret = func(entry, **kwargs)
+            if ret:
+                assert isinstance(ret, list), name+" returned a non-None and non-List value"
+                entry.section(name, ret)
+    wrapper.__doc__ = func.__doc__
     _tools[name] = wrapper
     return wrapper
+
+def raw_tool(func):
+    name = func.__module__+"."+func.__name__
+    _tools[name] = func
+    return func
 
 def show_pipeline(tools: list[str], max_width: int = 60):
     # THIS FUNCTION IS LLM-GENERATED (CAN THUS BE MAINTAINED WITH AN LLM)

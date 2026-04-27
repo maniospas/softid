@@ -1,0 +1,109 @@
+# APNet
+vasileioubill95@certh.gr
+https://github.com/BiodataAnalysisGroup/APNet
+
+
+# lncAPNet
+vasileioubill95@certh.gr
+https://github.com/BiodataAnalysisGroup/lncAPNet
+
+
+# Mongoose
+ggeorav@certh.gr (main)
+vasileioubill95@certh.gr
+https://github.com/BiodataAnalysisGroup/Mongoose
+
+
+# ELIXIR-BFSP-Odyssey
+nanastasiadou@certh.gr
+https://github.com/BiodataAnalysisGroup/ELIXIR-BFSP-Odyssey
+
+
+# synth4bench
+sfragkoul@certh.gr
+https://github.com/BiodataAnalysisGroup/synth4bench
+
+
+# lineagespot
+nanastasiadou@certh.gr
+https://github.com/BiodataAnalysisGroup/lineagespot
+
+
+# tripr
+k.kardamiliotis@certh.gr
+https://github.com/BiodataAnalysisGroup/tripr
+
+
+# IgIDivA
+k.kardamiliotis@certh.gr
+https://github.com/laurazara/IgIDivA
+
+
+# InterTads
+k.kardamiliotis@certh.gr
+https://github.com/BiodataAnalysisGroup/InterTADs
+
+
+# UMIc
+nanastasiadou@certh.gr
+https://github.com/BiodataAnalysisGroup/UMIc
+
+
+# metaDIEA
+fpsom@certh.gr
+https://github.com/BiodataAnalysisGroup/metaDIEA
+
+
+# miRkit
+fpsom@certh.gr
+https://github.com/BiodataAnalysisGroup/miRkit.git
+
+
+# Goedel numbering
+fpsom@certh.gr
+https://github.com/BiodataAnalysisGroup/godel-numbering
+
+
+# kmerAnalyzer
+fpsom@certh.gr
+https://github.com/BiodataAnalysisGroup/kmerAnalyzer
+
+
+# k-taxatree
+fpsom@certh.gr
+https://github.com/BiodataAnalysisGroup/k-taxatree
+
+
+# Odysseus
+fpsom@certh.gr
+https://github.com/BiodataAnalysisGroup/odysseys
+
+
+# BEEMUS
+fpsom@certh.gr
+https://github.com/BiodataAnalysisGroup/BEEMUS
+
+
+# GridCG
+fpsom@certh.gr
+https://github.com/BiodataAnalysisGroup/GridCG
+
+
+# BPM
+fpsom@certh.gr
+https://github.com/BiodataAnalysisGroup/BPM
+
+
+# Mutations-Meta-Analyser
+fpsom@certh.gr
+https://github.com/BiodataAnalysisGroup/Mutations-Meta-Analyser
+
+
+# align-paths
+fpsom@certh.gr
+https://github.com/BiodataAnalysisGroup/align-paths
+
+
+# G-Class
+fpsom@certh.gr
+https://github.com/BiodataAnalysisGroup/GClass

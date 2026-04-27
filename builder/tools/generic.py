@@ -1,33 +1,26 @@
 from builder.core import Entry, tool
-from urllib.parse import urlsplit
 import re
 import os
+import markdown
 
-@tool
-def banner(entry: Entry):
-    """constructs a banner using the entry's name and the urls as tags"""
-    entry.contents += "<div>"
-    entry.contents += f'<h1 class="title">{entry.name}</h1>\n'
-    found_tags = set()
-    for url in entry.urls:
-        try:
-            name = urlsplit(url).netloc.split('.')[-2]
-            if name in found_tags: continue
-            found_tags.add(name)
-            entry.contents += f'<span class="tag is-info is-light"><a href="{url}">{name}</a></span>\n'
-        except Exception: pass
-    entry.contents += "</div>\n"
+def to_markdown(text: str):
+    return markdown.markdown(text, extensions=["fenced_code", "codehilite"])
 
 @tool
 def cache(entry: Entry):
+    """uses a cache of downloadable content that persists across runs"""
     os.makedirs("./.cache", exist_ok=True)
     for url in entry.urls:
         safe_name = re.sub(r'[^\w]', '_', url)[:200]
         cache_path = os.path.join("./.cache", safe_name)
         if os.path.exists(cache_path):
+            #print("using cached url", url)
             with open(cache_path, "r", encoding="utf-8") as f:
                 entry._cached_contents[url] = f.read()
             continue
+            #if entry._cached_contents[url]: continue
+            #del entry._cached_contents[url]
+        print("downloading url", url)
         text = entry.download(url)
         with open(cache_path, "w", encoding="utf-8") as f:
             f.write(text)
@@ -41,13 +34,19 @@ def get_md(entry: Entry):
         if not text: continue
         parts = re.split(r'(?m)^(#+\s.+)$', text)
         if len(parts) == 1:
-            entry.section("description", [text])
+            content = to_markdown(text)
+            entry.section("#Description", [content])
             continue
         pre_content = parts[0].strip()
-        if pre_content: entry.section("description", [pre_content])
+        if pre_content:
+            pre_content = to_markdown(pre_content)
+            entry.section("#Description", [pre_content])
         for i in range(1, len(parts) - 1, 2):
             title = re.sub(r'^#+\s', '', parts[i]).strip()
+            if title.lower().strip()==entry.name.lower().strip(): title="#Description"
+            else: title = to_markdown(title)
             content = parts[i + 1].strip()
+            content = to_markdown(content)
             if content:
                 entry.section(title, [content])
 

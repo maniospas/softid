@@ -1,4 +1,4 @@
-% This fail contains software entries under # titles.
+% This file contains software entries under # titles.
 % The entries can contain any set of emails and URLs.
 
 
@@ -10,3 +10,4 @@ https://fairbench.readthedocs.io/
 # JGNN
 maniospas@iti.gr
 https://github.com/MKLab-ITI/JGNN
+
