@@ -7,28 +7,68 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
     <style>
       img {max-width:500px;display:none}
+      #search-bar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: white;
+        padding: 1rem 0;
+        border-bottom: 1px solid #eee;
+        margin-bottom: 1rem;
+      }
     </style>
   </head>
   <body>
   <div class="container">
-    <div class="fixed-grid has-1-cols">
+    <div id="search-bar">
+      <div class="field">
+        <div class="control has-icons-left">
+          <input class="input is-medium" type="text" id="search-input" placeholder="Search catalogue…">
+          <span class="icon is-left">🔍</span>
+        </div>
+        <p class="help" id="search-hint"></p>
+      </div>
+    </div>
+    <div class="fixed-grid has-1-cols" id="catalogue">
       <div class="cell p-2 mt-5 mb-5" id="APNet"><article class="box"><div><h1 class="title">APNet</h1>
-<div class="tags"><span class="tag is-info is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/APNet">github</a></span>
+<div class="tags"><b class="mb-5">Sources</b><span class="tag is-link is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/APNet">github</a></span>
 </div>
 </div>
-<p>In this work we present APNet, a Deep Learning approach with biological explainability to discover predictive drivers of COVID-19 severity focusing on distinct publicly available plasma proteomic datasets generated with the Olink Proximity Extension Assay (PEA) technology. This modular pipeline has the following structure:
+<div class="tags"><b class="mb-5">Main keywords</b><span class="tag is-primary is-light mb-5">drivers</span>
+<span class="tag is-primary is-light mb-5">apnet</span>
+<span class="tag is-primary is-light mb-5">predictive</span>
+<span class="tag is-primary is-light mb-5">driver</span>
+<span class="tag is-primary is-light mb-5">covid</span>
+<span class="tag is-primary is-light mb-5">plasma</span>
+<span class="tag is-primary is-light mb-5">proteomic</span>
+<span class="tag is-primary is-light mb-5">bipartite</span>
+<span class="tag is-primary is-light mb-5">expression</span>
+<span class="tag is-primary is-light mb-5">severity</span>
+</div>
+<div style="max-height:300px; overflow-y:auto"><p>In this work we present APNet, a Deep Learning approach with biological explainability to discover predictive drivers of COVID-19 severity focusing on distinct publicly available plasma proteomic datasets generated with the Olink Proximity Extension Assay (PEA) technology. This modular pipeline has the following structure:
 -   APNet initially converts high-throughput omics expression matrices, such as plasma proteomics, into activity matrices that reflect the regulatory strength of transcription factors and signal drivers. This involves Bayesian-based differential expression and activity analysis through NetBID2 for bulk-omics and scMINER for single-cell data, utilizing SJARACNe co-expression graphs.
 -   Then, APNet associates differentially active drivers with biological pathways using the Enrichr Knowledge Graph (KG).
 -   Next, APNet employs PASNet, a deep learning approach, to provide interpretable predictions for patient classification. APNet uses the differentially active drivers and their associated pathways as inputs, applying sparse regularization to hierarchical driver-pathway connections. The interpretability is further improved by including Shapley values (SHAP).
 -   Finally, APNet assembles bipartite driver-pathway networks based on SJARACNe co-expression graphs, incorporating information from earlier modules such as Mutual Information for driver-driver interactions and PASNet predictive weights for driver-pathway connections. These bipartite networks are valuable for investigating mechanistic hypotheses, using graph representation learning, shortest path retrieval and signal propagation simulation.
 To ensure generalizability and avoid over-fitting, we deployed APNet in three distinct Olink plasma proteomic datasets (&gt;1420 proteins, &gt; 800 cases separating training, validation and testing tasks per dataset) and discovered predictive drivers of severity in COVID-19, confirming biological ground truths but also uncovering nascent information with biological credence. APNet discovered more joint proteomic perturbations than typical differential expression analysis across the three datasets. Also, APNet outperformed state-of-the-art Machine Learning models that had performed predictions on these datasets and alternative iterations of APNet based on differential expression or on Random Forest. Part of the predictive drivers that APNet uncovered were traced to circulating blood cells based on a validation study using activity-transformed single-cell RNA-seq (scRNA-seq) data. Finally, analysis of APNet’s bipartite graphs uncovered information about ACAA1, a highly predictive but relatively unexplored by the literature driver, with syndecan SDC1, the keratin KRT18 and the mitochondrial co-chaperone GRPEL1 reflecting liver damage which emerges in severe cases of COVID-19.</p>
-<p>Guidelines to run APNet:</p></article></div>
+<p>Guidelines to run APNet:</p></div></article></div>
 
 <div class="cell p-2 mt-5 mb-5" id="lncAPNet"><article class="box"><div><h1 class="title">lncAPNet</h1>
-<div class="tags"><span class="tag is-info is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/lncAPNet">github</a></span>
+<div class="tags"><b class="mb-5">Sources</b><span class="tag is-link is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/lncAPNet">github</a></span>
 </div>
 </div>
-<p><strong>lncAPNet</strong> is an extension of the Activity PASNet (<strong>APNet</strong>) framework that incorporates <strong>long non-coding RNAs (lncRNAs)</strong> into explainable, network-based patient stratification and supervised clustering using transcriptomic data.</p>
+<div class="tags"><b class="mb-5">Main keywords</b><span class="tag is-primary is-light mb-5">strong</span>
+<span class="tag is-primary is-light mb-5">lncrna</span>
+<span class="tag is-primary is-light mb-5">lncapnet</span>
+<span class="tag is-primary is-light mb-5">interpretation</span>
+<span class="tag is-primary is-light mb-5">priors</span>
+<span class="tag is-primary is-light mb-5">activity</span>
+<span class="tag is-primary is-light mb-5">apnet</span>
+<span class="tag is-primary is-light mb-5">patient</span>
+<span class="tag is-primary is-light mb-5">br</span>
+<span class="tag is-primary is-light mb-5">pasnet</span>
+</div>
+<div style="max-height:300px; overflow-y:auto"><p><strong>lncAPNet</strong> is an extension of the Activity PASNet (<strong>APNet</strong>) framework that incorporates <strong>long non-coding RNAs (lncRNAs)</strong> into explainable, network-based patient stratification and supervised clustering using transcriptomic data.</p>
 <p>This repository hosts the implementation and resources for the <strong>lncAPNet</strong> computational pipeline.</p>
 <hr /><h4 class="subtitle is-4 mt-5"><p>Overview</p></h4>
 <p>lncAPNet is a novel computational pipeline built upon the recently reported <strong>Activity PASNet (APNet)</strong> framework<br />
@@ -67,26 +107,48 @@ It performs <strong>explainable AI (XAI)-driven supervised clustering of patient
 </code></pre>
 <h4 class="subtitle is-4 mt-5"><p><strong>bioRxiv</strong> link as pre-print:</p></h4>
 <p>(<a href="https://doi.org/10.64898/2025.12.18.695074">Vasileiou V. et al., 2026</a>)</p>
-</article></div>
+</div></article></div>
 
 <div class="cell p-2 mt-5 mb-5" id="Mongoose"><article class="box"><div><h1 class="title">Mongoose</h1>
-<div class="tags"><span class="tag is-info is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/Mongoose">github</a></span>
+<div class="tags"><b class="mb-5">Sources</b><span class="tag is-link is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/Mongoose">github</a></span>
 </div>
 </div>
-<h4 class="subtitle is-4 mt-5"><p>Abstract</p></h4>
+<div class="tags"><b class="mb-5">Main keywords</b><span class="tag is-primary is-light mb-5">perturbation</span>
+<span class="tag is-primary is-light mb-5">modelling</span>
+<span class="tag is-primary is-light mb-5">mongoose</span>
+<span class="tag is-primary is-light mb-5">omic</span>
+<span class="tag is-primary is-light mb-5">unitednet</span>
+<span class="tag is-primary is-light mb-5">spatial</span>
+<span class="tag is-primary is-light mb-5">cell</span>
+<span class="tag is-primary is-light mb-5">dl</span>
+<span class="tag is-primary is-light mb-5">mtl</span>
+<span class="tag is-primary is-light mb-5">modal</span>
+</div>
+<div style="max-height:300px; overflow-y:auto"><h4 class="subtitle is-4 mt-5"><p>Abstract</p></h4>
 <div align='justify'> Perturbation modelling in single-cell data is crucial for studying molecular changes elicited due to molecular knockouts, chemical compounds, and biological stimulants across health and disease phenotypes. Perturbation modelling is confounded by scarce biological explainability, statistical uncertainty in Deep Learning (DL) predictions in extreme perturbation scenarios, hyperparameter optimization, and limited scalability to multi-omic single-cell data. We present the Mongoose project (Multi-Objective Network Generator Of Optimized Single-cell Experiments) to explore enhancing perturbation modelling in complex single-cell datasets through Multi-Task Learning (MTL). Mongoose combines (i) UnitedNet, a DL framework that employs MTL to simultaneously perform joint group identification and cross-modal prediction with Sharpley values (SHAP) as an explainability component and (ii) perturbation modelling tools like SCING and GenKI, which reconstruct and perturb cell type-specific gene-regulatory networks (GRNs). UnitedNet contains an encoder-decoder-discriminator structure which approximates the statistical characteristics of each modality without prior assumptions. Hence, we claim that UnitedNet can facilitate biologically informed decisions on conducting ensuing digital KOs across reverse-engineered GRNs by providing (i) better cell-type clusters and (ii) SHAP values of significant cross-modal/cell-type associations from complex single-cell and spatial omic datasets. We will showcase the Mongoose approach on complex multi-omic mRNA/protein datasets like the Perturb-CITE-seq (CRISPR knock-outs) and the spatial DBiT-seq mouse embryo dataset, where mRNA-protein associations and spatial niche identification are expected to play pivotal roles in perturbations like in-silico GRN digital KOs. We anticipate that Mongoose will provide perturbational insights closer to ground truths, ultimately highlighting critical transcription factors and signalling pathways with potential translational value. </div>
 <h4 class="subtitle is-4 mt-5"><p>Workflow</p></h4>
 <p>First you can download the <a href="https://zenodo.org/records/7708592">DBiT-dataset</a></p>
 <h4 class="subtitle is-4 mt-5"><p>Contribute</p></h4>
 <p>We welcome and greatly appreciate any sort of feedback and/or contribution!</p>
 <p>If you have any questions, please either open an issue or write us at <code>ggeorav@certh.gr</code> or <code>inab.bioinformatics@lists.certh.gr</code>.</p>
-</article></div>
+</div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="ELIXIR-BFSP-Odyssey"><article class="box"><div><h1 class="title">ELIXIR-BFSP-Odyssey</h1>
-<div class="tags"><span class="tag is-info is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/ELIXIR-BFSP-Odyssey">github</a></span>
+<div class="cell p-2 mt-5 mb-5" id="ELIXIR_BFSP_Odyssey"><article class="box"><div><h1 class="title">ELIXIR-BFSP-Odyssey</h1>
+<div class="tags"><b class="mb-5">Sources</b><span class="tag is-link is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/ELIXIR-BFSP-Odyssey">github</a></span>
 </div>
 </div>
-<h4 class="subtitle is-4 mt-5"><p>Odyssey <img src="man/figures/logo_nobg.png" align="right" width="180" alt="Odyssey Logo"/></p></h4>
+<div class="tags"><b class="mb-5">Main keywords</b><span class="tag is-primary is-light mb-5">odyssey</span>
+<span class="tag is-primary is-light mb-5">remotes</span>
+<span class="tag is-primary is-light mb-5">conduct</span>
+<span class="tag is-primary is-light mb-5">code</span>
+<span class="tag is-primary is-light mb-5">quot</span>
+<span class="tag is-primary is-light mb-5">biodiversity</span>
+<span class="tag is-primary is-light mb-5">norway</span>
+<span class="tag is-primary is-light mb-5">bfsp</span>
+<span class="tag is-primary is-light mb-5">npechl</span>
+<span class="tag is-primary is-light mb-5">mbiog</span>
+</div>
+<div style="max-height:300px; overflow-y:auto"><h4 class="subtitle is-4 mt-5"><p>Odyssey <img src="man/figures/logo_nobg.png" align="right" width="180" alt="Odyssey Logo"/></p></h4>
 <p>Odyssey is an R shiny application for the exploration of Molecular Biodiversity in Greece and Norway.</p>
 <h4 class="subtitle is-4 mt-5"><p>Installation</p></h4>
 <pre class="codehilite"><code class="language-r"># install.packages(&quot;remotes&quot;)
@@ -102,14 +164,25 @@ Odyssey::run_odyssey()
 <p>This work, as a whole, is licensed under the <a href="https://github.com/npechl/MBioG/blob/main/LICENSE">MIT license</a>.</p>
 <p>The code contained in this website is simultaneously available under the MIT license; this means that you are free to use it in your own packages, as long as you cite the source.</p>
 <p>Please also refer to <a href="CODE_OF_CONDUCT.md">CODE OF CONDUCT</a>.</p>
-</article></div>
+</div></article></div>
 
 <div class="cell p-2 mt-5 mb-5" id="synth4bench"><article class="box"><div><h1 class="title">synth4bench</h1>
-<div class="tags"><span class="tag is-info is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/synth4bench">github</a></span>
+<div class="tags"><b class="mb-5">Sources</b><span class="tag is-link is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/synth4bench">github</a></span>
 </div>
 </div>
-<p align="center">
-  <img src="https://github.com/sfragkoul/synth4bench/blob/main/images/synth4bench_logo_no_bg.png" alt="synth4bench logo" height="80" width="700"/>
+<div class="tags"><b class="mb-5">Main keywords</b><span class="tag is-primary is-light mb-5">bam</span>
+<span class="tag is-primary is-light mb-5">readcount</span>
+<span class="tag is-primary is-light mb-5">variant</span>
+<span class="tag is-primary is-light mb-5">synthetic</span>
+<span class="tag is-primary is-light mb-5">em</span>
+<span class="tag is-primary is-light mb-5">conference</span>
+<span class="tag is-primary is-light mb-5">biology</span>
+<span class="tag is-primary is-light mb-5">somatic</span>
+<span class="tag is-primary is-light mb-5">href</span>
+<span class="tag is-primary is-light mb-5">strong</span>
+</div>
+<div style="max-height:300px; overflow-y:auto"><p align="center">
+  
 </p>
 
 <hr /><h4 class="subtitle is-4 mt-5"><p>Abstract</p></h4>
@@ -132,7 +205,7 @@ Somatic variant calling algorithms are essential for detecting genomic alteratio
 <hr />
 <h4 class="subtitle is-4 mt-5"><p>Description</p></h4>
 <p align="center">
-  <img src="https://github.com/sfragkoul/synth4bench/blob/main/images/schematic.png" alt="synth4bench schematic" height="270" width="900"/>
+  
 </p>
 
 <div align='justify'>
@@ -213,13 +286,24 @@ build/bin/bam-readcount --help</code></p>
 <p><div align='justify'> S.-C. Fragkouli, N. Pechlivanis, A. Agathangelidis and F. Psomopoulos, <em>Synthetic Genomics Data Generation and Evaluation for the Use Case of Benchmarking Somatic Variant Calling Algorithms</em>, <b>31st Conference in Intelligent Systems For Molecular Biology and the 22nd European Conference On Computational Biology (ISΜB-ECCB23)</b>, Jul 2023, Lyon, France, doi:<a href="https://doi.org/10.7490/f1000research.1119575.1">10.7490/f1000research.1119575.1</a> </div></p>
 </li>
 </ul>
-</article></div>
+</div></article></div>
 
 <div class="cell p-2 mt-5 mb-5" id="lineagespot"><article class="box"><div><h1 class="title">lineagespot</h1>
-<div class="tags"><span class="tag is-info is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/lineagespot">github</a></span>
+<div class="tags"><b class="mb-5">Sources</b><span class="tag is-link is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/lineagespot">github</a></span>
 </div>
 </div>
-<p>Lineagespot is a framework written in <a href="https://www.r-project.org/">R</a>, and aims to identify SARS-CoV-2 related mutations based on a single (or a list) of variant(s) file(s) (i.e., <a href="https://gatk.broadinstitute.org/hc/en-us/articles/360035531692-VCF-Variant-Call-Format">variant calling format</a>).</p><h4 class="subtitle is-4 mt-5"><p>Installation</p></h4>
+<div class="tags"><b class="mb-5">Main keywords</b><span class="tag is-primary is-light mb-5">devtools</span>
+<span class="tag is-primary is-light mb-5">lineagespot</span>
+<span class="tag is-primary is-light mb-5">raw</span>
+<span class="tag is-primary is-light mb-5">variant</span>
+<span class="tag is-primary is-light mb-5">quot</span>
+<span class="tag is-primary is-light mb-5">identify</span>
+<span class="tag is-primary is-light mb-5">related</span>
+<span class="tag is-primary is-light mb-5">broadinstitute</span>
+<span class="tag is-primary is-light mb-5">hc</span>
+<span class="tag is-primary is-light mb-5">articles</span>
+</div>
+<div style="max-height:300px; overflow-y:auto"><p>Lineagespot is a framework written in <a href="https://www.r-project.org/">R</a>, and aims to identify SARS-CoV-2 related mutations based on a single (or a list) of variant(s) file(s) (i.e., <a href="https://gatk.broadinstitute.org/hc/en-us/articles/360035531692-VCF-Variant-Call-Format">variant calling format</a>).</p><h4 class="subtitle is-4 mt-5"><p>Installation</p></h4>
 <pre class="codehilite"><code class="language-r"># install.packages(&quot;devtools&quot;)
 devtools::install_github(&quot;BiodataAnalysisGroup/lineagespot&quot;)
 </code></pre>
@@ -228,13 +312,24 @@ devtools::install_github(&quot;BiodataAnalysisGroup/lineagespot&quot;)
 <h4 class="subtitle is-4 mt-5"><p>Citation</p></h4>
 <p>If you use the tool, please cite the following work:</p>
 <p>Pechlivanis, N., Tsagiopoulou, M., Maniou, M.C. et al. <em>Detecting SARS-CoV-2 lineages and mutational load in municipal wastewater and a use-case in the metropolitan area of Thessaloniki, Greece.</em> Sci Rep 12, 2659 (2022). https://doi.org/10.1038/s41598-022-06625-6</p>
-</article></div>
+</div></article></div>
 
 <div class="cell p-2 mt-5 mb-5" id="tripr"><article class="box"><div><h1 class="title">tripr</h1>
-<div class="tags"><span class="tag is-info is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/tripr">github</a></span>
+<div class="tags"><b class="mb-5">Sources</b><span class="tag is-link is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/tripr">github</a></span>
 </div>
 </div>
-<!-- README.md is generated from README.Rmd. Please edit that file -->
+<div class="tags"><b class="mb-5">Main keywords</b><span class="tag is-primary is-light mb-5">svg</span>
+<span class="tag is-primary is-light mb-5">spatiallibd</span>
+<span class="tag is-primary is-light mb-5">bioconductor</span>
+<span class="tag is-primary is-light mb-5">shields</span>
+<span class="tag is-primary is-light mb-5">tripr</span>
+<span class="tag is-primary is-light mb-5">code</span>
+<span class="tag is-primary is-light mb-5">badges</span>
+<span class="tag is-primary is-light mb-5">lifecycle</span>
+<span class="tag is-primary is-light mb-5">codecov</span>
+<span class="tag is-primary is-light mb-5">org</span>
+</div>
+<div style="max-height:300px; overflow-y:auto"><!-- README.md is generated from README.Rmd. Please edit that file -->
 
 <!-- TODO: badges -->
 
@@ -251,7 +346,7 @@ devtools::install_github(&quot;BiodataAnalysisGroup/lineagespot&quot;)
 
 <!-- badges: end --><h4 class="subtitle is-4 mt-5"><p>tripr <img src="inst/app/www/tripr.png" align="right" width="200" /></p></h4>
 <p>T-cell Receptor/Immunoglobulin Profiler (TRIP)</p>
-<p><a href="https://github.com/BiodataAnalysisGroup/tripr/actions/workflows/check-bioc.yml"><img alt="R-CMD-check-bioc" src="https://github.com/BiodataAnalysisGroup/tripr/actions/workflows/check-bioc.yml/badge.svg" /></a></p>
+<p><a href="https://github.com/BiodataAnalysisGroup/tripr/actions/workflows/check-bioc.yml"></a></p>
 <h4 class="subtitle is-4 mt-5"><p>Description</p></h4>
 <p><code>tripr</code> is a <a href="http://bioconductor.org">Bioconductor</a> package, written in
 <a href="https://shiny.rstudio.com/">shiny</a> that provides analytics services on
@@ -290,13 +385,24 @@ BiocManager::valid()
 start R and enter: </p>
 <pre class="codehilite"><code class="language-r">browseVignettes(&quot;tripr&quot;)
 </code></pre>
-</article></div>
+</div></article></div>
 
 <div class="cell p-2 mt-5 mb-5" id="IgIDivA"><article class="box"><div><h1 class="title">IgIDivA</h1>
-<div class="tags"><span class="tag is-info is-light mb-5"><a href="https://github.com/laurazara/IgIDivA">github</a></span>
+<div class="tags"><b class="mb-5">Sources</b><span class="tag is-link is-light mb-5"><a href="https://github.com/laurazara/IgIDivA">github</a></span>
 </div>
 </div>
-<h4 class="subtitle is-4 mt-5"><p>Overview</p></h4>
+<div class="tags"><b class="mb-5">Main keywords</b><span class="tag is-primary is-light mb-5">quot</span>
+<span class="tag is-primary is-light mb-5">igidiva</span>
+<span class="tag is-primary is-light mb-5">packages</span>
+<span class="tag is-primary is-light mb-5">install</span>
+<span class="tag is-primary is-light mb-5">code</span>
+<span class="tag is-primary is-light mb-5">app</span>
+<span class="tag is-primary is-light mb-5">intraclonal</span>
+<span class="tag is-primary is-light mb-5">diversification</span>
+<span class="tag is-primary is-light mb-5">laurazara</span>
+<span class="tag is-primary is-light mb-5">rgenetics</span>
+</div>
+<div style="max-height:300px; overflow-y:auto"><h4 class="subtitle is-4 mt-5"><p>Overview</p></h4>
 <p><code>IgIDivA</code> (Immunoglobulin Intraclonal Diversification Analysis) is a purpose-built tool for the analysis of the intraclonal diversification process using high-throughput sequencing data. It is written in <a href="https://shiny.rstudio.com/">shiny</a>. Every step of the analysis can be performed interactively, thus not requiring any programming skills. It takes as input the output files "clonotypes_computation" and "grouped_alignment_nt" from the <a href="https://bio.tools/TRIP_-_T-cell_Receptor_Immunoglobulin_Profiler"><code>tripr</code></a> package.<br />
 Functions for an <code>R</code> command-line use are also available.<br />
 The UserGuide of IgIDivA can be found <a href="https://rpubs.com/laura_zara/911248">here</a> and an example dataset to be used as Input of IgIDivA can be found <a href="https://doi.org/10.5281/zenodo.6616046">here</a>.</p>
@@ -338,13 +444,24 @@ Rscript app.R
 </code></pre>
 
 <p>This will produce a url that can be copied in a web browser and will direct the user to the IgIDivA app.</p>
-</article></div>
+</div></article></div>
 
 <div class="cell p-2 mt-5 mb-5" id="InterTads"><article class="box"><div><h1 class="title">InterTads</h1>
-<div class="tags"><span class="tag is-info is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/InterTADs">github</a></span>
+<div class="tags"><b class="mb-5">Sources</b><span class="tag is-link is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/InterTADs">github</a></span>
 </div>
 </div>
-<p>InterTADs is an open-source tool written in <a href="https://www.r-project.org/">R</a>, 
+<div class="tags"><b class="mb-5">Main keywords</b><span class="tag is-primary is-light mb-5">git</span>
+<span class="tag is-primary is-light mb-5">intertads</span>
+<span class="tag is-primary is-light mb-5">methylation</span>
+<span class="tag is-primary is-light mb-5">dna</span>
+<span class="tag is-primary is-light mb-5">mutation</span>
+<span class="tag is-primary is-light mb-5">physical</span>
+<span class="tag is-primary is-light mb-5">chromatin</span>
+<span class="tag is-primary is-light mb-5">topologically</span>
+<span class="tag is-primary is-light mb-5">associating</span>
+<span class="tag is-primary is-light mb-5">domains</span>
+</div>
+<div style="max-height:300px; overflow-y:auto"><p>InterTADs is an open-source tool written in <a href="https://www.r-project.org/">R</a>, 
 for integrating multi-omics data (e.g. DNA methylation, expression, mutation) 
 from the same physical source (e.g. patient) taking into account the chromatin
 configuration of the genome, i.e. the topologically associating domains (TADs).</p><h4 class="subtitle is-4 mt-5"><p>Installation</p></h4>
@@ -362,13 +479,24 @@ discuss what you would like to change.</p>
 <h4 class="subtitle is-4 mt-5"><p>License</p></h4>
 <p>This project is licensed under the <a href="https://opensource.org/licenses/MIT">MIT</a> 
 License - see the <a href="LICENSE">LICENSE</a> file for details</p>
-</article></div>
+</div></article></div>
 
 <div class="cell p-2 mt-5 mb-5" id="UMIc"><article class="box"><div><h1 class="title">UMIc</h1>
-<div class="tags"><span class="tag is-info is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/UMIc">github</a></span>
+<div class="tags"><b class="mb-5">Sources</b><span class="tag is-link is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/UMIc">github</a></span>
 </div>
 </div>
-<p>UMIc is a framework, written in <a href="https://www.r-project.org/">R</a>, implementing a new proposed method for UMI deduplication and reads correction. The method works at nucleotide level, taking into account the frequency and the mean quality of each base.</p><h4 class="subtitle is-4 mt-5"><p>Prerequisites</p></h4>
+<div class="tags"><b class="mb-5">Main keywords</b><span class="tag is-primary is-light mb-5">code</span>
+<span class="tag is-primary is-light mb-5">umi</span>
+<span class="tag is-primary is-light mb-5">quot</span>
+<span class="tag is-primary is-light mb-5">umic</span>
+<span class="tag is-primary is-light mb-5">umisproject</span>
+<span class="tag is-primary is-light mb-5">input</span>
+<span class="tag is-primary is-light mb-5">variable</span>
+<span class="tag is-primary is-light mb-5">indicates</span>
+<span class="tag is-primary is-light mb-5">read</span>
+<span class="tag is-primary is-light mb-5">max</span>
+</div>
+<div style="max-height:300px; overflow-y:auto"><p>UMIc is a framework, written in <a href="https://www.r-project.org/">R</a>, implementing a new proposed method for UMI deduplication and reads correction. The method works at nucleotide level, taking into account the frequency and the mean quality of each base.</p><h4 class="subtitle is-4 mt-5"><p>Prerequisites</p></h4>
 <p>The packages needed to be installed, in order to run the project are:
 - from CRAN</p>
 <pre class="codehilite"><code>install.packages(c(&quot;tidyverse&quot;, &quot;data.table&quot;, &quot;stringdist&quot;, &quot;pryr&quot;))
@@ -412,21 +540,43 @@ License - see the <a href="LICENSE">LICENSE</a> file for details</p>
 <p>For more details, please refer to the <a href="https://github.com/BiodataAnalysisGroup/UMIc/wiki">wiki</a>.</p>
 <h4 class="subtitle is-4 mt-5"><p>License</p></h4>
 <p>This project is licensed under the MIT License - see the <a href="LICENSE">LICENSE</a> file for details.</p>
-</article></div>
+</div></article></div>
 
 <div class="cell p-2 mt-5 mb-5" id="metaDIEA"><article class="box"><div><h1 class="title">metaDIEA</h1>
-<div class="tags"><span class="tag is-info is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/metaDIEA">github</a></span>
+<div class="tags"><b class="mb-5">Sources</b><span class="tag is-link is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/metaDIEA">github</a></span>
 </div>
 </div>
-<p>RNA sequencing has become the standard technique for high resolution genome-wide monitoring of gene expression. As such, it often comprises the first step towards understanding complex mo-lecular mechanisms driving various phenotypes, spanning organ development to disease genesis, monitoring and progression. One of the many advantages of RNA sequencing is its ability to capture complex transcriptomic events such as alternative splicing which results in alternate isoform abundance. At the same time, this advantage still remains algorithmically and computationally challenging, especially with the emergence of even higher resolution technologies such as single-cell RNA sequencing. Although several algorithms have been proposed for the effective detection of differential isoform expression from RNA-Seq data, no widely accepted golden standards have been established. This fact is further compounded by the significant differences in the output of different algorithms when applied on the same data. In addition, many of the proposed algorithms remain scarce and poorly maintained. Driven by these challenges, we developed <strong>metaDIEA</strong> (meta- <strong>D</strong>ifferential <strong>I</strong>soform <strong>E</strong>xpression <strong>A</strong>nalysis), a novel integrative ap-proach that effectively combines the top most widely used algorithms for differential transcript and isoform analysis using state-of-the-art Machine Learning techniques. We demonstrate its usability by applying it on simulated data based on several organisms, and using several performance metrics we conclude that our strategy outperforms the application of the individual algorithms. Finally, our approach is implemented as an R Shiny application, with the underlying data analysis pipelines also available as Docker containers.</p><h4 class="subtitle is-4 mt-5"><p>License</p></h4>
+<div class="tags"><b class="mb-5">Main keywords</b><span class="tag is-primary is-light mb-5">isoform</span>
+<span class="tag is-primary is-light mb-5">strong</span>
+<span class="tag is-primary is-light mb-5">resolution</span>
+<span class="tag is-primary is-light mb-5">monitoring</span>
+<span class="tag is-primary is-light mb-5">widely</span>
+<span class="tag is-primary is-light mb-5">algorithms</span>
+<span class="tag is-primary is-light mb-5">rna</span>
+<span class="tag is-primary is-light mb-5">sequencing</span>
+<span class="tag is-primary is-light mb-5">several</span>
+<span class="tag is-primary is-light mb-5">complex</span>
+</div>
+<div style="max-height:300px; overflow-y:auto"><p>RNA sequencing has become the standard technique for high resolution genome-wide monitoring of gene expression. As such, it often comprises the first step towards understanding complex mo-lecular mechanisms driving various phenotypes, spanning organ development to disease genesis, monitoring and progression. One of the many advantages of RNA sequencing is its ability to capture complex transcriptomic events such as alternative splicing which results in alternate isoform abundance. At the same time, this advantage still remains algorithmically and computationally challenging, especially with the emergence of even higher resolution technologies such as single-cell RNA sequencing. Although several algorithms have been proposed for the effective detection of differential isoform expression from RNA-Seq data, no widely accepted golden standards have been established. This fact is further compounded by the significant differences in the output of different algorithms when applied on the same data. In addition, many of the proposed algorithms remain scarce and poorly maintained. Driven by these challenges, we developed <strong>metaDIEA</strong> (meta- <strong>D</strong>ifferential <strong>I</strong>soform <strong>E</strong>xpression <strong>A</strong>nalysis), a novel integrative ap-proach that effectively combines the top most widely used algorithms for differential transcript and isoform analysis using state-of-the-art Machine Learning techniques. We demonstrate its usability by applying it on simulated data based on several organisms, and using several performance metrics we conclude that our strategy outperforms the application of the individual algorithms. Finally, our approach is implemented as an R Shiny application, with the underlying data analysis pipelines also available as Docker containers.</p><h4 class="subtitle is-4 mt-5"><p>License</p></h4>
 <p>This project is licensed under the MIT License.</p>
-</article></div>
+</div></article></div>
 
 <div class="cell p-2 mt-5 mb-5" id="miRkit"><article class="box"><div><h1 class="title">miRkit</h1>
-<div class="tags"><span class="tag is-info is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/miRkit.git">github</a></span>
+<div class="tags"><b class="mb-5">Sources</b><span class="tag is-link is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/miRkit.git">github</a></span>
 </div>
 </div>
-<p>miRkit was implemented in <a href="https://www.r-project.org/">R</a>.</p><h4 class="subtitle is-4 mt-5"><p>Structure</p></h4>
+<div class="tags"><b class="mb-5">Main keywords</b><span class="tag is-primary is-light mb-5">code</span>
+<span class="tag is-primary is-light mb-5">quot</span>
+<span class="tag is-primary is-light mb-5">mirkit</span>
+<span class="tag is-primary is-light mb-5">save</span>
+<span class="tag is-primary is-light mb-5">nikopech</span>
+<span class="tag is-primary is-light mb-5">mirnatool</span>
+<span class="tag is-primary is-light mb-5">saveimagehigh</span>
+<span class="tag is-primary is-light mb-5">pre</span>
+<span class="tag is-primary is-light mb-5">github</span>
+<span class="tag is-primary is-light mb-5">com</span>
+</div>
+<div style="max-height:300px; overflow-y:auto"><p>miRkit was implemented in <a href="https://www.r-project.org/">R</a>.</p><h4 class="subtitle is-4 mt-5"><p>Structure</p></h4>
 <p>miRkit repository consists of three folders:
 - <code>data</code>: This is where all the input files are stored.
 - <code>R</code>: This is where all the R scripts are stored.
@@ -483,14 +633,25 @@ Scripts <code>save_as_pdf.R</code> and <code>save_image.R</code> were taken from
 </ul>
 <h4 class="subtitle is-4 mt-5"><p>License</p></h4>
 <p>This project is licensed under the MIT License - see the <a href="https://github.com/BiodataAnalysisGroup/miRNAtool/blob/main/LICENSE">LICENSE</a> file for details.</p>
-</article></div>
+</div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="Goedel numbering"><article class="box"><div><h1 class="title">Goedel numbering</h1>
-<div class="tags"><span class="tag is-info is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/godel-numbering">github</a></span>
+<div class="cell p-2 mt-5 mb-5" id="Goedel_numbering"><article class="box"><div><h1 class="title">Goedel numbering</h1>
+<div class="tags"><b class="mb-5">Sources</b><span class="tag is-link is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/godel-numbering">github</a></span>
 </div>
 </div>
-<p><a href="https://mybinder.org/v2/gh/BiodataAnalysisGroup/godel-numbering/main?filepath=Biological-Sequences-and-Godel-numbers.ipynb"><img alt="Binder" src="https://mybinder.org/badge.svg" /></a></p>
-<p><a href="https://opensource.org/licenses/MIT"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a></p><h4 class="subtitle is-4 mt-5"><p>Godel numbers and DNA</p></h4>
+<div class="tags"><b class="mb-5">Main keywords</b><span class="tag is-primary is-light mb-5">code</span>
+<span class="tag is-primary is-light mb-5">quot</span>
+<span class="tag is-primary is-light mb-5">strong</span>
+<span class="tag is-primary is-light mb-5">arxiv</span>
+<span class="tag is-primary is-light mb-5">plots</span>
+<span class="tag is-primary is-light mb-5">mtab</span>
+<span class="tag is-primary is-light mb-5">godel</span>
+<span class="tag is-primary is-light mb-5">specifying</span>
+<span class="tag is-primary is-light mb-5">depending</span>
+<span class="tag is-primary is-light mb-5">array</span>
+</div>
+<div style="max-height:300px; overflow-y:auto"><p><a href="https://mybinder.org/v2/gh/BiodataAnalysisGroup/godel-numbering/main?filepath=Biological-Sequences-and-Godel-numbers.ipynb"></a></p>
+<p><a href="https://opensource.org/licenses/MIT"></a></p><h4 class="subtitle is-4 mt-5"><p>Godel numbers and DNA</p></h4>
 <p>This material is made available under the <a href="https://opensource.org/licenses/MIT">MIT license</a>. Please see <a href="LICENSE.md">LICENSE</a> for more details.</p>
 <h4 class="subtitle is-4 mt-5"><p>Citation</p></h4>
 <ul>
@@ -551,14 +712,25 @@ Scripts <code>save_as_pdf.R</code> and <code>save_image.R</code> were taken from
 <ul>
 <li>Outputs are stored inside <code>plots</code> directory.</li>
 </ul>
-</article></div>
+</div></article></div>
 
 <div class="cell p-2 mt-5 mb-5" id="kmerAnalyzer"><article class="box"><div><h1 class="title">kmerAnalyzer</h1>
-<div class="tags"><span class="tag is-info is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/kmerAnalyzer">github</a></span>
+<div class="tags"><b class="mb-5">Sources</b><span class="tag is-link is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/kmerAnalyzer">github</a></span>
 </div>
 </div>
-<h4 class="subtitle is-4 mt-5"><p>A computational framework for pattern detection on unaligned sequences: An application on SARS-CoV-2 data</p></h4>
-<p><a href="https://opensource.org/licenses/MIT"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a></p>
+<div class="tags"><b class="mb-5">Main keywords</b><span class="tag is-primary is-light mb-5">code</span>
+<span class="tag is-primary is-light mb-5">number</span>
+<span class="tag is-primary is-light mb-5">mer</span>
+<span class="tag is-primary is-light mb-5">eval</span>
+<span class="tag is-primary is-light mb-5">factor</span>
+<span class="tag is-primary is-light mb-5">csv</span>
+<span class="tag is-primary is-light mb-5">every</span>
+<span class="tag is-primary is-light mb-5">inside</span>
+<span class="tag is-primary is-light mb-5">featuresextraction</span>
+<span class="tag is-primary is-light mb-5">filename</span>
+</div>
+<div style="max-height:300px; overflow-y:auto"><h4 class="subtitle is-4 mt-5"><p>A computational framework for pattern detection on unaligned sequences: An application on SARS-CoV-2 data</p></h4>
+<p><a href="https://opensource.org/licenses/MIT"></a></p>
 <h4 class="subtitle is-4 mt-5"><p>Overview</p></h4>
 <p>An alignment-free method capable of processing and counting k-mers in a reasonable time, while evaluating multiple values of the k parameter concurrently.</p>
 <h4 class="subtitle is-4 mt-5"><p>Python Version</p></h4>
@@ -596,13 +768,24 @@ Scripts <code>save_as_pdf.R</code> and <code>save_image.R</code> were taken from
 <p>Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.</p>
 <h4 class="subtitle is-4 mt-5"><p>License</p></h4>
 <p>This project is licensed under the <a href="https://opensource.org/licenses/MIT">MIT</a> License - see the <a href="LICENSE">LICENSE</a> file for details</p>
-</article></div>
+</div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="k-taxatree"><article class="box"><div><h1 class="title">k-taxatree</h1>
-<div class="tags"><span class="tag is-info is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/k-taxatree">github</a></span>
+<div class="cell p-2 mt-5 mb-5" id="k_taxatree"><article class="box"><div><h1 class="title">k-taxatree</h1>
+<div class="tags"><b class="mb-5">Sources</b><span class="tag is-link is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/k-taxatree">github</a></span>
 </div>
 </div>
-<p>k-taxatree is a classification workflow written in <a href="https://www.r-project.org/">R</a>, predicting the labels of the first four taxonomic levels (kingdom, phylum, class, order) of metagenomic data with a multi-label Random Forest as the underlying model. The latter accepts as input 6-mer count vectors and as such a method to determine the appropriate k-length was also implemented.</p><h4 class="subtitle is-4 mt-5"><p>Dataset</p></h4>
+<div class="tags"><b class="mb-5">Main keywords</b><span class="tag is-primary is-light mb-5">code</span>
+<span class="tag is-primary is-light mb-5">unassigned</span>
+<span class="tag is-primary is-light mb-5">quot</span>
+<span class="tag is-primary is-light mb-5">final</span>
+<span class="tag is-primary is-light mb-5">taxatree</span>
+<span class="tag is-primary is-light mb-5">model</span>
+<span class="tag is-primary is-light mb-5">compare</span>
+<span class="tag is-primary is-light mb-5">emp</span>
+<span class="tag is-primary is-light mb-5">earth</span>
+<span class="tag is-primary is-light mb-5">predictions</span>
+</div>
+<div style="max-height:300px; overflow-y:auto"><p>k-taxatree is a classification workflow written in <a href="https://www.r-project.org/">R</a>, predicting the labels of the first four taxonomic levels (kingdom, phylum, class, order) of metagenomic data with a multi-label Random Forest as the underlying model. The latter accepts as input 6-mer count vectors and as such a method to determine the appropriate k-length was also implemented.</p><h4 class="subtitle is-4 mt-5"><p>Dataset</p></h4>
 <p>The project utilizes data from the Earth Microbiome Project and retrieved using the R package <a href="https://github.com/nikopech/empdata">empdata</a>. A dataset of 91k sequences of 150bp-length targeted on the 16S rRNA gene of the V4 region. The dataset was split in two subsets, train-test and validation, consisting of 30% and 70% of the initial dataset respectefully. The subsets are available in the <a href="https://github.com/BiodataAnalysisGroup/k-taxatree/tree/main/emp-data">emp-data</a> folder.</p>
 <p>All data sets were collected from the ftp site of the Earth Microbiome Project.</p>
 <p>Sample processing, sequencing, and core amplicon data analysis were performed by the Earth Microbiome Project 
@@ -644,20 +827,42 @@ https://doi.org/10.1038/nature24621</p>
 <p>For more details of the individual scripts, please refer to the <a href="https://github.com/BiodataAnalysisGroup/k-taxatree/wiki">wiki</a>.</p>
 <h4 class="subtitle is-4 mt-5"><p>License</p></h4>
 <p>This project is licensed under the MIT License - see the <a href="LICENSE">LICENSE</a> file for details.</p>
-</article></div>
+</div></article></div>
 
 <div class="cell p-2 mt-5 mb-5" id="Odysseus"><article class="box"><div><h1 class="title">Odysseus</h1>
-<div class="tags"><span class="tag is-info is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/odysseys">github</a></span>
+<div class="tags"><b class="mb-5">Sources</b><span class="tag is-link is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/odysseys">github</a></span>
 </div>
 </div>
-<p>Odysseus: Odysseus: a versatile high performance framework for optimizing bioinformatics workflow parallelization in hybrid cloud environments</p>
-<p>Odysseus is a versatile high performance framework for component-based bioinformatics workflows that aims to optimize parallelization performance, resource allocation and load distribution across heterogeneous computational resources comprising of both cloud-based solutions as well as local HPC infrastructures and general resources. Odysseus attempts to set the core principles of cost efficient parallel processing for large scale bioinformatics workflows by introducing data preprocessing and organization techniques as well as achieving optimal parallelization and resource utilization both across and within the available computational resources.</p></article></div>
+<div class="tags"><b class="mb-5">Main keywords</b><span class="tag is-primary is-light mb-5">odysseus</span>
+<span class="tag is-primary is-light mb-5">versatile</span>
+<span class="tag is-primary is-light mb-5">cloud</span>
+<span class="tag is-primary is-light mb-5">parallelization</span>
+<span class="tag is-primary is-light mb-5">performance</span>
+<span class="tag is-primary is-light mb-5">resources</span>
+<span class="tag is-primary is-light mb-5">resource</span>
+<span class="tag is-primary is-light mb-5">bioinformatics</span>
+<span class="tag is-primary is-light mb-5">optimizing</span>
+<span class="tag is-primary is-light mb-5">hybrid</span>
+</div>
+<div style="max-height:300px; overflow-y:auto"><p>Odysseus: Odysseus: a versatile high performance framework for optimizing bioinformatics workflow parallelization in hybrid cloud environments</p>
+<p>Odysseus is a versatile high performance framework for component-based bioinformatics workflows that aims to optimize parallelization performance, resource allocation and load distribution across heterogeneous computational resources comprising of both cloud-based solutions as well as local HPC infrastructures and general resources. Odysseus attempts to set the core principles of cost efficient parallel processing for large scale bioinformatics workflows by introducing data preprocessing and organization techniques as well as achieving optimal parallelization and resource utilization both across and within the available computational resources.</p></div></article></div>
 
 <div class="cell p-2 mt-5 mb-5" id="BEEMUS"><article class="box"><div><h1 class="title">BEEMUS</h1>
-<div class="tags"><span class="tag is-info is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/BEEMUS">github</a></span>
+<div class="tags"><b class="mb-5">Sources</b><span class="tag is-link is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/BEEMUS">github</a></span>
 </div>
 </div>
-<h4 class="subtitle is-4 mt-5"><p>BEEMUS: Bioinformatics for the Evolution of Emerging MUtations in SARS-CoV-2</p></h4>
+<div class="tags"><b class="mb-5">Main keywords</b><span class="tag is-primary is-light mb-5">ay</span>
+<span class="tag is-primary is-light mb-5">interest</span>
+<span class="tag is-primary is-light mb-5">code</span>
+<span class="tag is-primary is-light mb-5">lineages</span>
+<span class="tag is-primary is-light mb-5">nodes</span>
+<span class="tag is-primary is-light mb-5">separated</span>
+<span class="tag is-primary is-light mb-5">sequential</span>
+<span class="tag is-primary is-light mb-5">nc</span>
+<span class="tag is-primary is-light mb-5">ba</span>
+<span class="tag is-primary is-light mb-5">msa</span>
+</div>
+<div style="max-height:300px; overflow-y:auto"><h4 class="subtitle is-4 mt-5"><p>BEEMUS: Bioinformatics for the Evolution of Emerging MUtations in SARS-CoV-2</p></h4>
 <!-- ![logo](https://) -->
 
 <h1>Quick overview</h1>
@@ -737,7 +942,7 @@ https://doi.org/10.1038/nature24621</p>
 <li>
 <p>If everything went well, a browser window should automatically pop up, showing the produced graph, like this depicted below, in a non-arranged form, that you should rearrange by drag and drop the nodes based on your preferences. After that we strongly recommend writing down the unique ids of the nodes of interest, separated by space (shown underneath the node's lineage(s)), in groups of interest:</p>
 <p><code>E.g. &lt;11 7 9 8&gt; &lt;51 90 72&gt;</code></p>
-<p><img alt="Alt text" src="imgs/graph.png?raw=true" title="Graph" /></p>
+<p></p>
 </li>
 <li>
 <p>Run the msa analysis script (from the project's folder), replacing the string after the <code>--nodes_of_interest</code> <code>--lineages</code> flag, with the lineages and the nodes of interest in sequential order, separated by space, as shown below:</p>
@@ -762,7 +967,7 @@ https://doi.org/10.1038/nature24621</p>
 <p><code>cd ../tree-of-life
 python -m http.server</code>
 13. Open a browser of your choice and type <code>http://127.0.0.1:8000/</code>. If everything is all right, you will be able to see a tree graph such as the following:</p>
-<p><img alt="Alt text" src="imgs/tree-example.png?raw=true" title="Tree of Life" /></p>
+<p></p>
 </li>
 </ol>
 <h1>Contributing</h1>
@@ -772,13 +977,24 @@ python -m http.server</code>
 <h1>Citations</h1>
 <p>If you use this project in your research, please cite:</p>
 <h1>Credits</h1>
-</article></div>
+</div></article></div>
 
 <div class="cell p-2 mt-5 mb-5" id="GridCG"><article class="box"><div><h1 class="title">GridCG</h1>
-<div class="tags"><span class="tag is-info is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/GridCG">github</a></span>
+<div class="tags"><b class="mb-5">Sources</b><span class="tag is-link is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/GridCG">github</a></span>
 </div>
 </div>
-<h1> Grid CG </h1>
+<div class="tags"><b class="mb-5">Main keywords</b><span class="tag is-primary is-light mb-5">similarity</span>
+<span class="tag is-primary is-light mb-5">egi</span>
+<span class="tag is-primary is-light mb-5">grid</span>
+<span class="tag is-primary is-light mb-5">blast</span>
+<span class="tag is-primary is-light mb-5">detection</span>
+<span class="tag is-primary is-light mb-5">nodes</span>
+<span class="tag is-primary is-light mb-5">automatic</span>
+<span class="tag is-primary is-light mb-5">tool</span>
+<span class="tag is-primary is-light mb-5">cg</span>
+<span class="tag is-primary is-light mb-5">scalable</span>
+</div>
+<div style="max-height:300px; overflow-y:auto"><h1> Grid CG </h1>
 <p><i>A scalable and modular <b>Grid</b> computing framework for <b>C</b>omparative <b>G</b>enomics  </i></p>
 <p>This projects contains a large-scale data analysis tool, aiming towards similarity detection between
 protein sequences, employing the computational resources offered by <a href="https://www.egi.eu/">EGI</a>.</p>
@@ -792,13 +1008,24 @@ protein sequences, employing the computational resources offered by <a href="htt
 <p>The similarity between a given pair of sequences is infered either by a high similarity score 
 created by the <a href="http://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a> tool, and/or by similar phylogenetic profiles constructed using a novel algorithm designed and implemented by the author.</p>
 <p>The example folder provides a working scenario for the user to experiment with.
-Details about this analysis can be found in the folder's specific README</p></article></div>
+Details about this analysis can be found in the folder's specific README</p></div></article></div>
 
 <div class="cell p-2 mt-5 mb-5" id="BPM"><article class="box"><div><h1 class="title">BPM</h1>
-<div class="tags"><span class="tag is-info is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/BPM">github</a></span>
+<div class="tags"><b class="mb-5">Sources</b><span class="tag is-link is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/BPM">github</a></span>
 </div>
 </div>
-<p><img alt="ELIXIR_GREECE_and_ESPA_logos" src="http://genomics-lab.fleming.gr/fleming/reczko/elixir/logos/ELIXIR_GREECE_and_ESPA_logos-1338x218.png" /></p>
+<div class="tags"><b class="mb-5">Main keywords</b><span class="tag is-primary is-light mb-5">database</span>
+<span class="tag is-primary is-light mb-5">mcl</span>
+<span class="tag is-primary is-light mb-5">query</span>
+<span class="tag is-primary is-light mb-5">txt</span>
+<span class="tag is-primary is-light mb-5">timestamp</span>
+<span class="tag is-primary is-light mb-5">hellasgrid</span>
+<span class="tag is-primary is-light mb-5">option</span>
+<span class="tag is-primary is-light mb-5">file</span>
+<span class="tag is-primary is-light mb-5">phylogenetic</span>
+<span class="tag is-primary is-light mb-5">bpm</span>
+</div>
+<div style="max-height:300px; overflow-y:auto"><p></p>
 <h2>CONTENTS OF THIS FILE</h2>
 <ul>
 <li>Introduction</li>
@@ -948,46 +1175,79 @@ In the folders testcase1.tar.gz and testcase2.tar.gz, you can find examples of t
 generated output.</p>
 <hr />
 <h2>FOLDER STRUCTURE</h2>
-<p>You can view the folder structure in the FolderStructure.txt file</p></article></div>
+<p>You can view the folder structure in the FolderStructure.txt file</p></div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="Mutations-Meta-Analyser"><article class="box"><div><h1 class="title">Mutations-Meta-Analyser</h1>
-<div class="tags"><span class="tag is-info is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/Mutations-Meta-Analyser">github</a></span>
+<div class="cell p-2 mt-5 mb-5" id="Mutations_Meta_Analyser"><article class="box"><div><h1 class="title">Mutations-Meta-Analyser</h1>
+<div class="tags"><b class="mb-5">Sources</b><span class="tag is-link is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/Mutations-Meta-Analyser">github</a></span>
 </div>
 </div>
-<p><img alt="ELIXIR_GREECE_and_ESPA_logos" src="http://genomics-lab.fleming.gr/fleming/reczko/elixir/logos/ELIXIR_GREECE_and_ESPA_logos-1338x218.png" /></p></article></div>
+<div class="tags"><b class="mb-5">Main keywords</b></div>
+<div style="max-height:300px; overflow-y:auto"><p></p></div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="align-paths"><article class="box"><div><h1 class="title">align-paths</h1>
-<div class="tags"><span class="tag is-info is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/align-paths">github</a></span>
+<div class="cell p-2 mt-5 mb-5" id="align_paths"><article class="box"><div><h1 class="title">align-paths</h1>
+<div class="tags"><b class="mb-5">Sources</b><span class="tag is-link is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/align-paths">github</a></span>
 </div>
 </div>
-<p><img alt="ELIXIR_GREECE_and_ESPA_logos" src="http://genomics-lab.fleming.gr/fleming/reczko/elixir/logos/ELIXIR_GREECE_and_ESPA_logos-1338x218.png" /></p>
+<div class="tags"><b class="mb-5">Main keywords</b><span class="tag is-primary is-light mb-5">decomposition</span>
+<span class="tag is-primary is-light mb-5">species</span>
+<span class="tag is-primary is-light mb-5">international</span>
+<span class="tag is-primary is-light mb-5">artificial</span>
+<span class="tag is-primary is-light mb-5">intelligence</span>
+<span class="tag is-primary is-light mb-5">paper</span>
+<span class="tag is-primary is-light mb-5">worldscientific</span>
+<span class="tag is-primary is-light mb-5">src</span>
+<span class="tag is-primary is-light mb-5">recsys</span>
+<span class="tag is-primary is-light mb-5">journalcode</span>
+</div>
+<div style="max-height:300px; overflow-y:auto"><p></p>
 <h2>Publication:</h2>
 <p><b>"Inference of Pathway Decomposition Across Multiple Species Through Gene Clustering"</b>
 <br/>
 International Journal of Artificial Intelligence Tools. 02/2015; 24(1):27. DOI: 10.1142/S0218213015400035</p>
-<p>The paper is available <a href="http://www.worldscientific.com/doi/abs/10.1142/S0218213015400035?src=recsys&journalCode=ijait"> here</a></p></article></div>
+<p>The paper is available <a href="http://www.worldscientific.com/doi/abs/10.1142/S0218213015400035?src=recsys&journalCode=ijait"> here</a></p></div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="G-Class"><article class="box"><div><h1 class="title">G-Class</h1>
-<div class="tags"><span class="tag is-info is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/GClass">github</a></span>
+<div class="cell p-2 mt-5 mb-5" id="G_Class"><article class="box"><div><h1 class="title">G-Class</h1>
+<div class="tags"><b class="mb-5">Sources</b><span class="tag is-link is-light mb-5"><a href="https://github.com/BiodataAnalysisGroup/GClass">github</a></span>
 </div>
 </div>
-<p><img alt="ELIXIR_GREECE_and_ESPA_logos" src="http://genomics-lab.fleming.gr/fleming/reczko/elixir/logos/ELIXIR_GREECE_and_ESPA_logos-1338x218.png" /></p><h4 class="subtitle is-4 mt-5"><p>GClass</p></h4>
+<div class="tags"><b class="mb-5">Main keywords</b><span class="tag is-primary is-light mb-5">classification</span>
+<span class="tag is-primary is-light mb-5">motifs</span>
+<span class="tag is-primary is-light mb-5">protein</span>
+<span class="tag is-primary is-light mb-5">correlation</span>
+<span class="tag is-primary is-light mb-5">methodology</span>
+<span class="tag is-primary is-light mb-5">rules</span>
+<span class="tag is-primary is-light mb-5">accuracy</span>
+<span class="tag is-primary is-light mb-5">one</span>
+<span class="tag is-primary is-light mb-5">procedure</span>
+<span class="tag is-primary is-light mb-5">sets</span>
+</div>
+<div style="max-height:300px; overflow-y:auto"><p></p>
 <p>G-Class: A Divide and Conquer Application for Grid Protein Classification</p>
 <p>Protein classification has always been one of the major challenges in bioinformatics. Prediction of the functional behavior of proteins is enabled by the presence of motifs in protein chains. The correlation between protein properties and their motifs is not obvious, since multiple motifs may coexist in a protein chain and combined they determine its function. Due to the complexity of this correlation, most data mining algorithms are either non-efficient or time-consuming. One solution to this problem lies in the parallelization of the classification procedure.</p>
-<p>GClass is an application implementing a methodology for parallel classification that utilizes grid technologies. First, data are split into multiple sets while preserving the original data distribution. Each one of these data sets is then used to train a separate classification model. Finally, all models are combined to produce the final classification rules, which are used to classify new proteins or test the methodology itself. Experiments have shown a considerable increase in execution speed with no loss in classification accuracy. In fact, there are several experiments where an improvement in accuracy was observed. Moreover, classification rules were extracted from experiments that were previously too memory-demanding to be conducted in one computer. Other internal characteristics, such as classification algorithm independency and data adaptability, along with a user-friendly graphical interface can facilitate usage and adoption of the procedure.</p>
-</article></div>
+<p>GClass is an application implementing a methodology for parallel classification that utilizes grid technologies. First, data are split into multiple sets while preserving the original data distribution. Each one of these data sets is then used to train a separate classification model. Finally, all models are combined to produce the final classification rules, which are used to classify new proteins or test the methodology itself. Experiments have shown a considerable increase in execution speed with no loss in classification accuracy. In fact, there are several experiments where an improvement in accuracy was observed. Moreover, classification rules were extracted from experiments that were previously too memory-demanding to be conducted in one computer. Other internal characteristics, such as classification algorithm independency and data adaptability, along with a user-friendly graphical interface can facilitate usage and adoption of the procedure.</p></div></article></div>
 
 <div class="cell p-2 mt-5 mb-5" id="fairbench"><article class="box"><div><h1 class="title">fairbench</h1>
-<div class="tags"><span class="tag is-info is-light mb-5"><a href="https://github.com/mever-team/FairBench">github</a></span>
-<span class="tag is-info is-light mb-5"><a href="https://fairbench.readthedocs.io/">readthedocs</a></span>
+<div class="tags"><b class="mb-5">Sources</b><span class="tag is-link is-light mb-5"><a href="https://github.com/mever-team/FairBench">github</a></span>
+<span class="tag is-link is-light mb-5"><a href="https://fairbench.readthedocs.io/">readthedocs</a></span>
 </div>
 </div>
-<p><a href="https://mammoth-eu.github.io/mammoth-commons/index.html"><img alt="MAI_BIAS toolkit" src="https://img.shields.io/badge/MAI_BIAS-⚖️_AI_fairness_tool-white" /></a>
-<img alt="build" src="https://github.com/mever-team/FairBench/actions/workflows/tests.yml/badge.svg" />
-<img alt="coverage" src="coverage.svg" />
-<a href="https://fairbench.readthedocs.io/"><img alt="Documentation Status" src="https://readthedocs.org/projects/fairbench/badge/?version=latest" /></a>
-<a href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg" /></a>
-<a href="code_of_conduct.md"><img alt="Contributor Covenant" src="https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg" /></a> </p>
+<div class="tags"><b class="mb-5">Main keywords</b><span class="tag is-primary is-light mb-5">fb</span>
+<span class="tag is-primary is-light mb-5">mammoth</span>
+<span class="tag is-primary is-light mb-5">sensitive</span>
+<span class="tag is-primary is-light mb-5">fairbench</span>
+<span class="tag is-primary is-light mb-5">strong</span>
+<span class="tag is-primary is-light mb-5">br</span>
+<span class="tag is-primary is-light mb-5">bias</span>
+<span class="tag is-primary is-light mb-5">commons</span>
+<span class="tag is-primary is-light mb-5">abroca</span>
+<span class="tag is-primary is-light mb-5">rbo</span>
+</div>
+<div style="max-height:300px; overflow-y:auto"><p><a href="https://mammoth-eu.github.io/mammoth-commons/index.html"></a>
+
+
+<a href="https://fairbench.readthedocs.io/"></a>
+<a href="https://github.com/psf/black"></a>
+<a href="code_of_conduct.md"></a> </p>
 <p>This software is part of MAI-BIAS; a low-code toolkit for
 fairness analysis and mitigation, with an accompanying suite of coding
 tools. Our ecosystem operates in multidimensional and multi-attribute 
@@ -1058,7 +1318,7 @@ print(abroca.float())
 abroca.roc.show()
 </code></pre>
 
-<p><img alt="docs/simplest.png" src="docs/simplest.png" /></p>
+<p></p>
 <h4 class="subtitle is-4 mt-5"><p>⚡ Full report</p></h4>
 <p>Non‑technical users can run the same 
 analysis through the MAI‑BIAS toolkit without writing code.
@@ -1074,7 +1334,7 @@ report = fb.reports.pairwise(predictions=yhat, labels=y, sensitive=sensitive)
 report.filter(fb.investigate.Stamps).show(env=fb.export.Html(horizontal=True), depth=1)
 </code></pre>
 
-<p><img alt="docs/stamps.png" src="docs/stamps.png" /></p>
+<p></p>
 <h4 class="subtitle is-4 mt-5"><p>📜 Attributions</p></h4>
 <pre class="codehilite"><code>@inproceedings{krasanakis2024towards,
   title={Towards Standardizing AI Bias Exploration},
@@ -1101,13 +1361,24 @@ Modifications © 2025 Emmanouil Krasanakis.<br>
 See <a href="fairbench/fallbacks/rbo.py">fairbench/fallbacks/rbo.py</a> for details.</p>
 </li>
 </ul>
-</article></div>
+</div></article></div>
 
 <div class="cell p-2 mt-5 mb-5" id="JGNN"><article class="box"><div><h1 class="title">JGNN</h1>
-<div class="tags"><span class="tag is-info is-light mb-5"><a href="https://github.com/MKLab-ITI/JGNN">github</a></span>
+<div class="tags"><b class="mb-5">Sources</b><span class="tag is-link is-light mb-5"><a href="https://github.com/MKLab-ITI/JGNN">github</a></span>
 </div>
 </div>
-<p><a href="https://jitpack.io/#MKLab-ITI/JGNN"><img alt="Latest nightly release" src="https://jitpack.io/v/MKLab-ITI/JGNN.svg" /></a> <a href="https://github.com/MKLab-ITI/JGNN/releases/latest"><img alt="Latest stable release" src="https://img.shields.io/badge/JAR-1.3.40%20stable-red" /></a> </p>
+<div class="tags"><b class="mb-5">Main keywords</b><span class="tag is-primary is-light mb-5">jgnn</span>
+<span class="tag is-primary is-light mb-5">mklab</span>
+<span class="tag is-primary is-light mb-5">iti</span>
+<span class="tag is-primary is-light mb-5">jitpack</span>
+<span class="tag is-primary is-light mb-5">article</span>
+<span class="tag is-primary is-light mb-5">neural</span>
+<span class="tag is-primary is-light mb-5">native</span>
+<span class="tag is-primary is-light mb-5">java</span>
+<span class="tag is-primary is-light mb-5">networks</span>
+<span class="tag is-primary is-light mb-5">emmanouil</span>
+</div>
+<div style="max-height:300px; overflow-y:auto"><p><a href="https://jitpack.io/#MKLab-ITI/JGNN"></a> <a href="https://github.com/MKLab-ITI/JGNN/releases/latest"></a> </p>
 <p><em>Resource efficient machine learning and graph neural networks in native Java.</em></p>
 <p>Graph Neural Networks (GNNs) are getting more and more popular, for example to
 make predictions based on relational information, or to perform inference
@@ -1136,9 +1407,79 @@ requests for features and clarifications are welcome.</p><h4 class="subtitle is-
 </code></pre>
 
 <p><strong>Apache license 2.0. Copyright © 2024, Emmanouil Krasanakis (maniospas@hotmail.com).</strong></p>
-</article></div>
-
+</div></article></div>
+<script>const kwdata = {
+APNet: {"apnet":8.077354149274955,"deep":1.4426950408889634,"learning":2.055593369479003,"approach":1.2426698691192237,"biological":2.055593369479003,"discover":1.4426950408889634,"predictive":7.213475204444817,"drivers":8.656170245333781,"covid":4.328085122666891,"severity":2.8853900817779268,"focusing":1.4426950408889634,"distinct":2.8853900817779268,"publicly":1.4426950408889634,"plasma":4.328085122666891,"proteomic":4.328085122666891,"datasets":1.6681295656969852,"olink":2.8853900817779268,"proximity":1.4426950408889634,"extension":0.9102392266268373,"assay":1.4426950408889634,"pea":1.4426950408889634,"technology":1.4426950408889634,"initially":0.9102392266268373,"converts":0.9102392266268373,"throughput":0.9102392266268373,"omics":1.8204784532536746,"expression":3.728009607357671,"matrices":2.8853900817779268,"proteomics":1.4426950408889634,"activity":1.8640048036788355,"reflect":1.4426950408889634,"strength":1.4426950408889634,"transcription":0.9102392266268373,"factors":0.9102392266268373,"signal":2.8853900817779268,"involves":1.4426950408889634,"bayesian":1.4426950408889634,"based":1.6097184175273787,"differential":2.1640425613334453,"analysis":1.0188698156853258,"bulk":1.4426950408889634,"scminer":1.4426950408889634,"single":0.9102392266268373,"cell":1.0277966847395015,"sjaracne":1.4426950408889634,"co":2.730717679880512,"graphs":2.1640425613334453,"associates":1.4426950408889634,"differentially":2.8853900817779268,"active":1.8204784532536746,"pathways":1.8204784532536746,"using":0.9853762162591532,"enrichr":0.9102392266268373,"knowledge":0.9102392266268373,"graph":0.9617966939259757,"kg":0.9102392266268373,"next":0.9102392266268373,"employs":0.9102392266268373,"pasnet":1.4426950408889634,"interpretable":0.9102392266268373,"predictions":1.1162212531024944,"uses":1.4426950408889634,"inputs":0.9102392266268373,"applying":0.9102392266268373,"sparse":0.9102392266268373,"regularization":1.4426950408889634,"hierarchical":1.4426950408889634,"driver":5.461435359761024,"pathway":2.730717679880512,"connections":2.8853900817779268,"interpretability":1.4426950408889634,"improved":1.4426950408889634,"including":0.9102392266268373,"shapley":1.4426950408889634,"shap":0.9102392266268373,"finally":1.4426950408889634,"assembles":1.4426950408889634,"bipartite":4.328085122666891,"networks":1.2426698691192237,"incorporating":1.4426950408889634,"information":2.4853397382384474,"earlier":1.4426950408889634,"mutual":1.4426950408889634,"interactions":1.4426950408889634,"weights":1.4426950408889634,"valuable":1.4426950408889634,"investigating":1.4426950408889634,"mechanistic":1.4426950408889634,"hypotheses":1.4426950408889634,"representation":1.4426950408889634,"shortest":1.4426950408889634,"path":0.9102392266268373,"retrieval":1.4426950408889634,"propagation":1.4426950408889634,"simulation":1.4426950408889634,"ensure":1.4426950408889634,"generalizability":1.4426950408889634,"avoid":0.9102392266268373,"fitting":1.4426950408889634,"deployed":1.4426950408889634,"three":1.1162212531024944,"cases":2.8853900817779268,"separating":1.4426950408889634,"training":0.9102392266268373,"validation":1.4426950408889634,"testing":0.9102392266268373,"tasks":1.4426950408889634,"discovered":2.8853900817779268,"confirming":1.4426950408889634,"truths":0.9102392266268373,"also":0.8340647828484926,"uncovering":0.9102392266268373,"nascent":1.4426950408889634,"credence":1.4426950408889634,"joint":0.9102392266268373,"perturbations":0.9102392266268373,"typical":1.4426950408889634,"outperformed":1.4426950408889634,"state":0.9102392266268373,"art":0.9102392266268373,"alternative":0.9102392266268373,"iterations":1.4426950408889634,"random":0.9102392266268373,"forest":0.9102392266268373,"uncovered":2.8853900817779268,"traced":1.4426950408889634,"circulating":1.4426950408889634,"blood":1.4426950408889634,"cells":1.4426950408889634,"study":0.9102392266268373,"transformed":1.4426950408889634,"seq":1.1162212531024944,"scrna":1.4426950408889634,"highly":0.9102392266268373,"relatively":1.4426950408889634,"unexplored":1.4426950408889634,"literature":0.9102392266268373,"syndecan":1.4426950408889634,"keratin":1.4426950408889634,"mitochondrial":1.4426950408889634,"chaperone":1.4426950408889634,"reflecting":1.4426950408889634,"liver":1.4426950408889634,"damage":1.4426950408889634,"emerges":1.4426950408889634,"severe":1.4426950408889634,"guidelines":0.9102392266268373,},
+lncAPNet: {"strong":11.294595963672357,"lncapnet":3.1066746727980594,"extension":0.9102392266268373,"activity":2.4853397382384474,"pasnet":2.1640425613334453,"apnet":2.4853397382384474,"framework":1.4426950408889634,"incorporates":1.4426950408889634,"rnas":1.4426950408889634,"lncrnas":1.4426950408889634,"explainable":1.8204784532536746,"network":1.4426950408889634,"based":1.207288813145534,"patient":2.232442506204989,"stratification":1.8204784532536746,"supervised":1.8204784532536746,"clustering":1.2426698691192237,"transcriptomic":1.4426950408889634,"hosts":1.4426950408889634,"implementation":1.8204784532536746,"computational":1.0277966847395015,"pipeline":1.5416950271092522,"hr":1.4426950408889634,"built":0.9102392266268373,"upon":1.4426950408889634,"recently":1.4426950408889634,"reported":1.4426950408889634,"br":2.1714724095162588,"doi":0.8340647828484926,"bioinformatics":1.1162212531024944,"gavriilidis":1.4426950408889634,"et":1.6743318796537419,"al":1.6743318796537419,"performs":0.9102392266268373,"xai":1.4426950408889634,"driven":1.4426950408889634,"cohorts":1.4426950408889634,"integrating":0.9102392266268373,"analysis":1.0188698156853258,"biological":1.5416950271092522,"priors":2.730717679880512,"concept":1.4426950408889634,"original":0.9102392266268373,"integrates":1.4426950408889634,"sjaracne":1.4426950408889634,"regulatory":1.8640048036788355,"driver":0.9102392266268373,"sparse":0.9102392266268373,"interpretable":0.9102392266268373,"architecture":1.4426950408889634,"components":0.9102392266268373,"supported":1.4426950408889634,"post":0.9102392266268373,"hoc":1.4426950408889634,"visualization":0.9102392266268373,"clinical":1.4426950408889634,"applications":1.4426950408889634,"expands":1.4426950408889634,"toolbox":1.4426950408889634,"explicitly":1.4426950408889634,"modeling":1.4426950408889634,"lncrna":7.213475204444817,"mechanisms":1.8204784532536746,"key":1.4426950408889634,"extensions":1.4426950408889634,"include":1.4426950408889634,"graph":0.9617966939259757,"nonlinear":1.4426950408889634,"interpretation":2.8853900817779268,"mrna":0.9102392266268373,"relationships":1.4426950408889634,"integration":0.9102392266268373,"knowledge":0.9102392266268373,"lncrnalyzr":1.4426950408889634,"kg":0.9102392266268373,"evangelista":1.4426950408889634,"identification":0.9102392266268373,"regulons":1.4426950408889634,"derived":1.4426950408889634,"enhanced":1.4426950408889634,"contributions":0.9102392266268373,"active":0.9102392266268373,"development":0.9102392266268373,"em":0.9617966939259757,"construction":1.4426950408889634,"nextflow":0.9102392266268373,"planned":1.4426950408889634,"future":1.4426950408889634,"improve":1.4426950408889634,"scalability":0.9102392266268373,"portability":1.4426950408889634,"reproducibility":1.4426950408889634,"text":0.9102392266268373,"vasileiou":1.4426950408889634,},
+Mongoose: {"perturbation":7.213475204444817,"modelling":5.7707801635558535,"single":2.275598066567093,"cell":4.111186738958006,"crucial":1.4426950408889634,"molecular":1.4426950408889634,"elicited":1.4426950408889634,"knockouts":1.4426950408889634,"chemical":1.4426950408889634,"compounds":1.4426950408889634,"biological":1.0277966847395015,"stimulants":1.4426950408889634,"across":0.9617966939259757,"health":1.4426950408889634,"phenotypes":0.9102392266268373,"confounded":1.4426950408889634,"scarce":0.9102392266268373,"explainability":1.4426950408889634,"statistical":1.8204784532536746,"uncertainty":1.4426950408889634,"learning":1.0277966847395015,"dl":2.8853900817779268,"extreme":1.4426950408889634,"scenarios":0.9102392266268373,"hyperparameter":1.4426950408889634,"limited":0.9102392266268373,"scalability":0.9102392266268373,"multi":2.4853397382384474,"omic":4.328085122666891,"mongoose":5.7707801635558535,"objective":1.4426950408889634,"generator":1.4426950408889634,"optimized":0.9102392266268373,"explore":0.9102392266268373,"enhancing":1.4426950408889634,"complex":2.730717679880512,"datasets":1.251097174272739,"task":0.9102392266268373,"mtl":2.8853900817779268,"combines":0.9102392266268373,"unitednet":4.328085122666891,"employs":0.9102392266268373,"simultaneously":0.9102392266268373,"joint":0.9102392266268373,"group":0.9102392266268373,"identification":1.8204784532536746,"cross":1.8204784532536746,"modal":2.8853900817779268,"prediction":0.9102392266268373,"sharpley":1.4426950408889634,"values":0.9102392266268373,"shap":1.8204784532536746,"component":0.9102392266268373,"ii":2.8853900817779268,"like":1.3028834457097553,"scing":1.4426950408889634,"genki":1.4426950408889634,"reconstruct":1.4426950408889634,"perturb":2.8853900817779268,"type":1.8640048036788355,"grns":2.8853900817779268,"encoder":1.4426950408889634,"decoder":1.4426950408889634,"discriminator":1.4426950408889634,"approximates":1.4426950408889634,"characteristics":0.9102392266268373,"modality":0.9102392266268373,"prior":0.9102392266268373,"assumptions":1.4426950408889634,"hence":1.4426950408889634,"claim":1.4426950408889634,"facilitate":0.9102392266268373,"biologically":1.4426950408889634,"informed":0.9102392266268373,"decisions":1.4426950408889634,"conducting":1.4426950408889634,"ensuing":1.4426950408889634,"digital":2.8853900817779268,"kos":2.8853900817779268,"reverse":1.4426950408889634,"engineered":1.4426950408889634,"providing":1.4426950408889634,"better":0.9102392266268373,"clusters":0.9102392266268373,"significant":0.9102392266268373,"associations":2.8853900817779268,"spatial":4.328085122666891,"showcase":1.4426950408889634,"mrna":1.8204784532536746,"protein":1.2426698691192237,"seq":1.1162212531024944,"crispr":1.4426950408889634,"knock":1.4426950408889634,"outs":1.4426950408889634,"dbit":1.8204784532536746,"mouse":1.4426950408889634,"embryo":1.4426950408889634,"dataset":0.8340647828484926,"niche":1.4426950408889634,"expected":1.4426950408889634,"play":1.4426950408889634,"pivotal":1.4426950408889634,"roles":1.4426950408889634,"perturbations":0.9102392266268373,"silico":1.4426950408889634,"grn":1.4426950408889634,"anticipate":1.4426950408889634,"perturbational":1.4426950408889634,"insights":1.4426950408889634,"closer":1.4426950408889634,"truths":0.9102392266268373,"ultimately":0.9102392266268373,"highlighting":1.4426950408889634,"critical":1.4426950408889634,"transcription":0.9102392266268373,"factors":0.9102392266268373,"signalling":1.4426950408889634,"pathways":0.9102392266268373,"potential":1.4426950408889634,"translational":1.4426950408889634,"greatly":0.9102392266268373,"appreciate":0.9102392266268373,"sort":1.4426950408889634,"feedback":0.9102392266268373,"write":0.9102392266268373,"us":0.9102392266268373,"code":0.9981700585168474,"ggeorav":1.4426950408889634,"certh":1.4426950408889634,"gr":1.4426950408889634,"inab":1.4426950408889634,"lists":1.4426950408889634,},
+ELIXIR_BFSP_Odyssey: {"odyssey":3.6067376022224087,"biodiversity":1.4426950408889634,"norway":1.4426950408889634,"pre":1.2136523021691166,"class":1.1878968174934803,"code":1.746797602404483,"install":0.8340647828484926,"packages":0.8685889638065035,"quot":1.4770774922754202,"remotes":2.8853900817779268,"elixir":0.9102392266268373,"bfsp":1.4426950408889634,"contributing":0.9102392266268373,"guidelines":0.9102392266268373,"whole":0.9102392266268373,"npechl":1.4426950408889634,"mbiog":1.4426950408889634,"license":1.207288813145534,"contained":1.4426950408889634,"website":1.4426950408889634,"simultaneously":0.9102392266268373,"means":1.4426950408889634,"conduct":1.8204784532536746,},
+synth4bench: {"align":4.464885012409978,"center":1.8204784532536746,"hr":3.6067376022224087,"justify":3.728009607357671,"somatic":5.592014411036507,"variant":7.19457679317651,"calling":4.328085122666891,"algorithms":3.597288396588255,"essential":1.4426950408889634,"genomic":1.8204784532536746,"alterations":1.8204784532536746,"however":0.9102392266268373,"performance":2.1640425613334453,"challenging":0.9102392266268373,"lack":1.8204784532536746,"ground":3.1066746727980594,"truth":4.551196133134186,"datasets":2.502194348545478,"address":0.9102392266268373,"issue":1.0277966847395015,"synthetic":6.6973275186149674,"genomics":4.328085122666891,"data":2.8414954348806165,"generation":2.4853397382384474,"framework":1.0820212806667227,"benchmarking":3.728009607357671,"tumor":1.8204784532536746,"using":0.9853762162591532,"neat":3.6067376022224087,"simulator":1.8204784532536746,"subsequently":1.4426950408889634,"thoroughly":1.4426950408889634,"evaluated":0.9102392266268373,"including":0.9102392266268373,"strong":4.941385734106656,"gatk":1.4426950408889634,"freebayes":1.8204784532536746,"vardict":1.8204784532536746,"lofreq":1.8204784532536746,"comparing":1.4426950408889634,"excellent":1.4426950408889634,"behavior":1.4426950408889634,"href":5.395413359816269,"abstract":2.8853900817779268,"description":2.8853900817779268,"installation":2.055593369479003,"download":2.885390081777927,"execution":1.6743318796537419,"documentation":3.1066746727980594,"contribute":1.4426950408889634,"citation":2.8853900817779268,"framekwork":1.4426950408889634,"addresses":1.4426950408889634,"challenge":1.4426950408889634,"particularly":1.4426950408889634,"alle":1.4426950408889634,"variants":2.8853900817779268,"goal":1.4426950408889634,"develop":1.4426950408889634,"reliable":1.4426950408889634,"consistent":1.4426950408889634,"identifying":2.8853900817779268,"genetic":1.4426950408889634,"lesions":1.4426950408889634,"cancer":1.4426950408889634,"complicates":1.4426950408889634,"evaluation":2.1640425613334453,"overcome":1.4426950408889634,"generate":0.9102392266268373,"mimics":1.4426950408889634,"real":1.4426950408889634,"genome":1.0277966847395015,"serving":1.4426950408889634,"three":1.1162212531024944,"independent":0.9102392266268373,"analyses":1.4426950408889634,"adress":1.4426950408889634,"types":1.4426950408889634,"independently":0.9102392266268373,"snvs":2.8853900817779268,"noise":1.4426950408889634,"indels":1.4426950408889634,"callers":3.6409569065073493,"evaluate":1.4426950408889634,"five":1.4426950408889634,"openly":1.4426950408889634,"available":1.16961373575384,"https":3.4193507134636123,"zenodo":3.3486637593074837,"org":1.8204784532536749,"records":1.4426950408889634,"instructions":1.5416950271092522,"github":2.3083120654223412,"com":2.287997340021395,"sfragkoul":3.9067743858587307,"blob":1.6743318796537419,"main":1.7647806193238058,"docs":1.8640048036788355,"userguide":1.4426950408889634,"md":1.1078081192065652,"user":0.8340647828484926,"guide":1.8204784532536746,"ol":0.9617966939259757,"create":1.2426698691192237,"conda":2.1640425613334453,"environment":1.2426698691192237,"code":4.741307777955025,"bash":3.6067376022224087,"install":0.8340647828484926,"ncsa":1.4426950408889634,"releases":0.9102392266268373,"tag":1.4426950408889634,"br":0.8685889638065035,"call":0.9102392266268373,"script":1.207288813145534,"gen":1.4426950408889634,"reads":0.9102392266268373,"py":1.2426698691192237,"help":1.4426950408889634,"included":1.4426950408889634,"bam":7.213475204444817,"readcount":7.213475204444817,"build":2.1640425613334453,"building":0.9102392266268373,"verify":1.4426950408889634,"bin":1.8204784532536746,"encounter":1.4426950408889634,"issues":1.1162212531024944,"use":1.0820212806667227,"place":0.9102392266268373,"varscan":2.8853900817779268,"extra":1.1162212531024944,"vscan":1.4426950408889634,"simply":0.9102392266268373,"configure":1.4426950408889634,"parameters":1.0277966847395015,"sh":0.9102392266268373,"generates":1.4426950408889634,"runs":0.9102392266268373,"selected":0.9102392266268373,"performs":0.9102392266268373,"downstream":0.9102392266268373,"plotting":1.4426950408889634,"full":0.9102392266268373,"visit":1.4426950408889634,"page":1.4426950408889634,"greatly":0.9102392266268373,"appreciate":0.9102392266268373,"feedback":0.9102392266268373,"contributions":0.9102392266268373,"email":0.9102392266268373,"submitted":1.4426950408889634,"em":5.770780163555854,"biorxiv":2.8853900817779268,"preprint":0.9102392266268373,"blockquote":2.8853900817779268,"fragkouli":4.551196133134186,"pechlivanis":3.6067376022224087,"anastasiadou":3.6409569065073493,"karakatsoulis":2.730717679880512,"orfanou":3.6409569065073493,"kollia":2.730717679880512,"agathangelidis":4.551196133134186,"psomopoulos":3.6067376022224087,"doi":3.3362591313939705,"content":1.4426950408889634,"tale":1.4426950408889634,"unfolding":1.4426950408889634,"feature":1.2426698691192237,"space":1.8204784532536746,"european":1.8204784532536746,"conference":5.7707801635558535,"computational":1.5416950271092522,"biology":5.7707801635558535,"sep":1.4426950408889634,"turku":1.4426950408889634,"finland":1.4426950408889634,"exploring":1.4426950408889634,"elixir":0.9102392266268373,"jun":1.4426950408889634,"uppsala":1.4426950408889634,"sweden":1.4426950408889634,"generating":1.4426950408889634,"hellenic":1.4426950408889634,"society":1.4426950408889634,"hscbb":1.4426950408889634,"oct":1.4426950408889634,"thessaloniki":0.9102392266268373,"intelligent":1.4426950408889634,"systems":1.4426950408889634,"jul":1.4426950408889634,"lyon":1.4426950408889634,"france":1.4426950408889634,},
+lineagespot: {"lineagespot":1.8204784532536746,"org":0.9102392266268374,"aims":0.9102392266268373,"identify":1.4426950408889634,"sars":1.1162212531024944,"cov":1.1162212531024944,"related":1.4426950408889634,"variant":1.5416950271092522,"broadinstitute":1.4426950408889634,"hc":1.4426950408889634,"en":0.9102392266268373,"us":0.9102392266268373,"articles":1.4426950408889634,"vcf":0.9102392266268373,"call":0.9102392266268373,"format":1.2426698691192237,"install":0.8340647828484926,"quot":1.4770774922754202,"devtools":2.8853900817779268,"steps":0.9102392266268373,"raw":1.8204784532536746,"inst":1.4426950408889634,"tsagiopoulou":1.4426950408889634,"maniou":1.4426950408889634,"em":0.9617966939259757,"lineages":0.9102392266268373,"mutational":0.9102392266268373,"municipal":1.4426950408889634,"wastewater":1.4426950408889634,"metropolitan":1.4426950408889634,"area":1.4426950408889634,"thessaloniki":0.9102392266268373,"sci":1.4426950408889634,"rep":1.4426950408889634,},
+tripr: {"readme":0.9617966939259757,"rmd":1.4426950408889634,"edit":1.4426950408889634,"todo":1.4426950408889634,"badges":4.328085122666891,"start":1.4426950408889634,"lifecycle":4.328085122666891,"stable":2.730717679880512,"https":3.17511137678764,"shields":7.213475204444817,"io":1.737177927613007,"badge":3.6409569065073493,"brightgreen":1.4426950408889634,"svg":8.656170245333781,"www":1.3839050250447744,"org":3.9443699820496287,"bioc":2.730717679880512,"status":2.8853900817779268,"http":3.9067743858587307,"bioconductor":7.255438145166215,"build":1.4426950408889634,"release":1.4426950408889634,"data":1.8082243676513015,"experiment":3.6409569065073493,"spatiallibd":8.656170245333781,"checkresults":2.8853900817779268,"latest":1.2426698691192237,"dev":1.4426950408889634,"devel":2.8853900817779268,"codecov":4.328085122666891,"coverage":1.4426950408889634,"gh":1.8204784532536746,"biodataanalysisgroup":1.698116359475543,"tripr":5.770780163555854,"branch":2.8853900817779268,"master":1.8204784532536746,"support":2.8853900817779268,"site":0.9102392266268373,"last":1.4426950408889634,"months":1.4426950408889634,"tagged":2.8853900817779268,"avg":2.8853900817779268,"answers":2.8853900817779268,"per":1.4426950408889634,"question":2.8853900817779268,"comments":1.4426950408889634,"accepted":1.4426950408889634,"posts":2.8853900817779268,"github":1.1541560327111706,"issues":1.6743318796537419,"com":0.857999002508023,"zenodo":1.1162212531024944,"latestdoi":1.4426950408889634,"cell":1.5416950271092522,"receptor":2.8853900817779268,"immunoglobulin":1.4426950408889634,"profiler":0.9102392266268373,"trip":0.9102392266268373,"href":1.4714763708589824,"actions":1.4426950408889634,"check":1.8204784532536746,"code":4.990850292584237,"package":2.055593369479003,"shiny":1.1162212531024944,"rstudio":0.9102392266268373,"analytics":1.4426950408889634,"services":1.4426950408889634,"antigen":1.4426950408889634,"bcr":1.4426950408889634,"ig":1.4426950408889634,"tr":1.4426950408889634,"interactively":0.9102392266268373,"thus":0.9102392266268373,"requiring":0.9102392266268373,"programming":0.9102392266268373,"skills":0.9102392266268373,"takes":0.9102392266268373,"imgt":2.8853900817779268,"highv":2.8853900817779268,"quest":2.8853900817779268,"home":1.4426950408889634,"action":1.4426950408889634,"analyze":1.4426950408889634,"samples":1.2426698691192237,"separately":1.4426950408889634,"visualize":1.4426950408889634,"accordingly":1.4426950408889634,"distributed":0.9102392266268373,"requires":0.9102392266268373,"version":1.4426950408889636,"installed":1.365358839940256,"operating":0.9102392266268373,"system":1.1162212531024944,"cran":1.0277966847395015,"install":1.251097174272739,"enter":1.4426950408889634,"commands":0.9102392266268373,"session":0.9102392266268373,"pre":1.8204784532536749,"class":1.7818452262402205,"codehilite":0.9102392266268374,"language":1.1367695450698536,"requirenamespace":1.4426950408889634,"quot":2.9541549845508404,"biocmanager":2.8853900817779268,"quietly":1.4426950408889634,"valid":1.8204784532536746,"successfully":0.9102392266268373,"loaded":1.4426950408889634,"view":0.9102392266268373,"browsevignettes":1.4426950408889634,},
+IgIDivA: {"code":7.985360468134779,"igidiva":11.833109946148886,"immunoglobulin":1.4426950408889634,"intraclonal":2.8853900817779268,"diversification":2.8853900817779268,"analysis":1.0188698156853258,"purpose":1.4426950408889634,"built":0.9102392266268373,"throughput":0.9102392266268373,"written":0.9617966939259757,"href":1.9619684944786433,"https":1.9539146934077785,"shiny":1.6743318796537419,"rstudio":0.9102392266268373,"com":1.1439986700106974,"interactively":0.9102392266268373,"thus":0.9102392266268373,"requiring":0.9102392266268373,"programming":0.9102392266268373,"skills":0.9102392266268373,"takes":0.9102392266268373,"input":1.3352328027813363,"clonotypes":1.4426950408889634,"computation":1.4426950408889634,"grouped":1.4426950408889634,"nt":1.4426950408889634,"bio":1.4426950408889634,"trip":0.9102392266268373,"profiler":0.9102392266268373,"br":0.8685889638065035,"found":1.6743318796537419,"rpubs":1.4426950408889634,"laura":1.4426950408889634,"zara":1.4426950408889634,"scripts":1.207288813145534,"freely":1.4426950408889634,"downloaded":1.0277966847395015,"github":0.8656170245333781,"laurazara":2.8853900817779268,"requires":0.9102392266268373,"installed":1.365358839940256,"operating":0.9102392266268373,"cran":1.0277966847395015,"successfully":0.9102392266268373,"tested":0.9102392266268373,"windows":1.4426950408889634,"macos":1.4426950408889634,"linux":1.4426950408889634,"wsl":1.4426950408889634,"packages":9.554478601871539,"need":2.730717679880512,"session":1.8204784532536746,"following":0.8048592087636893,"pre":1.2136523021691166,"class":1.1878968174934803,"install":9.174712611333419,"quot":16.986391161167333,"shinyfiles":1.4426950408889634,"fs":1.4426950408889634,"pdftools":1.4426950408889634,"purrr":1.4426950408889634,"dt":1.4426950408889634,"bslib":1.4426950408889634,"shinyhelper":1.4426950408889634,"rgenetics":2.8853900817779268,"dplyr":0.9102392266268373,"ggsci":1.4426950408889634,"tidygraph":1.4426950408889634,"ggraph":1.4426950408889634,"igraph":1.4426950408889634,"ggpubr":0.9102392266268373,"rstatix":2.8853900817779268,"shinyvalidate":2.8853900817779268,"folder":1.0014246020860023,"saved":1.4426950408889634,"app":7.213475204444817,"press":1.4426950408889634,"button":1.4426950408889634,"conda":2.8853900817779268,"recommend":0.9102392266268373,"en":0.9102392266268373,"miniconda":1.8204784532536746,"dependencies":2.8853900817779268,"yml":1.8640048036788355,"downloading":1.4426950408889634,"opened":1.4426950408889634,"commands":0.9102392266268373,"rscript":1.4426950408889634,"produce":0.9102392266268373,"url":0.9102392266268373,"copied":0.9102392266268373,"web":1.4426950408889634,"direct":1.4426950408889634,},
+InterTads: {"intertads":1.8204784532536746,"open":0.9617966939259757,"source":1.2426698691192237,"href":1.226230309049152,"https":0.9769573467038892,"integrating":0.9102392266268373,"omics":0.9102392266268373,"dna":1.4426950408889634,"methylation":1.8204784532536746,"expression":1.2426698691192237,"mutation":1.4426950408889634,"physical":1.4426950408889634,"taking":0.9102392266268373,"chromatin":1.4426950408889634,"configuration":0.9102392266268373,"topologically":1.4426950408889634,"associating":1.4426950408889634,"domains":1.4426950408889634,"tads":1.4426950408889634,"simply":0.9102392266268373,"clone":1.0277966847395015,"git":2.055593369479003,"scm":1.4426950408889634,"evaluated":0.9102392266268373,"chronic":1.4426950408889634,"lymphocytic":1.4426950408889634,"leukemia":1.4426950408889634,"deposited":1.4426950408889634,"ebi":1.4426950408889634,"arrayexpress":1.4426950408889634,"database":0.9102392266268373,"embl":1.4426950408889634,"accession":1.4426950408889634,"mtab":1.4426950408889634,"respectively":0.9102392266268373,"pull":0.9102392266268373,"discuss":0.9102392266268373,"license":1.207288813145534,},
+UMIc: {"umic":3.9067743858587307,"framework":1.0820212806667227,"href":1.4714763708589824,"https":1.4654360200558338,"project":1.9850494443593336,"implementing":0.9102392266268373,"new":1.2426698691192237,"method":1.0277966847395015,"umi":7.934822724889299,"deduplication":1.4426950408889634,"reads":0.9102392266268373,"correction":1.4426950408889634,"works":0.9102392266268373,"nucleotide":1.4426950408889634,"taking":0.9102392266268373,"mean":0.9102392266268373,"quality":1.4426950408889634,"base":1.4426950408889634,"packages":0.8685889638065035,"needed":0.9102392266268373,"order":0.8685889638065035,"pre":2.427304604338233,"class":1.1878968174934803,"codehilite":1.2136523021691166,"code":12.477125731460593,"install":0.8340647828484926,"quot":5.169771222963971,"data":1.8082243676513015,"table":1.1162212531024944,"stringdist":1.4426950408889634,"pryr":1.4426950408889634,"biostrings":1.4426950408889634,"shortread":1.4426950408889634,"git":1.0277966847395015,"github":1.4426950408889634,"com":1.4299983375133718,"biodataanalysisgroup":1.698116359475543,"three":1.1162212531024944,"umisproject":3.6409569065073493,"casesworkflows":1.4426950408889634,"set":1.4426950408889636,"tree":1.3028834457097553,"master":2.730717679880512,"folder":2.0028492041720045,"input":3.3380820069533406,"parameters":1.5416950271092522,"script":0.8048592087636893,"following":0.8048592087636893,"example":0.8685889638065035,"datasets":0.8340647828484926,"outputs":1.8204784532536746,"testing":0.9102392266268373,"purposes":1.4426950408889634,"scenarios":0.9102392266268373,"corresponding":1.8204784532536746,"subfolders":0.9102392266268373,"subfolder":0.9102392266268373,"icludes":1.4426950408889634,"fastq":2.7905531327562363,"files":2.716986175160869,"file":1.6175772657433625,"generate":0.9102392266268373,"user":1.251097174272739,"must":2.4853397382384474,"output":1.894615908449756,"filepaths":1.4426950408889634,"later":1.4426950408889634,"inputs":1.8204784532536746,"paireddata":1.4426950408889634,"boolean":1.4426950408889634,"variable":2.8853900817779268,"indicates":2.8853900817779268,"whether":1.8204784532536746,"paired":1.4426950408889634,"umilocation":1.4426950408889634,"located":1.4426950408889634,"amp":1.4426950408889634,"umilength":1.4426950408889634,"length":0.9617966939259757,"sequence":2.4044917348149393,"sequencelength":1.4426950408889634,"read":2.8853900817779268,"countscutoff":1.4426950408889634,"min":1.4426950408889634,"counts":1.4426950408889634,"cleaning":1.4426950408889634,"umidistance":1.4426950408889634,"max":2.8853900817779268,"distance":2.8853900817779268,"merging":2.8853900817779268,"sequencedistance":1.4426950408889634,"inputsfolder":1.4426950408889634,"name":1.6743318796537419,"filepath":1.8204784532536746,"outputsfolder":1.4426950408889634,"default":1.4426950408889634,"provided":1.1162212531024944,"assumed":1.4426950408889634,"placed":1.4426950408889634,"beginning":0.9102392266268373,"preparation":0.9102392266268373,"genarated":1.4426950408889634,"protocol":1.4426950408889634,"fulfil":1.4426950408889634,"described":1.4426950408889634,"also":0.8340647828484926,"named":1.8204784532536746,"added":2.8853900817779268,"corrected":2.8853900817779268,"suffix":2.8853900817779268,"contain":1.4426950408889634,"sequences":1.6681295656969852,"worth":1.4426950408889634,"mentioning":1.4426950408889634,"id":1.8204784532536746,"combining":1.4426950408889634,"produces":0.9102392266268373,"information":1.2426698691192237,"return":1.4426950408889634,"summary":0.9102392266268373,"wiki":1.8204784532536746,"license":1.207288813145534,},
+metaDIEA: {"rna":2.4853397382384474,"sequencing":2.1640425613334453,"become":1.4426950408889634,"standard":1.4426950408889634,"technique":1.4426950408889634,"resolution":2.8853900817779268,"wide":1.4426950408889634,"monitoring":2.8853900817779268,"expression":1.2426698691192237,"often":1.4426950408889634,"comprises":0.9102392266268373,"understanding":1.4426950408889634,"complex":1.8204784532536746,"mo":1.4426950408889634,"lecular":1.4426950408889634,"mechanisms":0.9102392266268373,"driving":1.4426950408889634,"various":0.9102392266268373,"phenotypes":0.9102392266268373,"spanning":1.4426950408889634,"organ":1.4426950408889634,"development":0.9102392266268373,"genesis":1.4426950408889634,"progression":1.4426950408889634,"many":1.4426950408889634,"advantages":1.4426950408889634,"ability":1.4426950408889634,"capture":1.4426950408889634,"events":1.4426950408889634,"alternative":0.9102392266268373,"splicing":1.4426950408889634,"alternate":1.4426950408889634,"isoform":4.328085122666891,"abundance":1.4426950408889634,"advantage":1.4426950408889634,"still":0.9102392266268373,"remains":1.4426950408889634,"algorithmically":1.4426950408889634,"computationally":1.4426950408889634,"challenging":0.9102392266268373,"especially":1.4426950408889634,"emergence":1.4426950408889634,"even":1.4426950408889634,"technologies":0.9102392266268373,"although":1.4426950408889634,"several":2.1640425613334453,"algorithms":2.5694917118487535,"proposed":1.4426950408889634,"effective":1.4426950408889634,"detection":0.9102392266268373,"differential":1.4426950408889634,"data":1.033271067229315,"widely":2.8853900817779268,"golden":1.4426950408889634,"standards":1.4426950408889634,"established":1.4426950408889634,"fact":0.9102392266268373,"compounded":1.4426950408889634,"significant":0.9102392266268373,"differences":1.4426950408889634,"applied":1.4426950408889634,"addition":0.9102392266268373,"remain":1.4426950408889634,"scarce":0.9102392266268373,"poorly":1.4426950408889634,"maintained":1.4426950408889634,"challenges":0.9102392266268373,"strong":3.5295612386476116,"metadiea":1.4426950408889634,"meta":1.4426950408889634,"ifferential":1.4426950408889634,"soform":1.4426950408889634,"xpression":1.4426950408889634,"nalysis":1.4426950408889634,"integrative":1.4426950408889634,"ap":1.4426950408889634,"proach":1.4426950408889634,"effectively":1.4426950408889634,"combines":0.9102392266268373,"top":1.4426950408889634,"transcript":1.4426950408889634,"state":0.9102392266268373,"art":0.9102392266268373,"techniques":0.9102392266268373,"demonstrate":1.4426950408889634,"usability":1.4426950408889634,"applying":0.9102392266268373,"simulated":1.4426950408889634,"organisms":1.4426950408889634,"metrics":0.9102392266268373,"conclude":1.4426950408889634,"strategy":1.4426950408889634,"outperforms":1.4426950408889634,"application":1.0277966847395015,"individual":0.9102392266268373,"underlying":0.9102392266268373,"pipelines":1.4426950408889634,"docker":1.4426950408889634,"containers":1.4426950408889634,},
+miRkit: {"mirkit":3.728009607357671,"href":1.9619684944786433,"https":2.1981540300837508,"project":1.9850494443593336,"code":10.231243099797686,"data":1.5499066008439726,"input":1.0014246020860023,"files":1.0188698156853258,"stored":1.365358839940256,"scripts":1.207288813145534,"output":1.894615908449756,"folder":1.3352328027813363,"execute":1.0277966847395015,"lines":0.9102392266268373,"install":1.251097174272739,"required":1.5416950271092522,"packages":0.8685889638065035,"pre":2.427304604338233,"class":1.1878968174934803,"codehilite":1.2136523021691166,"quot":8.862464953652522,"gsubfn":1.4426950408889634,"yaml":1.4426950408889634,"enrichr":0.9102392266268373,"lubridate":1.4426950408889634,"naniar":1.4426950408889634,"prada":1.4426950408889634,"complexheatmap":1.4426950408889634,"multimir":1.4426950408889634,"limma":1.4426950408889634,"git":1.5416950271092522,"github":2.3083120654223412,"com":2.287997340021395,"biodataanalysisgroup":2.0377396313706515,"collection":1.4426950408889634,"functions":1.1162212531024944,"listed":1.4426950408889634,"bellow":1.4426950408889634,"qc":1.4426950408889634,"diff":1.4426950408889634,"fa":1.4426950408889634,"save":3.6409569065073493,"pdf":1.8204784532536746,"image":1.4426950408889634,"ol":0.9617966939259757,"set":0.9617966939259757,"mirnatool":3.1066746727980594,"tree":1.737177927613007,"main":1.7647806193238058,"directory":0.9617966939259757,"place":0.9102392266268373,"inside":0.9617966939259757,"file":1.6175772657433625,"script":0.8048592087636893,"works":0.9102392266268373,"wrapper":1.4426950408889634,"initial":1.2426698691192237,"full":0.9102392266268373,"need":0.9102392266268373,"extra":1.1162212531024944,"details":1.1078081192065652,"move":1.4426950408889634,"checkout":1.8204784532536746,"correpsonding":1.8204784532536746,"readme":0.9617966939259757,"nikopech":3.6409569065073493,"taken":1.4426950408889634,"saveimagehigh":2.8853900817779268,"license":1.207288813145534,},
+Goedel_numbering: {"href":1.7167224326688129,"https":1.7096753567318062,"mybinder":1.4426950408889634,"org":1.2136523021691166,"gh":0.9102392266268373,"godel":3.728009607357671,"numbering":2.4853397382384474,"filepath":0.9102392266268373,"biological":1.5416950271092522,"sequences":1.251097174272739,"numbers":2.1640425613334453,"ipynb":1.4426950408889634,"opensource":1.1162212531024944,"licenses":1.1162212531024944,"mit":1.16961373575384,"material":1.4426950408889634,"made":0.9102392266268373,"license":1.207288813145534,"em":1.9235933878519513,"arxiv":4.328085122666891,"preprint":0.9102392266268373,"argyris":1.4426950408889634,"nicolaidis":1.4426950408889634,"fotis":1.4426950408889634,"del":1.4426950408889634,"abs":0.9102392266268373,"link":1.4426950408889634,"four":0.9102392266268373,"code":8.983530526651625,"data":1.5499066008439726,"input":1.3352328027813363,"files":2.0377396313706515,"stored":2.730717679880512,"scripts":0.8048592087636893,"plots":4.328085122666891,"project":1.1343139682053336,"outputs":1.8204784532536746,"zip":1.4426950408889634,"lit":1.4426950408889634,"literature":0.9102392266268373,"stuff":2.730717679880512,"execute":1.0277966847395015,"line":2.232442506204989,"install":1.251097174272739,"packages":0.8685889638065035,"pre":1.2136523021691166,"quot":5.169771222963971,"seqinr":1.4426950408889634,"mass":1.4426950408889634,"ggpubr":0.9102392266268373,"combinat":1.4426950408889634,"microseq":1.4426950408889634,"run":1.7647806193238058,"git":1.5416950271092522,"strong":4.941385734106656,"samples":1.8640048036788355,"ebi":1.4426950408889634,"ac":1.4426950408889634,"uk":1.4426950408889634,"arrayexpress":1.4426950408889634,"experiments":1.1162212531024944,"mtab":4.328085122666891,"rna":1.2426698691192237,"seq":1.1162212531024944,"dataset":1.6681295656969852,"correspond":1.4426950408889634,"fastq":1.1162212531024944,"gz":1.8204784532536746,"respectively":0.9102392266268373,"store":0.9102392266268373,"directoy":2.730717679880512,"analysis":1.3584930875804344,"specifying":2.8853900817779268,"specify":2.730717679880512,"depending":2.8853900817779268,"statistical":1.8204784532536746,"array":2.8853900817779268,"inside":1.9235933878519513,"ol":0.9617966939259757,"directory":1.9235933878519513,"computer":0.9102392266268373,"whether":0.9102392266268373,"biom":2.8853900817779268,"fasta":1.0277966847395015,"converts":0.9102392266268373,"rda":1.4426950408889634,},
+kmerAnalyzer: {"href":1.4714763708589824,"https":1.2211966833798615,"opensource":1.1162212531024944,"org":1.2136523021691166,"licenses":1.1162212531024944,"mit":1.16961373575384,"capable":1.4426950408889634,"counting":1.4426950408889634,"mers":1.4426950408889634,"reasonable":1.4426950408889634,"values":1.8204784532536746,"parameter":1.2426698691192237,"concurrently":1.4426950408889634,"kmeranalyzer":2.730717679880512,"initially":0.9102392266268373,"strong":2.117736743188567,"python":1.3028834457097553,"seems":1.8204784532536746,"work":0.9102392266268373,"pretty":1.4426950408889634,"well":1.2426698691192237,"pandas":1.4426950408889634,"pydata":1.4426950408889634,"getting":0.9102392266268373,"started":1.4426950408889634,"code":11.978040702202168,"numpy":1.4426950408889634,"current":1.8640048036788355,"application":2.055593369479003,"supports":0.9102392266268373,"fasta":2.055593369479003,"files":1.698116359475543,"input":2.0028492041720045,"ol":1.9235933878519513,"execute":1.0277966847395015,"unique":0.9102392266268373,"file":2.2646081720407074,"inside":2.885390081777927,"data":1.291588834036644,"folder":2.0028492041720045,"mer":4.970679476476895,"analyzer":1.4426950408889634,"output":1.5156927267598048,"needs":0.9102392266268373,"empty":1.4426950408889634,"otherwise":1.4426950408889634,"remove":1.4426950408889634,"everything":0.9102392266268373,"subfolder":0.9102392266268373,"case":1.2426698691192237,"exist":0.9102392266268373,"wil":1.4426950408889634,"created":1.0277966847395015,"specify":0.9102392266268373,"featuresextraction":2.8853900817779268,"py":1.2426698691192237,"script":0.8048592087636893,"lines":0.9102392266268373,"kmax":1.8204784532536746,"eval":4.328085122666891,"factor":4.328085122666891,"determines":1.4426950408889634,"strictness":1.4426950408889634,"assessment":1.4426950408889634,"kmers":0.9102392266268373,"length":1.9235933878519513,"recommended":1.8204784532536746,"lie":1.4426950408889634,"interval":1.4426950408889634,"highly":0.9102392266268373,"value":1.1162212531024944,"lower":1.8204784532536746,"properly":1.8204784532536746,"assuming":1.4426950408889634,"called":2.4853397382384474,"filename":2.8853900817779268,"csv":4.328085122666891,"clustdata":1.4426950408889634,"actually":1.4426950408889634,"matrix":0.9102392266268373,"aimed":1.4426950408889634,"every":3.1066746727980594,"sequemce":1.4426950408889634,"represented":1.4426950408889634,"number":5.7707801635558535,"times":2.1640425613334453,"detected":2.8853900817779268,"sequence":2.4044917348149393,"heades":1.4426950408889634,"ids":0.9102392266268373,"maps":1.4426950408889634,"headers":1.4426950408889634,"names":0.9102392266268373,"id":1.8204784532536746,"sub":1.4426950408889634,"kmer":0.9102392266268373,"tree":0.8685889638065035,"row":1.4426950408889634,"represents":1.4426950408889634,"first":0.9102392266268373,"column":2.8853900817779268,"second":1.4426950408889634,"third":0.9102392266268373,"fourth":1.4426950408889634,"remaining":1.4426950408889634,"sequences":0.8340647828484926,"appears":2.8853900817779268,"occurs":1.4426950408889634,"important":0.9102392266268373,"look":1.4426950408889634,"lengths":1.4426950408889634,"prior":0.9102392266268373,"executing":1.2426698691192237,"example":0.8685889638065035,"header":1.4426950408889634,"probably":1.4426950408889634,"better":0.9102392266268373,"exclude":1.4426950408889634,"filtering":1.4426950408889634,"examine":1.4426950408889634,"however":0.9102392266268373,"isnide":1.4426950408889634,"direcoty":1.4426950408889634,"necessary":0.9102392266268373,"process":1.2426698691192237,"deleted":0.9102392266268373,"sars":1.6743318796537419,"cov":1.6743318796537419,"ncbi":1.8204784532536746,"nlm":0.9102392266268373,"nih":0.9102392266268373,"gov":0.9102392266268373,"pull":0.9102392266268373,"discuss":0.9102392266268373,"license":1.207288813145534,},
+k_taxatree: {"taxatree":6.213349345596119,"workflow":2.7905531327562363,"href":2.452460618098304,"https":2.6866327034356954,"project":3.119363412564667,"org":0.9102392266268374,"predicting":1.8204784532536746,"labels":1.8640048036788355,"four":0.9102392266268373,"taxonomic":1.4426950408889634,"levels":1.4426950408889634,"kingdom":1.4426950408889634,"phylum":1.4426950408889634,"class":0.8909226131201102,"order":0.8685889638065035,"metagenomic":1.4426950408889634,"data":3.099813201687945,"label":1.4426950408889634,"random":0.9102392266268373,"forest":0.9102392266268373,"underlying":0.9102392266268373,"model":6.166780108437009,"latter":1.8204784532536746,"accepts":1.4426950408889634,"input":1.0014246020860023,"mer":1.2426698691192237,"count":1.8204784532536746,"vectors":1.4426950408889634,"determine":1.4426950408889634,"appropriate":1.4426950408889634,"length":1.9235933878519513,"implemented":0.9617966939259757,"utilizes":0.9102392266268373,"earth":4.551196133134186,"microbiome":3.6409569065073493,"retrieved":1.8204784532536746,"using":1.3138349550122044,"github":2.596851073600134,"com":2.5739970075240692,"nikopech":0.9102392266268373,"empdata":2.8853900817779268,"dataset":2.502194348545478,"sequences":2.0851619571212314,"targeted":1.4426950408889634,"rrna":1.4426950408889634,"region":1.4426950408889634,"split":1.2426698691192237,"subsets":2.8853900817779268,"train":1.4426950408889634,"test":1.9235933878519513,"validation":4.328085122666891,"consisting":1.4426950408889634,"initial":1.2426698691192237,"respectefully":1.4426950408889634,"biodataanalysisgroup":2.716986175160869,"tree":2.6057668914195107,"main":2.470692867053328,"emp":5.461435359761024,"folder":2.0028492041720045,"sets":0.9102392266268373,"collected":1.4426950408889634,"ftp":1.4426950408889634,"site":0.9102392266268373,"core":0.9102392266268373,"amplicon":2.8853900817779268,"earthmicrobiome":1.4426950408889634,"metadata":0.9102392266268373,"made":0.9102392266268373,"public":1.4426950408889634,"portal":1.4426950408889634,"qiita":1.4426950408889634,"microbio":1.4426950408889634,"publication":0.9102392266268373,"thompson":1.4426950408889634,"sanders":1.4426950408889634,"mcdonald":1.4426950408889634,"communal":1.4426950408889634,"catalogue":1.4426950408889634,"reveals":1.4426950408889634,"multiscale":1.4426950408889634,"microbial":1.4426950408889634,"diversity":1.4426950408889634,"nature":1.4426950408889634,"packages":0.8685889638065035,"needed":0.9102392266268373,"pre":1.2136523021691166,"code":13.225753275348227,"quot":11.078081192065651,"cluster":1.4426950408889634,"rfast":1.4426950408889634,"plyr":1.4426950408889634,"caret":1.4426950408889634,"stats":1.4426950408889634,"ubl":1.4426950408889634,"splitstackshape":1.4426950408889634,"mlr":1.4426950408889634,"mldr":1.4426950408889634,"dplyr":0.9102392266268373,"hash":1.4426950408889634,"randomforestsrc":1.4426950408889634,"git":1.0277966847395015,"scripts":3.621866439436602,"required":1.0277966847395015,"perform":1.4426950408889634,"steps":1.8204784532536746,"selecting":1.4426950408889634,"constructing":1.4426950408889634,"kmer":2.730717679880512,"matrix":3.6409569065073493,"subset":4.328085122666891,"detail":1.4426950408889634,"selection":4.328085122666891,"optimal":1.2426698691192237,"creation":4.328085122666891,"whole":0.9102392266268373,"features":2.1640425613334453,"informative":1.4426950408889634,"hp":1.4426950408889634,"stratified":1.4426950408889634,"repeated":1.4426950408889634,"holdout":1.4426950408889634,"mtry":2.8853900817779268,"ntree":2.8853900817779268,"predict":2.730717679880512,"threshold":2.8853900817779268,"achive":1.4426950408889634,"highest":1.4426950408889634,"macro":1.4426950408889634,"score":0.9102392266268373,"final":7.2819138130146985,"unassigned":11.541560327111707,"predictions":4.464885012409978,"utilizing":1.4426950408889634,"yet":2.8853900817779268,"make":1.4426950408889634,"kmers":0.9102392266268373,"functions":2.232442506204989,"helper":2.8853900817779268,"creating":2.8853900817779268,"multilabel":1.4426950408889634,"machine":1.2426698691192237,"extra":1.6743318796537419,"contains":0.9617966939259757,"used":1.365358839940256,"local":2.1640425613334453,"usage":1.4426950408889634,"training":0.9102392266268373,"rest":1.4426950408889634,"blast":3.6067376022224087,"results":1.365358839940256,"assign":1.4426950408889634,"taxonomies":1.4426950408889634,"compare":5.7707801635558535,"rdp":2.8853900817779268,"datasets":0.8340647828484926,"outputs":0.9102392266268373,"generated":0.9617966939259757,"output":1.1367695450698536,"subfolders":0.9102392266268373,"ubuntu":1.4426950408889634,"ram":1.4426950408889634,"cores":1.4426950408889634,"total":1.4426950408889634,"approximately":1.4426950408889634,"days":1.4426950408889634,"given":0.9102392266268373,"hyperparameters":1.4426950408889634,"recreate":1.4426950408889634,"rds":1.4426950408889634,"fully":1.4426950408889634,"individual":0.9102392266268373,"wiki":1.8204784532536746,"license":1.207288813145534,},
+Odysseus: {"odysseus":5.7707801635558535,"versatile":2.8853900817779268,"high":1.0277966847395015,"performance":2.1640425613334453,"optimizing":1.4426950408889634,"bioinformatics":1.6743318796537419,"parallelization":2.730717679880512,"hybrid":1.4426950408889634,"cloud":2.8853900817779268,"environments":1.4426950408889634,"component":0.9102392266268373,"based":0.8048592087636893,"workflows":1.4426950408889634,"aims":0.9102392266268373,"optimize":1.4426950408889634,"resource":1.8204784532536746,"allocation":1.4426950408889634,"across":0.9617966939259757,"heterogeneous":1.4426950408889634,"computational":1.0277966847395015,"resources":1.8640048036788355,"comprising":1.4426950408889634,"solutions":1.4426950408889634,"well":1.2426698691192237,"hpc":1.4426950408889634,"infrastructures":1.4426950408889634,"general":1.4426950408889634,"attempts":1.4426950408889634,"core":0.9102392266268373,"principles":1.4426950408889634,"cost":1.4426950408889634,"large":0.9102392266268373,"scale":0.9102392266268373,"introducing":1.4426950408889634,"preprocessing":1.4426950408889634,"organization":1.4426950408889634,"techniques":0.9102392266268373,"achieving":1.4426950408889634,"utilization":1.4426950408889634,"within":1.4426950408889634,},
+BEEMUS: {"logo":1.4426950408889634,"quick":2.8853900817779268,"overview":1.4426950408889634,"assessing":1.4426950408889634,"sars":2.232442506204989,"cov":1.6743318796537419,"evolution":1.4426950408889634,"analysis":1.3584930875804344,"emerging":1.4426950408889634,"mutations":1.4426950408889634,"href":1.7167224326688129,"rationale":4.328085122666891,"start":2.8853900817779268,"contributing":2.730717679880512,"license":2.414577626291068,"citations":4.328085122666891,"credits":4.328085122666891,"study":0.9102392266268373,"patterns":4.328085122666891,"co":0.9102392266268373,"occuring":1.4426950408889634,"beyond":1.4426950408889634,"strain":2.8853900817779268,"defining":1.4426950408889634,"ones":1.4426950408889634,"making":0.9102392266268373,"endeavor":1.4426950408889634,"group":0.9102392266268373,"samples":1.2426698691192237,"way":0.9102392266268373,"could":1.4426950408889634,"indicate":1.4426950408889634,"evolutionary":2.8853900817779268,"paths":1.4426950408889634,"virus":1.4426950408889634,"otherwords":1.4426950408889634,"mutational":0.9102392266268373,"occurrence":1.4426950408889634,"might":1.4426950408889634,"suggest":1.4426950408889634,"different":1.6743318796537419,"ways":1.4426950408889634,"grouping":1.4426950408889634,"revealing":1.4426950408889634,"history":1.4426950408889634,"ol":1.9235933878519513,"conda":4.328085122666891,"miniconda":0.9102392266268373,"package":1.0277966847395015,"manager":1.4426950408889634,"required":1.0277966847395015,"nextflow":3.6409569065073493,"procedure":0.9102392266268373,"copying":1.4426950408889634,"pasting":1.4426950408889634,"code":11.478955672943744,"curl":1.4426950408889634,"fssl":1.4426950408889634,"get":1.4426950408889634,"creates":1.4426950408889634,"file":2.2646081720407074,"directory":1.4426950408889636,"want":0.9102392266268373,"folder":3.0042738062580066,"accessible":1.4426950408889634,"path":0.9102392266268373,"clone":1.0277966847395015,"create":1.8640048036788355,"inside":0.9617966939259757,"project":2.268627936410667,"specified":0.9102392266268373,"exact":0.9102392266268373,"names":0.9102392266268373,"data":1.8082243676513015,"vcf":1.8204784532536746,"files":1.0188698156853258,"live":2.8853900817779268,"ref":1.4426950408889634,"reference":1.4426950408889634,"indices":1.4426950408889634,"nc":5.7707801635558535,"fasta":1.5416950271092522,"fai":1.4426950408889634,"dict":1.4426950408889634,"annot":1.4426950408889634,"biosample":1.4426950408889634,"result":1.4426950408889634,"csv":3.6067376022224087,"metadata":0.9102392266268373,"lineage":2.8853900817779268,"classification":1.1162212531024944,"lineages":10.922870719522049,"activate":2.1640425613334453,"environment":1.8640048036788355,"envs":1.4426950408889634,"run":1.4118244954590446,"pipeline":1.0277966847395015,"nf":1.4426950408889634,"find":0.9102392266268373,"summary":1.8204784532536746,"dataset":1.6681295656969852,"frequently":1.4426950408889634,"occurring":1.4426950408889634,"along":1.8204784532536746,"write":0.9102392266268373,"next":0.9102392266268373,"graph":1.9235933878519513,"script":1.207288813145534,"replacing":2.8853900817779268,"string":2.8853900817779268,"flag":2.8853900817779268,"interest":12.984255368000671,"sequential":7.213475204444817,"order":2.1714724095162588,"separated":8.656170245333781,"space":5.461435359761024,"shown":2.730717679880512,"ay":14.426950408889635,"ba":5.7707801635558535,"python":1.737177927613007,"bin":1.8204784532536746,"py":1.8640048036788355,"datafolder":2.8853900817779268,"datasetname":2.8853900817779268,"graphsfolder":2.8853900817779268,"graphs":1.4426950408889634,"export":1.8204784532536746,"arrow":1.4426950408889634,"edges":1.4426950408889634,"nodes":10.01263149289521,"plot":1.4426950408889634,"dates":1.4426950408889634,"vs":0.9102392266268373,"everything":1.8204784532536746,"went":1.4426950408889634,"browser":1.2426698691192237,"window":1.4426950408889634,"pop":1.4426950408889634,"showing":1.4426950408889634,"produced":0.9102392266268373,"depicted":1.4426950408889634,"arranged":1.4426950408889634,"form":1.4426950408889634,"rearrange":1.4426950408889634,"drag":1.4426950408889634,"drop":1.4426950408889634,"preferences":1.4426950408889634,"strongly":1.4426950408889634,"recommend":0.9102392266268373,"unique":0.9102392266268373,"ids":0.9102392266268373,"underneath":1.4426950408889634,"node":0.9102392266268373,"groups":1.4426950408889634,"msa":5.7707801635558535,"msafilename":1.4426950408889634,"nodesfilename":1.4426950408889634,"treefilepath":2.8853900817779268,"tree":1.737177927613007,"life":5.7707801635558535,"json":1.4426950408889634,"necessary":0.9102392266268373,"caution":1.4426950408889634,"remember":1.4426950408889634,"since":0.9102392266268373,"replace":1.4426950408889634,"previous":0.9102392266268373,"executes":1.4426950408889634,"go":1.4426950408889634,"http":1.6743318796537419,"server":1.4426950408889634,"cd":1.4426950408889634,"choice":1.4426950408889634,"right":1.4426950408889634,"able":1.4426950408889634,"released":1.4426950408889634,"research":1.4426950408889634,},
+GridCG: {"grid":2.1640425613334453,"cg":1.4426950408889634,"scalable":1.4426950408889634,"computing":1.4426950408889634,"omparative":1.4426950408889634,"enomics":1.4426950408889634,"projects":0.9102392266268373,"large":0.9102392266268373,"scale":0.9102392266268373,"tool":1.5416950271092522,"aiming":1.4426950408889634,"similarity":4.328085122666891,"detection":1.8204784532536746,"sequences":0.8340647828484926,"employing":1.4426950408889634,"offered":1.4426950408889634,"egi":2.8853900817779268,"functionality":1.4426950408889634,"currently":0.9102392266268373,"addressing":1.4426950408889634,"ol":0.9617966939259757,"management":1.4426950408889634,"nodes":1.8204784532536746,"automatic":1.8204784532536746,"submission":1.4426950408889634,"jobs":1.4426950408889634,"worker":1.4426950408889634,"job":0.9102392266268373,"failures":1.4426950408889634,"resubmission":1.4426950408889634,"another":1.4426950408889634,"node":0.9102392266268373,"visualization":0.9102392266268373,"extensible":1.4426950408889634,"post":0.9102392266268373,"libraries":0.9102392266268373,"given":0.9102392266268373,"pair":1.4426950408889634,"infered":1.4426950408889634,"score":0.9102392266268373,"blast":2.1640425613334453,"ncbi":0.9102392266268373,"nlm":0.9102392266268373,"nih":0.9102392266268373,"gov":0.9102392266268373,"cgi":1.4426950408889634,"similar":1.4426950408889634,"phylogenetic":0.9102392266268373,"profiles":0.9102392266268373,"designed":1.4426950408889634,"scenario":1.4426950408889634,"experiment":0.9102392266268373,},
+BPM: {"contents":2.8853900817779268,"file":10.028979047608848,"introduction":2.8853900817779268,"requirements":2.8853900817779268,"installation":1.0277966847395015,"execution":2.7905531327562363,"example":1.737177927613007,"folder":6.008547612516013,"structure":1.8640048036788355,"hr":2.1640425613334453,"bpm":8.656170245333781,"blast":3.6067376022224087,"phylogenetic":10.01263149289521,"profile":4.328085122666891,"mcl":14.426950408889635,"distributed":0.9102392266268373,"application":6.166780108437009,"sequence":1.9235933878519513,"alignment":3.6067376022224087,"profiling":1.4426950408889634,"clustering":2.4853397382384474,"protein":5.592014411036507,"sequences":1.251097174272739,"european":0.9102392266268373,"grid":1.4426950408889634,"infrastructure":2.8853900817779268,"specifically":1.4426950408889634,"comprises":0.9102392266268373,"components":0.9102392266268373,"profiles":6.371674586387861,"based":1.207288813145534,"produced":1.8204784532536746,"scores":0.9102392266268373,"entities":1.4426950408889634,"modules":1.4426950408889634,"selected":0.9102392266268373,"represent":1.4426950408889634,"common":1.4426950408889634,"aspect":1.4426950408889634,"vast":1.4426950408889634,"majority":1.4426950408889634,"bionformatics":1.4426950408889634,"important":0.9102392266268373,"note":5.7707801635558535,"independently":0.9102392266268373,"ultimately":0.9102392266268373,"different":1.1162212531024944,"modes":1.4426950408889634,"operation":1.4426950408889634,"spawned":1.4426950408889634,"activities":2.8853900817779268,"bcplab":1.4426950408889634,"wordpress":1.4426950408889634,"com":0.857999002508023,"bcpl":1.4426950408889634,"lab":1.4426950408889634,"previously":1.8204784532536746,"cgu":1.4426950408889634,"inspired":1.4426950408889634,"protocols":1.4426950408889634,"conjunction":1.4426950408889634,"submit":1.4426950408889634,"bug":0.9102392266268373,"suggestions":1.4426950408889634,"olgavrou":2.8853900817779268,"gmail":2.8853900817779268,"order":0.8685889638065035,"run":1.7647806193238058,"user":2.0851619571212314,"needs":0.9102392266268373,"hellasgrid":10.098865286222745,"national":1.4426950408889634,"access":1.4426950408889634,"scripts":0.8048592087636893,"lying":1.4426950408889634,"must":1.8640048036788355,"uploaded":4.328085122666891,"interface":2.730717679880512,"decompressed":1.4426950408889634,"sh":6.371674586387861,"script":1.207288813145534,"chmod":1.4426950408889634,"input":3.3380820069533406,"level":1.6743318796537419,"txt":12.984255368000671,"reqired":1.4426950408889634,"pre":3.034130755422791,"class":1.4848710218668504,"codehilite":1.5170653777113956,"code":2.4954251462921184,"database":15.474066852656234,"fasta":3.0833900542185044,"files":3.0566094470559775,"consist":7.213475204444817,"one":2.5694917118487535,"provided":3.9067743858587307,"may":3.1066746727980594,"either":2.055593369479003,"compressed":5.7707801635558535,"query":14.426950408889635,"vs":1.8204784532536746,"omitted":1.4426950408889634,"genome":2.5694917118487535,"map":7.213475204444817,"contains":1.9235933878519513,"identifiers":1.4426950408889634,"whoes":1.4426950408889634,"proteins":1.4426950408889634,"bamy":4.328085122666891,"xxx":4.328085122666891,"leua":1.4426950408889634,"configuration":0.9102392266268373,"configured":2.8853900817779268,"fields":1.4426950408889634,"exact":3.6409569065073493,"name":2.232442506204989,"tar":7.213475204444817,"gz":4.551196133134186,"option":10.098865286222745,"ignored":1.4426950408889634,"gene":0.9617966939259757,"raw":1.8204784532536746,"field":2.8853900817779268,"filled":2.8853900817779268,"ready":2.8853900817779268,"faa":1.4426950408889634,"split":3.1066746727980594,"job":4.551196133134186,"process":3.1066746727980594,"phyl":1.4426950408889634,"prof":1.4426950408889634,"outputs":1.8204784532536746,"identity":1.4426950408889634,"choose":2.8853900817779268,"output":3.4103086352095606,"blastp":1.4426950408889634,"binary":1.4426950408889634,"extended":1.4426950408889634,"email":4.551196133134186,"address":1.8204784532536746,"wish":1.4426950408889634,"informed":0.9102392266268373,"via":2.8853900817779268,"done":1.4426950408889634,"defined":1.4426950408889634,"preparation":0.9102392266268373,"proxy":7.213475204444817,"valid":0.9102392266268373,"obtained":1.4426950408889634,"tools":2.5694917118487535,"recommended":0.9102392266268373,"obtaining":1.4426950408889634,"certificate":1.4426950408889634,"voms":1.4426950408889634,"renewed":1.4426950408889634,"screen":2.8853900817779268,"advised":1.4426950408889634,"runs":0.9102392266268373,"mode":1.4426950408889634,"avoid":0.9102392266268373,"aborted":1.4426950408889634,"connectivity":1.4426950408889634,"named":1.8204784532536746,"sessionfolder":2.8853900817779268,"timestamp":11.541560327111707,"created":1.5416950271092522,"delete":2.8853900817779268,"modify":1.4426950408889634,"deleted":0.9102392266268373,"completed":1.4426950408889634,"copied":0.9102392266268373,"stored":1.8204784532536746,"report":1.4426950408889634,"instance":1.4426950408889634,"ran":1.4426950408889634,"sent":1.4426950408889634,"specified":0.9102392266268373,"outsimple":1.4426950408889634,"clusters":3.6409569065073493,"outphyl":1.4426950408889634,"phylogeneticprofiles":1.4426950408889634,"processed":1.4426950408889634,"parseoutput":1.4426950408889634,"use":1.0820212806667227,"cleanup":2.8853900817779268,"storage":4.328085122666891,"elements":4.328085122666891,"usage":1.4426950408889634,"download":1.9235933878519513,"specifies":1.4426950408889634,"exist":0.9102392266268373,"foldername":1.4426950408889634,"beginning":0.9102392266268373,"store":0.9102392266268373,"clean":1.4426950408889634,"track":1.4426950408889634,"executions":1.4426950408889634,"find":1.8204784532536746,"accept":1.4426950408889634,"view":0.9102392266268373,"folderstructure":1.4426950408889634,},
+Mutations_Meta_Analyser: {},
+align_paths: {"publication":0.9102392266268373,"pathway":0.9102392266268373,"decomposition":1.4426950408889634,"species":1.4426950408889634,"international":1.4426950408889634,"journal":0.9102392266268373,"artificial":1.4426950408889634,"intelligence":1.4426950408889634,"doi":0.8340647828484926,"paper":1.4426950408889634,"worldscientific":1.4426950408889634,"abs":0.9102392266268373,"src":1.4426950408889634,"recsys":1.4426950408889634,"journalcode":1.4426950408889634,"ijait":1.4426950408889634,},
+G_Class: {"divide":1.4426950408889634,"conquer":1.4426950408889634,"application":1.0277966847395015,"grid":1.4426950408889634,"protein":3.1066746727980594,"classification":5.022995638961225,"always":1.4426950408889634,"one":2.055593369479003,"challenges":0.9102392266268373,"prediction":0.9102392266268373,"functional":1.4426950408889634,"proteins":1.4426950408889634,"enabled":1.4426950408889634,"presence":1.4426950408889634,"motifs":4.328085122666891,"chains":1.4426950408889634,"correlation":2.8853900817779268,"properties":1.4426950408889634,"obvious":1.4426950408889634,"since":0.9102392266268373,"multiple":1.1162212531024944,"coexist":1.4426950408889634,"chain":1.4426950408889634,"combined":1.4426950408889634,"function":1.4426950408889634,"complexity":1.4426950408889634,"data":1.291588834036644,"mining":1.4426950408889634,"consuming":1.4426950408889634,"solution":1.4426950408889634,"problem":1.4426950408889634,"lies":1.4426950408889634,"parallelization":0.9102392266268373,"procedure":1.8204784532536746,"gclass":1.4426950408889634,"implementing":0.9102392266268373,"methodology":2.8853900817779268,"utilizes":0.9102392266268373,"technologies":0.9102392266268373,"sets":1.8204784532536746,"preserving":1.4426950408889634,"original":0.9102392266268373,"used":0.9102392266268373,"separate":1.4426950408889634,"produce":0.9102392266268373,"final":0.9102392266268373,"rules":2.8853900817779268,"classify":1.4426950408889634,"experiments":1.6743318796537419,"shown":0.9102392266268373,"considerable":1.4426950408889634,"increase":1.4426950408889634,"speed":1.4426950408889634,"loss":1.4426950408889634,"accuracy":2.8853900817779268,"fact":0.9102392266268373,"improvement":1.4426950408889634,"observed":1.4426950408889634,"moreover":1.4426950408889634,"extracted":0.9102392266268373,"previously":0.9102392266268373,"memory":1.4426950408889634,"demanding":1.4426950408889634,"conducted":1.4426950408889634,"computer":0.9102392266268373,"internal":1.4426950408889634,"characteristics":0.9102392266268373,"independency":1.4426950408889634,"adaptability":1.4426950408889634,"along":0.9102392266268373,"friendly":1.4426950408889634,"graphical":1.4426950408889634,"interface":0.9102392266268373,"facilitate":0.9102392266268373,"adoption":1.4426950408889634,},
+fairbench: {"href":3.9239369889572866,"https":2.9308720401116677,"mammoth":8.929770024819955,"eu":4.111186738958006,"github":2.3083120654223412,"io":3.908650337129266,"commons":4.349344541917283,"index":2.730717679880512,"html":4.111186738958006,"fairbench":6.251678510518842,"readthedocs":1.8204784532536746,"psf":1.4426950408889634,"black":1.4426950408889634,"code":3.493595204808966,"conduct":0.9102392266268373,"software":1.4426950408889634,"part":1.4426950408889634,"mai":2.7905531327562363,"bias":4.625085081327756,"low":1.8640048036788355,"toolkit":3.597288396588255,"fairness":3.728009607357671,"analysis":1.3584930875804344,"mitigation":1.8204784532536746,"accompanying":1.4426950408889634,"suite":1.4426950408889634,"coding":1.2426698691192237,"ecosystem":1.4426950408889634,"operates":1.4426950408889634,"multidimensional":1.4426950408889634,"attribute":1.4426950408889634,"settings":1.4426950408889634,"safeguarding":1.4426950408889634,"multiple":1.1162212531024944,"races":1.4426950408889634,"genders":1.4426950408889634,"etc":1.4426950408889634,"across":1.4426950408889636,"data":1.5499066008439726,"modalities":1.8204784532536746,"like":0.8685889638065035,"tabular":2.7905531327562363,"images":1.4426950408889634,"text":0.9102392266268373,"learn":1.4426950408889634,"strong":5.647297981836179,"ml":2.730717679880512,"engineers":1.4426950408889634,"scientists":1.8204784532536746,"building":0.9102392266268373,"python":2.6057668914195107,"researchers":1.4426950408889634,"ai":3.1066746727980594,"vision":2.730717679880512,"llms":1.4426950408889634,"auditors":1.8204784532536746,"compliance":1.4426950408889634,"teams":1.4426950408889634,"needing":1.4426950408889634,"standardized":2.1640425613334453,"traceable":1.8204784532536746,"reports":2.055593369479003,"comparison":1.4426950408889634,"datasets":1.251097174272739,"time":1.0277966847395015,"policymakers":1.8204784532536746,"analysts":1.4426950408889634,"want":0.9102392266268373,"reproducible":1.4426950408889634,"evidence":1.4426950408889634,"decision":1.4426950408889634,"making":0.9102392266268373,"consider":1.4426950408889634,"higher":1.6743318796537419,"level":1.6743318796537419,"perspective":1.4426950408889634,"imported":1.4426950408889634,"projects":0.9102392266268373,"offer":1.4426950408889634,"exploration":2.1640425613334453,"metrics":1.8204784532536746,"also":1.251097174272739,"produces":0.9102392266268373,"organize":1.4426950408889634,"many":1.4426950408889634,"viewed":1.4426950408889634,"various":0.9102392266268373,"formats":1.4426950408889634,"browser":1.2426698691192237,"ongoing":1.4426950408889634,"reporting":2.8853900817779268,"developers":1.4426950408889634,"eventually":1.4426950408889634,"certain":1.4426950408889634,"degree":1.4426950408889634,"technical":2.8853900817779268,"background":1.4426950408889634,"limited":0.9102392266268373,"one":1.0277966847395015,"measures":2.1640425613334453,"though":1.4426950408889634,"measure":1.4426950408889634,"computations":2.730717679880512,"still":0.9102392266268373,"industrial":1.4426950408889634,"frameworks":1.4426950408889634,"instead":1.4426950408889634,"let":1.4426950408889634,"users":1.8640048036788355,"explore":0.9102392266268373,"intermediate":1.4426950408889634,"quantities":1.4426950408889634,"leading":1.4426950408889634,"problematic":1.4426950408889634,"focuses":1.4426950408889634,"metric":1.4426950408889634,"miss":1.4426950408889634,"bigger":1.4426950408889634,"picture":1.4426950408889634,"accompanied":1.4426950408889634,"caveats":1.4426950408889634,"recommendations":1.4426950408889634,"extracted":0.9102392266268373,"social":1.4426950408889634,"independent":0.9102392266268373,"modality":0.9102392266268373,"downstream":0.9102392266268373,"task":0.9102392266268373,"example":1.3028834457097553,"supports":1.8204784532536746,"among":1.4426950408889634,"others":1.4426950408889634,"regression":1.4426950408889634,"multiclass":1.4426950408889634,"popular":0.9102392266268373,"box":1.4426950408889634,"uncovering":0.9102392266268373,"llm":1.8204784532536746,"biases":1.4426950408889634,"experience":1.4426950408889634,"stacks":1.4426950408889634,"pandas":1.4426950408889634,"numpy":1.4426950408889634,"environment":1.2426698691192237,"directly":1.4426950408889634,"functionalities":1.4426950408889634,"immediate":1.4426950408889634,"non":1.5416950271092522,"people":1.4426950408889634,"simpler":1.4426950408889634,"blocks":1.4426950408889634,"br":4.777239300935769,"stamps":1.8204784532536746,"multivalue":1.4426950408889634,"multiattribute":1.4426950408889634,"backtrack":1.4426950408889634,"filter":1.8204784532536746,"reorganize":1.4426950408889634,"compatible":2.8853900817779268,"em":1.9235933878519513,"torch":1.4426950408889634,"tensorflow":1.4426950408889634,"jax":1.4426950408889634,"transformers":1.4426950408889634,"ollama":1.4426950408889634,"strives":1.4426950408889634,"release":1.4426950408889634,"compatibility":1.4426950408889634,"delays":1.4426950408889634,"third":0.9102392266268373,"party":1.4426950408889634,"libraries":0.9102392266268373,"usually":1.4426950408889634,"mean":0.9102392266268373,"language":1.1367695450698536,"previous":0.9102392266268373,"tested":0.9102392266268373,"stable":0.9102392266268373,"currently":0.9102392266268373,"quickstart":1.4426950408889634,"test":1.4426950408889636,"discord":2.8853900817779268,"gg":1.4426950408889634,"wwqwfsjswz":1.4426950408889634,"invite":1.4426950408889634,"benchmarks":2.8853900817779268,"without":1.2426698691192237,"writing":1.4426950408889634,"see":1.4770774922754202,"examples":2.4853397382384474,"model":1.0277966847395015,"workflow":1.1162212531024944,"share":1.8204784532536746,"results":0.9102392266268373,"pre":1.8204784532536749,"class":1.4848710218668504,"codehilite":0.9102392266268374,"import":1.8204784532536746,"fb":11.833109946148886,"yhat":3.6409569065073493,"bench":2.8853900817779268,"compas":1.8204784532536746,"size":1.8204784532536746,"predict":0.9102392266268373,"quot":2.9541549845508404,"probabilities":1.4426950408889634,"sensitive":7.2819138130146985,"dimensions":1.8204784532536746,"categories":2.730717679880512,"race":1.8204784532536746,"packed":1.4426950408889634,"report":2.1640425613334453,"abroca":4.328085122666891,"pairwise":1.8204784532536746,"maxbarea":1.4426950408889634,"auc":1.4426950408889634,"scores":0.9102392266268373,"labels":1.2426698691192237,"print":1.4426950408889634,"float":1.4426950408889634,"roc":1.4426950408889634,"show":1.8204784532536746,"sex":1.4426950408889634,"intersectional":1.4426950408889634,"strict":1.4426950408889634,"investigate":1.4426950408889634,"export":0.9102392266268373,"horizontal":1.4426950408889634,"depth":1.4426950408889634,"inproceedings":1.4426950408889634,"title":0.9102392266268373,"standardizing":1.4426950408889634,"krasanakis":3.6409569065073493,"emmanouil":3.6409569065073493,"papadopoulos":0.9102392266268373,"symeon":0.9102392266268373,"booktitle":1.4426950408889634,"workshop":1.4426950408889634,"measurements":1.4426950408889634,"explanation":1.4426950408889634,"strategies":1.4426950408889634,"aimmes":1.4426950408889634,"year":0.9102392266268373,"maintainer":1.4426950408889634,"manios":1.4426950408889634,"maniospas":0.9102392266268373,"hotmail":0.9102392266268373,"license":0.8048592087636893,"apache":0.9102392266268373,"contributors":1.4426950408889634,"giannis":1.4426950408889634,"sarridis":1.4426950408889634,"modified":1.4426950408889634,"originally":1.4426950408889634,"rebias":1.4426950408889634,"copyright":1.8204784532536746,"naver":1.4426950408889634,"corp":1.4426950408889634,"modifications":2.8853900817779268,"mnist":2.8853900817779268,"rbo":4.328085122666891,"changyao":1.4426950408889634,"chen":1.4426950408889634,"fallbacks":2.8853900817779268,"py":1.2426698691192237,},
+JGNN: {"https":1.2211966833798615,"jitpack":2.8853900817779268,"mklab":4.328085122666891,"iti":4.328085122666891,"jgnn":4.551196133134186,"com":1.1439986700106974,"releases":0.9102392266268373,"em":0.9617966939259757,"resource":0.9102392266268373,"machine":1.2426698691192237,"learning":1.0277966847395015,"graph":1.4426950408889636,"neural":2.730717679880512,"networks":1.8640048036788355,"native":2.730717679880512,"java":2.730717679880512,"gnns":1.4426950408889634,"getting":0.9102392266268373,"popular":0.9102392266268373,"example":0.8685889638065035,"relational":1.4426950408889634,"small":1.4426950408889634,"implementations":1.4426950408889634,"paradigm":1.4426950408889634,"require":1.4426950408889634,"dedicated":1.4426950408889634,"hardware":1.4426950408889634,"firmware":1.4426950408889634,"badge":0.9102392266268373,"gradle":1.4426950408889634,"maven":1.4426950408889634,"integration":0.9102392266268373,"cross":0.9102392266268373,"platform":1.4426950408889634,"lightweight":1.4426950408889634,"optimized":0.9102392266268373,"views":1.4426950408889634,"automatic":0.9102392266268373,"datatypes":1.4426950408889634,"simd":1.4426950408889634,"parallelized":1.4426950408889634,"batching":1.4426950408889634,"neuralang":1.4426950408889634,"scripting":1.4426950408889634,"definitions":1.4426950408889634,"feel":1.4426950408889634,"way":0.9102392266268373,"tracker":1.4426950408889634,"addition":0.9102392266268373,"bug":0.9102392266268373,"clarifications":1.4426950408889634,"article":2.8853900817779268,"title":0.9102392266268373,"journal":0.9102392266268373,"softwarex":1.4426950408889634,"volume":1.4426950408889634,"pages":1.4426950408889634,"year":0.9102392266268373,"issn":1.4426950408889634,"doi":0.8340647828484926,"softx":1.4426950408889634,"url":0.9102392266268373,"sciencedirect":1.4426950408889634,"science":1.4426950408889634,"pii":1.4426950408889634,"emmanouil":1.8204784532536746,"krasanakis":1.8204784532536746,"symeon":0.9102392266268373,"papadopoulos":0.9102392266268373,"ioannis":1.4426950408889634,"kompatsiaris":1.4426950408889634,"apache":0.9102392266268373,"copyright":0.9102392266268373,"maniospas":0.9102392266268373,"hotmail":0.9102392266268373,},
+};</script>
     </div>
   </div>
+  <script>
+    const entries = Array.from(document.querySelectorAll('#catalogue .cell'));
+    const input = document.getElementById('search-input');
+    const hint = document.getElementById('search-hint');
+    let debounce;
+
+    function search(raw) {
+      const terms = raw.trim().toLowerCase().split(/\s+/).filter(t=>t.length>=2);
+      if (!terms.length) {
+        entries.forEach(e => { e.style.display = ''; e.style.order = ''; });
+        hint.textContent = '';
+        return;
+      }
+      const scored = entries.map(entry => {
+        const id = entry.id;
+        const kws = kwdata[id] ?? {};
+        let score = 0;
+        for(const term of terms) {
+          let included = false;
+          for (const [kw, weight] of Object.entries(kws)) {
+            if (kw.startsWith(term)) {
+              score += weight;
+              included = true;
+            }
+          }
+          if(!included) return { entry, score: 0 };
+        }
+        return { entry, score };
+      });
+      scored.forEach(s => s.entry.style.display=s.score>0?'':'none');
+      const visible = scored.filter(s=>s.score>0).sort((a, b) => b.score-a.score);
+      visible.forEach(({ entry }, i) => entry.style.order=i);
+      const catalogue = document.getElementById('catalogue');
+      catalogue.style.display = 'flex';
+      catalogue.style.flexDirection = 'column';
+      hint.textContent = visible.length
+        ? `Showing ${visible.length} result${visible.length>1?'s':''}`
+        : 'No results found';
+    }
+
+    input.addEventListener('input', () => {
+      clearTimeout(debounce);
+      debounce = setTimeout(() => search(input.value), 100);
+    });
+  </script>
   </body>
 </html>

@@ -15,7 +15,11 @@ class Entry:
         # dynamic sections that are modified by tools
         self.contents: str = ""
         self.unparsed_sections: dict[str,list[str]] = dict()
+        self.keywords: dict[str,float] = dict()
         self._cached_contents: dict[str, str] = dict()
+
+    def normal_name(self):
+        return self.name.replace(" ", "_").replace("-", "_")
 
     def download(self, url: str):
         result = self._cached_contents.get(url)
@@ -38,7 +42,14 @@ def process(entries: list[Entry], tools: list[str]):
         runner = _tools.get(tool)
         assert runner, f"Not found tool '{tool}' among:\n"+"\n".join(_tools.keys())
         runner(entries)
-    return "\n".join(entry.contents for entry in entries)
+    kwdata = "<script>const kwdata = {"
+    for entry in entries:
+        kwdata += "\n"+entry.normal_name()+": {"
+        for k, v in entry.keywords.items():
+            kwdata += f"\""+k+"\":"+str(v)+","
+        kwdata += "},"
+    kwdata += "\n};</script>"
+    return "\n".join(entry.contents for entry in entries)+kwdata
 
 def tool(func):
     name = func.__module__+"."+func.__name__

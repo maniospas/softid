@@ -2,7 +2,7 @@
 
 A repo for building software indexing pipelines.
 
-⚡ Quickstart
+## ⚡ Quickstart
 
 Clone and install dependencies in a new Python
 virtual environment. Example in Linux with *pip*:
@@ -116,6 +116,6 @@ pipeline information, like below.
 ```
 
 
-📜 License
+## 📜 License
 
 Apache 2.0

@@ -54,7 +54,8 @@ def get_md(entry: Entry):
             entry.section("#Description", [pre_content])
         for i in range(1, len(parts) - 1, 2):
             title = re.sub(r'^#+\s', '', parts[i]).strip()
-            if title.lower().strip() == entry.name.lower().strip(): title = "#Description"
+            #print(title.lower().replace("-",""), entry.name.lower().replace("-",""))
+            if title.lower().replace("-","").strip() == entry.name.lower().replace("-","").strip(): title = "#Description"
             else: title = to_markdown(_unmask_code_blocks(title))
             content = parts[i + 1].strip()
             content = to_markdown(_unmask_code_blocks(content))
@@ -66,3 +67,12 @@ def iframe(entry: Entry):
     """embeds all urls as iframes"""
     for url in entry.urls:
         entry.contents += f'<iframe style="width:100%;height:500px" src="{url}" title="{url}"></iframe>\n'
+
+
+@tool
+def remove_section_images(entry: Entry):
+    """removes images from section html"""
+    img_pattern = re.compile(r'<img[^>]*>')
+    for section in entry.unparsed_sections.values():
+        for i, content in enumerate(section):
+            section[i] = img_pattern.sub('', content)
