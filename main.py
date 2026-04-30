@@ -7,7 +7,7 @@ if __name__ == "__main__":
     #shared_config["retry_cache"] = True
     list_paths = ["lists/biodata_group.txt", "lists/mever_group.txt"]
     pipeline = [
-        #"builder.tools.github.get_stars",
+        "builder.tools.github.get_stars",
         "builder.tools.format.bulma.banner",
         "builder.tools.generic.sort",
         "builder.tools.github.add_readme",

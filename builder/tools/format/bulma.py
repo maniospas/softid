@@ -7,12 +7,9 @@ import re
 @tool
 def banner(entry: Entry):
     """constructs a banner using the entry's name and the urls as tags"""
+    entry.contents += f'<h2 class="title mb-0">{entry.name}'
     if "stars" in entry.metadata:
-        stars = f'&nbsp;<span style="float:right">{entry.metadata.get("stars")} ⭐</span>'
-    else:
-        stars = ""
-    entry.contents += f'<h2 class="title mb-0">{entry.name}{stars}\n'
-    entry.contents += ''
+        entry.contents += f'<span style="float:right" class="tag is-light">⭐ {entry.metadata.get("stars")} stars</span>'
     found_tags = set()
     for url in entry.urls:
         try:
