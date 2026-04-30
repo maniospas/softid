@@ -1,0 +1,95 @@
+<h2 class="title mb-0">Intermediate CNN Features
+<span style="float:right" class="tag is-link is-light"><a href="https://github.com/MKLab-ITI/intermediate-cnn-features">🏠 github</a></span>
+<span style="float:right" class="tag is-warning is-light"><a href="mailto:kordogeo@fel.cvut.cz">🖂 kordogeo@fel.cvut.cz</a></span>
+</h2>
+<span class="tag is-primary is-light">googlenet</span>
+<span class="tag is-primary is-light">caffe</span>
+<span class="tag is-primary is-light">bvlc</span>
+<span class="tag is-primary is-light">layer</span>
+<span class="tag is-primary is-light">vgg</span>
+<span class="tag is-primary is-light">video</span>
+<span class="tag is-primary is-light">cnn</span>
+<span class="tag is-primary is-light">tensorflow</span>
+<div><div><p>This repository contains the implementation of the feature extraction process described in
+<a href="https://link.springer.com/chapter/10.1007/978-3-319-51811-4_21">Near-Duplicate Video Retrieval by Aggregating Intermediate CNN Layers</a>. 
+Given an input video, one frame per second is sampled and its visual descriptor is extracted 
+from the activations of the intermediate convolution layers of a pre-trained Convolutional Neural Network.
+Then, the Maximum Activation of Convolutions (MAC) function is applied on the activation of each layer
+to generate a compact layer vector. Finally, the layer vector are concatenated to generate a single
+frame descriptor. The feature extraction process is depicted in the following figure.</p>
+<p></p></div>
+<h5 class="subtitle is-4 mt-5"><p>Prerequisites</p></h5>
+<div><ul>
+<li>Python</li>
+<li>Caffe or Tensorflow 1.xx</li>
+</ul></div>
+<h5 class="subtitle is-4 mt-5"><p>Installation</p></h5>
+<div><ul>
+<li>Clone this repo:</li>
+</ul>
+<pre class="codehilite"><code class="language-bash">git clone https://github.com/MKLab-ITI/intermediate-cnn-features
+cd intermediate-cnn-features
+</code></pre>
+
+<ul>
+<li>Install all dependencies:</li>
+</ul>
+<pre class="codehilite"><code class="language-bash">pip install -r requirements.txt
+</code></pre></div>
+<h5 class="subtitle is-4 mt-5"><p>Feature Extraction</p></h5>
+<div><ul>
+<li>
+<p>Provide a file of videos or images to the corresponding argument. Each line 
+of the given file have to contain the full path to one video or image.</p>
+</li>
+<li>
+<p>Select one of the two supported frameworks to extract features: Caffe or Tensorflow.</p>
+</li>
+<li>
+<p>Choose one of the three supported CNN architectures based on the selected framework. 
+CNN architectures for each framework:</p>
+<ul>
+<li>Caffe: GoogleNet, VGG, ResNet</li>
+<li>Tensorflow: VGG, ResNet, Inception</li>
+</ul>
+</li>
+<li>
+<p>Provide the required files for the pre-trained networks. Downloads for
+<a href="https://github.com/BVLC/caffe/wiki/Model-Zoo">Caffe</a> and 
+<a href="https://github.com/tensorflow/models/tree/master/research/slim">Tensorflow</a>.</p>
+</li>
+<li>
+<p>Provide an output path. The generated files depends on the input file.</p>
+<ul>
+<li>Video list: a file is generated for each video with name <code>&lt;video_basename&gt;_&lt;selected_network&gt;.npy</code>.</li>
+<li>Image list: a file with name <code>&lt;selected_network&gt;_features.npy</code> is generated. Each vector in 
+the 0 axis of the stored numpy array correspond to the image in the input file.</li>
+</ul>
+</li>
+<li>Caffe example:</li>
+</ul>
+<pre class="codehilite"><code class="language-bash">python feature_extraction.py --video_list &lt;video_file&gt; --network googlenet --framework caffe --output_path test/ --prototxt bvlc_googlenet/deploy.prototxt --caffemodel bvlc_googlenet/bvlc_googlenet.caffemodel
+</code></pre>
+
+<ul>
+<li>Tensorflow example:</li>
+</ul>
+<pre class="codehilite"><code class="language-bash">python feature_extraction.py --image_list &lt;image_file&gt; --network vgg --framework tensorflow --output_path test/ --tf_model slim/vgg_16.ckpt
+</code></pre></div>
+<h5 class="subtitle is-4 mt-5"><p>Citation</p></h5>
+<div><p>If you use this code for your research, please cite our paper.</p>
+<pre class="codehilite"><code>@inproceedings{kordopatis2017near,
+  title={Near-Duplicate Video Retrieval by Aggregating Intermediate CNN Layers},
+  author={Kordopatis-Zilos, Giorgos and Papadopoulos, Symeon and Patras, Ioannis and Kompatsiaris, Yiannis},
+  booktitle={International Conference on Multimedia Modeling},
+  year={2017}
+}
+</code></pre></div>
+<h5 class="subtitle is-4 mt-5"><p>Related Projects</p></h5>
+<div><p><strong><a href="https://github.com/MKLab-ITI/visil">ViSiL</a></strong> <strong><a href="https://github.com/MKLab-ITI/ndvr-dml">NDVR-DML</a></strong> <strong><a href="https://github.com/MKLab-ITI/FIVR-200K">FIVR-200K</a></strong></p></div>
+<h5 class="subtitle is-4 mt-5"><p>License</p></h5>
+<div><p>This project is licensed under the Apache License 2.0 - see the <a href="LICENSE">LICENSE</a> file for details</p></div>
+<h5 class="subtitle is-4 mt-5"><p>Contact for further details about the project</p></h5>
+<div><p>Giorgos Kordopatis-Zilos (georgekordopatis@iti.gr) <br>
+Symeon Papadopoulos (papadop@iti.gr)</p></div>
+</div>

@@ -1,0 +1,214 @@
+<h2 class="title mb-0">ViSiL
+<span style="float:right" class="tag is-link is-light"><a href="https://github.com/MKLab-ITI/visil">🏠 github</a></span>
+<span style="float:right" class="tag is-warning is-light"><a href="mailto:kordogeo@fel.cvut.cz">🖂 kordogeo@fel.cvut.cz</a></span>
+</h2>
+<span class="tag is-primary is-light">video</span>
+<span class="tag is-primary is-light">queries</span>
+<span class="tag is-primary is-light">videos</span>
+<span class="tag is-primary is-light">quot</span>
+<span class="tag is-primary is-light">query</span>
+<span class="tag is-primary is-light">visil</span>
+<span class="tag is-primary is-light">similarity</span>
+<span class="tag is-primary is-light">target</span>
+<div><div></div>
+<h5 class="subtitle is-4 mt-5"><p>ViSiL: Fine-grained Spatio-Temporal Video Similarity Learning</p></h5>
+<div><p>This repository contains the Tensorflow implementation of the paper 
+<a href="http://openaccess.thecvf.com/content_ICCV_2019/papers/Kordopatis-Zilos_ViSiL_Fine-Grained_Spatio-Temporal_Video_Similarity_Learning_ICCV_2019_paper.pdf">ViSiL: Fine-grained Spatio-Temporal Video Similarity Learning</a>. 
+It provides code for the calculation of similarities between the query and database videos given by the user.
+Also, it contains an evaluation script to reproduce the results of the paper. The video similarity calculation
+is achieved by applying a frame-to-frame function that respects the spatial within-frame structure of videos and 
+a learned video-to-video similarity function that also considers the temporal structure of videos. </p>
+<p>The PyTorch implementation of ViSiL can be found <a href="https://github.com/MKLab-ITI/visil/tree/pytorch">here</a></p>
+<p></p></div>
+<h5 class="subtitle is-4 mt-5"><p>Prerequisites</p></h5>
+<div><ul>
+<li>Python 3</li>
+<li>Tensorflow 1.xx (tested with 1.8-1.15)</li>
+</ul></div>
+<h5 class="subtitle is-4 mt-5"><p>Installation</p></h5>
+<div><ul>
+<li>Clone this repo:</li>
+</ul>
+<pre class="codehilite"><code class="language-bash">git clone https://github.com/MKLab-ITI/visil
+cd visil
+</code></pre>
+
+<ul>
+<li>You can install all the dependencies by</li>
+</ul>
+<pre class="codehilite"><code class="language-bash">pip install -r requirements.txt
+</code></pre>
+
+<ul>
+<li>Download and unzip the pretrained model:</li>
+</ul>
+<pre class="codehilite"><code class="language-bash">wget http://ndd.iti.gr/visil/ckpt.zip
+unzip ckpt.zip
+</code></pre>
+
+<ul>
+<li>If you want to use I3D as backbone network (used for AVR in the paper), then install the following packages:</li>
+</ul>
+<pre class="codehilite"><code class="language-bash"># For tensoflow version &gt;= 1.14
+pip install tensorflow-probability==0.7 dm-sonnet==1.25
+
+# For tensoflow version &lt; 1.14
+pip install tensorflow-probability==0.6 dm-sonnet==1.23
+</code></pre></div>
+<h5 class="subtitle is-4 mt-5"><p>Video similarity calculation</p></h5>
+<div><ul>
+<li>
+<p>Create a file that contains the query videos.
+Each line of the file have to contain a video id and a path to the corresponding video file,
+ separated by a tab character (\t). Example:</p>
+<pre class="codehilite"><code>wrC_Uqk3juY queries/wrC_Uqk3juY.mp4
+k_NT43aJ_Jw queries/k_NT43aJ_Jw.mp4
+2n30dbPBNKE queries/2n30dbPBNKE.mp4
+                                         ...
+</code></pre>
+
+</li>
+<li>
+<p>Create a file with the same format for the database videos.</p>
+</li>
+<li>
+<p>Run the following command to calculate the similarity between all the query and database videos</p>
+</li>
+</ul>
+<pre class="codehilite"><code class="language-bash">python calculate_similarity.py --query_file queries.txt --database_file database.txt --model_dir model/
+</code></pre>
+
+<ul>
+<li>For faster processing, you can load the query videos to the GPU memory by adding the flag  <code>--load_queries</code></li>
+</ul>
+<pre class="codehilite"><code class="language-bash">python calculate_similarity.py --query_file queries.txt --database_file database.txt --model_dir model/ --load_queries
+</code></pre>
+
+<ul>
+<li>The calculated similarities are stored to the file given to the <code>--output_file</code>. The file is in JSON format and
+contains a dictionary with every query id as keys, and another dictionary that contains the similarities of the dataset
+videos to the corresponding queries as values. See the example below</li>
+</ul>
+<pre class="codehilite"><code class="language-bash">    {
+      &quot;wrC_Uqk3juY&quot;: {
+        &quot;KQh6RCW_nAo&quot;: 0.716,
+        &quot;0q82oQa3upE&quot;: 0.300,
+          ...},
+      &quot;k_NT43aJ_Jw&quot;: {
+        &quot;-KuR8y1gjJQ&quot;: 1.0,
+        &quot;Xb19O5Iur44&quot;: 0.417,
+          ...},
+      ....
+    }
+    ```
+</code></pre>
+
+<ul>
+<li>Add flag <code>--help</code> to display the detailed description for the arguments of the similarity calculation script</li>
+</ul>
+<pre class="codehilite"><code>  -q, --query_file QUERY_FILE                     Path to file that contains the query videos
+  -d, --database_file DATABASE_FILE               Path to file that contains the database videos
+  -o, --output_file OUTPUT_FILE                   Name of the output file. Default: &quot;results.json&quot;
+  --network NETWORK                               Backbone network used for feature extraction.
+                                                  Options: &quot;resnet&quot; or &quot;i3d&quot;. Default: &quot;resnet&quot;
+  --model_dir MODEL_DIR                           Path to the directory of the pretrained model.
+                                                  Default: &quot;ckpt/resnet&quot;
+  -s, --similarity_function SIMILARITY_FUNCTION   Function that will be used to calculate the
+                                                  similarity between query-candidate frames and
+                                                  videos.Options: &quot;chamfer&quot; or &quot;symmetric_chamfer&quot;.
+                                                  Default: &quot;chamfer&quot;
+  --batch_sz BATCH_SZ                             Number of frames contained in each batch during
+                                                  feature extraction. Default: 128
+  --gpu_id GPU_ID                                 Id of the GPU used. Default: 0
+  -l, --load_queries                              Flag that indicates that the queries will be loaded to
+                                                  the GPU memory.
+  --threads THREADS                               Number of threads used for video loading. Default: 8
+</code></pre></div>
+<h5 class="subtitle is-4 mt-5"><p>Evaluation</p></h5>
+<div><ul>
+<li>
+<p>We also provide code to reproduce the experiments in the paper.</p>
+</li>
+<li>
+<p>First, download the videos of the dataset you want. The supported options are:</p>
+<ul>
+<li><a href="http://vireo.cs.cityu.edu.hk/webvideo/">CC_WEB_VIDEO</a> - Near-Duplicate Video Retrieval </li>
+<li><a href="http://ndd.iti.gr/fivr/">FIVR-5K, FIVR-200K</a> - Fine-grained Incident Video Retrieval</li>
+<li><a href="http://pascal.inrialpes.fr/data/evve/">EVVE</a> - Event-based Video Retrieval </li>
+<li><a href="http://activity-net.org/">ActivityNet</a> - Action  Video  Retrieval</li>
+</ul>
+</li>
+<li>
+<p>Determine the pattern based on the video id that the source videos are stored. For example,
+ if all dataset videos are stored in a folder with filename the video id and the extension <code>.mp4</code>,
+ then the pattern is <code>{id}.mp4</code>. If each dataset video is stored in a different folder based on their
+ video id with filename <code>video.mp4</code>, then the pattern us <code>{id}/video.mp4</code>.</p>
+<ul>
+<li>The code replaces the <code>{id}</code> string with the id of the videos in the dataset</li>
+<li>Also, it support supports Unix style pathname pattern expansion. For example, if video files have 
+various extension, then the pattern can be e.g. <code>{id}/video.*</code></li>
+<li>For FIVR-200K, EVVE, ActivityNet, the Youtube ids are considered as the video ids</li>
+<li>For CC_WEB_VIDEO, video ids derives from the number of the query set that the video belongs to, 
+and the basename of the file. In particular, the video ids are in form <code>&lt;number_of_query_set&gt;/&lt;basename&gt;</code>, e.g. <code>1/1_1_Y</code></li>
+</ul>
+</li>
+<li>
+<p>Run the <code>evaluation.py</code> by providing the name of the evaluation dataset, the path to video files, 
+the pattern that the videos are stored</p>
+</li>
+</ul>
+<pre class="codehilite"><code>python evaluation.py --dataset FIVR-5K --video_dir /path/to/videos/ --pattern {id}/video.* --load_queries
+</code></pre></div>
+<h5 class="subtitle is-4 mt-5"><p>Use ViSiL in your Python code</p></h5>
+<div><p>Here is a toy example to run ViSiL on any data.</p>
+<pre class="codehilite"><code class="language-python">from model.visil import ViSiL
+from datasets import load_video
+
+# Load the two videos from the video files
+query_video = load_video('/path/to/query/video')
+target_video = load_video('/path/to/target/video')
+
+# Initialize ViSiL model and load pre-trained weights
+model = ViSiL('ckpt/resnet/')
+
+# Extract features of the two videos
+query_features = model.extract_features(query_video, batch_sz=32)
+target_features = model.extract_features(target_video, batch_sz=32)
+
+# Calculate similarity between the two videos
+similarity = model.calculate_video_similarity(query_features, target_features)
+</code></pre></div>
+<h5 class="subtitle is-4 mt-5"><p>Docker</p></h5>
+<div><p>Thanks to <a href="https://github.com/theycallmeloki">@theycallmeloki</a> for providing a 
+<a href="https://github.com/MKLab-ITI/visil/blob/master/Dockerfile">Dockerfile</a> to setup a docker container for the repo.</p>
+<ul>
+<li>First build a docker image based on the Dockerfile</li>
+</ul>
+<pre class="codehilite"><code class="language-bash">docker build -t visil:latest .
+</code></pre>
+
+<ul>
+<li>Start a docker container based on the created docker image</li>
+</ul>
+<pre class="codehilite"><code class="language-bash">docker run -it --gpus all --name ViSiL visil:latest
+</code></pre></div>
+<h5 class="subtitle is-4 mt-5"><p>Visualization</p></h5>
+<div><p>To visualize similarity matrices and the ViSiL outputs, you may use 
+<a href="https://colab.research.google.com/drive/1XwkQpXrpyr7jjq3xCL7anASBjNfNCnkn">this Colab notebook</a>.</p></div>
+<h5 class="subtitle is-4 mt-5"><p>Citation</p></h5>
+<div><p>If you use this code for your research, please consider citing our paper:</p>
+<pre class="codehilite"><code class="language-bibtex">@inproceedings{kordopatis2019visil,
+  title={{ViSiL}: Fine-grained Spatio-Temporal Video Similarity Learning},
+    author={Kordopatis-Zilos, Giorgos and Papadopoulos, Symeon and Patras, Ioannis and Kompatsiaris, Ioannis},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  year={2019}
+}
+</code></pre></div>
+<h5 class="subtitle is-4 mt-5"><p>Related Projects</p></h5>
+<div><p><strong><a href="https://github.com/mever-team/distill-and-select">DnS</a></strong> - improved performance and better computational efficiency</p>
+<p><strong><a href="https://github.com/MKLab-ITI/FIVR-200K">FIVR-200K</a></strong> - download our FIVR-200K dataset</p></div>
+<h5 class="subtitle is-4 mt-5"><p>License</p></h5>
+<div><p>This project is licensed under the Apache License 2.0 - see the <a href="LICENSE">LICENSE</a> file for details</p></div>
+<h5 class="subtitle is-4 mt-5"><p>Contact for further details about the project</p></h5>
+<div><p>Giorgos Kordopatis-Zilos (georgekordopatis@iti.gr) <br></p></div>
+</div>

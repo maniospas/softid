@@ -1,0 +1,119 @@
+<h2 class="title mb-0">synth4bench
+<span style="float:right" class="tag is-link is-light"><a href="https://github.com/BiodataAnalysisGroup/synth4bench">🏠 github</a></span>
+<span style="float:right" class="tag is-warning is-light"><a href="mailto:sfragkoul@certh.gr">🖂 sfragkoul@certh.gr</a></span>
+</h2>
+<span class="tag is-primary is-light">bam</span>
+<span class="tag is-primary is-light">readcount</span>
+<span class="tag is-primary is-light">variant</span>
+<span class="tag is-primary is-light">synthetic</span>
+<span class="tag is-primary is-light">biology</span>
+<span class="tag is-primary is-light">somatic</span>
+<span class="tag is-primary is-light">href</span>
+<span class="tag is-primary is-light">truth</span>
+<div><div><p align="center">
+  
+</p>
+
+<hr /></div>
+<h5 class="subtitle is-4 mt-5"><p>Abstract</p></h5>
+<div><div align='justify'> 
+Somatic variant calling algorithms are essential for detecting genomic alterations. However, evaluating their performance can be challenging due to the lack of high-quality ground truth datasets. To address this issue, we developed a synthetic genomics data generation framework for benchmarking tumor-only somatic variant calling algorithms. We generated synthetic datasets using the NEAT simulator. Subsequently, we thoroughly evaluated the performance of variant calling algorithms including <strong>GATK-Mutect2, FreeBayes, VarDict, VarScan2 and LoFreq</strong> on these datasets, comparing results against the ground truth. Synthetic datasets provide an excellent ground truth for studying the performance and behavior of somatic variant calling algorithms.
+</div>
+
+<hr /></div>
+<h5 class="subtitle is-4 mt-5"><p>Table of Contents</p></h5>
+<div><ul>
+<li><a href="#abstract">Abstract</a></li>
+<li><a href="#description">Description</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#data-download">Data Download</a></li>
+<li><a href="#execution">Execution</a></li>
+<li><a href="#documentation">Documentation</a></li>
+<li><a href="#contribute">Contribute</a></li>
+<li><a href="#citation">Citation</a></li>
+</ul>
+<hr /></div>
+<h5 class="subtitle is-4 mt-5"><p>Description</p></h5>
+<div><p align="center">
+  
+</p>
+
+<div align='justify'>
+Our framekwork addresses the challenge of variant calling, particularly for low-alle frequency variants (≤10%). The goal is to develop a reliable and consistent method for identifying genetic lesions in cancer-associated genomic alterations. The lack of ground truth datasets complicates benchmarking and evaluation. To overcome this, our framework includes:
+
+1. **Synthetic Data Generation:** Using the NEAT v3.3 simulator, we generate synthetic genomics data that mimics real genome sequences, serving as a ground truth.
+2. **Identifying three independent analyses**: to adress three variant types independently: SNVs true variants, SNVs noise and indels.
+3. **Benchmarking Variant Callers:** We evaluate five somatic variant callers, GATK-Mutect2, Freebayes, VarDict, VarScan2, and LoFreq — using these synthetic datasets.
+</div>
+
+<hr /></div>
+<h5 class="subtitle is-4 mt-5"><p>Data Download</p></h5>
+<div><p>All data are openly available on <a href="https://zenodo.org/records/16524193">Zenodo</a>. For specific instructions, refer to our <a href="https://github.com/sfragkoul/synth4bench/blob/main/docs/UserGuide.md#data-download"><strong>User Guide</strong></a>.</p>
+<hr /></div>
+<h5 class="subtitle is-4 mt-5"><p>Installation</p></h5>
+<div><ol>
+<li>
+<p><strong>Create the Conda environment:</strong></p>
+<p><code>bash
+conda env create -f environment.yml
+conda activate synth4bench</code></p>
+</li>
+<li>
+<p><strong>Install NEAT v3.3:</strong></p>
+<p>Download version <a href="https://github.com/ncsa/NEAT/releases/tag/3.3">v3.3</a>.<br />
+To call the main script:</p>
+<p><code>bash
+python gen_reads.py --help</code></p>
+<p>For further details, see the NEAT README included in the download.</p>
+</li>
+<li>
+<p><strong>Install bam-readcount:</strong></p>
+<p>Follow their <a href="https://github.com/genome/bam-readcount#build">installation instructions</a>.<br />
+After building, verify installation:</p>
+<p><code>bash
+build/bin/bam-readcount --help</code></p>
+<p>If you encounter issues during the <code>make</code> process, you can alternatively use the executable available <a href="https://github.com/sfragkoul/synth4bench/tree/main/bam-readcount">here</a> and place it in the <code>bam-readcount/build/bin</code> folder.</p>
+</li>
+<li>
+<p><strong>Download VarScan Extra Script:</strong></p>
+<p>The extra script <code>vscan_pileup2cns2vcf.py</code> for VarScan is available <a href="https://github.com/sfragkoul/Varscan2VCF">here</a>.</p>
+</li>
+</ol>
+<hr /></div>
+<h5 class="subtitle is-4 mt-5"><p>Execution</p></h5>
+<div><p>Simply configure your parameters in the <code>parameters.yaml</code> file, then execute:</p>
+<pre class="codehilite"><code class="language-bash">bash s4b_run.sh
+</code></pre>
+
+<p>This single command generates synthetic data, runs variant calling for all selected tools, and performs downstream analysis and plotting.</p>
+<p>For full execution instructions, see our <a href="https://github.com/sfragkoul/synth4bench/blob/main/docs/UserGuide.md#executing-synth4bench"><strong>User Guide</strong></a>.</p>
+<hr /></div>
+<h5 class="subtitle is-4 mt-5"><p>Documentation</p></h5>
+<div><p>For further documentation, visit the <a href="https://github.com/sfragkoul/synth4bench/blob/main/docs/Documentation.md">documentation page</a>.</p>
+<hr /></div>
+<h5 class="subtitle is-4 mt-5"><p>Contribute</p></h5>
+<div><p>We welcome and greatly appreciate any feedback or contributions!</p>
+<p>If you have questions, please open an issue <a href="https://github.com/sfragkoul/synth4bench/issues/new">here</a> or email <code>sfragkoul@certh.gr</code>.</p>
+<hr /></div>
+<h5 class="subtitle is-4 mt-5"><p>Citation</p></h5>
+<div><p>Our work has been submitted to the <em>bioRxiv</em> preprint repository. If you use synth4bench, or any of our scripts/code, please cite:</p>
+<blockquote>
+<p>S.-C. Fragkouli, N. Pechlivanis, A. Anastasiadou, G. Karakatsoulis, A. Orfanou, P. Kollia, A. Agathangelidis, and F. E. Psomopoulos, <em>“Synth4bench: Synthetic Data Generation for Benchmarking Tumor-Only Somatic Variant Calling Algorithms”</em> 2025, doi:<a href="https://www.biorxiv.org/content/10.1101/2024.03.07.582313v2">10.1101/2024.03.07.582313</a>.</p>
+</blockquote>
+<hr /></div>
+<h5 class="subtitle is-4 mt-5"><p>Related Publications</p></h5>
+<div><ul>
+<li>
+<p><div align='justify'> S.-C. Fragkouli, N. Pechlivanis, A. Anastasiadou, G. Karakatsoulis, A. Orfanou, P. Kollia, A. Agathangelidis, and F. Psomopoulos, <em>synth4bench: Benchmarking Somatic Variant Callers – A Tale Unfolding In The Synthetic Genomics Feature Space</em>, <b>23rd European Conference On Computational Biology (ECCB24)</b>, Sep 2024, Turku, Finland, doi: <a href="https://zenodo.org/records/14186510">10.5281/zenodo.14186509</a> </div></p>
+</li>
+<li>
+<p><div align='justify'> S.-C. Fragkouli, N. Pechlivanis, A. Anastasiadou, G. Karakatsoulis, A. Orfanou, P. Kollia, A. Agathangelidis, and F. Psomopoulos, <em>“Exploring Somatic Variant Callers' Behavior: A Synthetic Genomics Feature Space Approach”</em>, <b>ELIXIR AHM24</b>, Jun 2024, Uppsala, Sweden, doi: <a href="https://doi.org/10.7490/f1000research.1119793.1">10.7490/f1000research.1119793.1</a></div></p>
+</li>
+<li>
+<p><div align='justify'> S.-C. Fragkouli, N. Pechlivanis, A. Orfanou, A. Anastasiadou, A. Agathangelidis and F. Psomopoulos, <em>Synth4bench: a framework for generating synthetic genomics data for the evaluation of somatic variant calling algorithms</em>, <b>17th Conference of Hellenic Society for Computational Biology and Bioinformatics (HSCBB)</b>, Oct 2023, Thessaloniki, Greece, doi:<a href="https://doi.org/10.5281/zenodo.8432060">10.5281/zenodo.8432060</a> </div></p>
+</li>
+<li>
+<p><div align='justify'> S.-C. Fragkouli, N. Pechlivanis, A. Agathangelidis and F. Psomopoulos, <em>Synthetic Genomics Data Generation and Evaluation for the Use Case of Benchmarking Somatic Variant Calling Algorithms</em>, <b>31st Conference in Intelligent Systems For Molecular Biology and the 22nd European Conference On Computational Biology (ISΜB-ECCB23)</b>, Jul 2023, Lyon, France, doi:<a href="https://doi.org/10.7490/f1000research.1119575.1">10.7490/f1000research.1119575.1</a> </div></p>
+</li>
+</ul></div>
+</div>

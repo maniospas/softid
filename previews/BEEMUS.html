@@ -1,0 +1,129 @@
+<h2 class="title mb-0">BEEMUS
+<span style="float:right" class="tag is-link is-light"><a href="https://github.com/BiodataAnalysisGroup/BEEMUS">🏠 github</a></span>
+<span style="float:right" class="tag is-warning is-light"><a href="mailto:fpsom@certh.gr">🖂 fpsom@certh.gr</a></span>
+</h2>
+<span class="tag is-primary is-light">ay</span>
+<span class="tag is-primary is-light">interest</span>
+<span class="tag is-primary is-light">lineages</span>
+<span class="tag is-primary is-light">nodes</span>
+<span class="tag is-primary is-light">sequential</span>
+<span class="tag is-primary is-light">nc</span>
+<span class="tag is-primary is-light">ba</span>
+<span class="tag is-primary is-light">msa</span>
+<div><div></div>
+<h5 class="subtitle is-4 mt-5"><p>BEEMUS: Bioinformatics for the Evolution of Emerging MUtations in SARS-CoV-2</p></h5>
+<div><!-- ![logo](https://) -->
+
+<h1>Quick overview</h1>
+<p>Assessing SARS-CoV-2 evolution through the analysis of emerging mutations</p></div>
+<h5 class="subtitle is-4 mt-5"><p>Contents</p></h5>
+<div><ul>
+<li><a href="#rationale">Rationale</a></li>
+<li><a href="#quick-start">Quick start</a></li>
+<li><a href="#contributing">Contributing</a></li>
+<li><a href="#license">License</a></li>
+<li><a href="#citations">Citations</a></li>
+<li><a href="#credits">Credits</a></li>
+</ul>
+<h1>Rationale</h1>
+<p>In this study, we present a novel method for detecting patterns of co-occuring mutations beyond strain-specific / strain-defining ones and making use of those patterns in an endeavor to group samples in such a way that they could indicate evolutionary paths of the virus. In otherwords, mutational occurrence patterns might suggest different ways of grouping sample revealing the evolutionary history of SARS-CoV-2.</p>
+<h1>Quick start</h1>
+<ol>
+<li>
+<p>Conda or Miniconda package manager installed is required on your system.</p>
+</li>
+<li>
+<p>Nextflow version 0.30.x or higher is required for the installation procedure, just download the distribution package by copying and pasting this command in your terminal:</p>
+<p><code>curl -fsSL https://get.nextflow.io | bash</code></p>
+<p>It creates the <code>nextflow</code> executable file in the current directory. You may want to move it to a folder accessible from your <code>$PATH</code>.</p>
+</li>
+<li>
+<p>Clone this GitHub repository:</p>
+<p><code>git clone https://github.com/</code></p>
+</li>
+<li>
+<p>Create the folders structure inside the project's directory as specified below with the exact same names:</p>
+<pre class="codehilite"><code>.
+├── ...
+├── project's directory 
+│   ├── data                             # Data folder
+│   │   ├── vcf-files                    # The folder where all vcf files live in
+│   │   ├── ref                          # The folder where the reference genome and its indices live in.
+│   │   │   ├── NC_045512.2.fasta
+│   │   │   ├── NC_045512.2.fasta.fai
+│   │   │   ├── NC_045512.2.dict
+│   │   │   ├── NC_045512.2_annot.gff3
+│   │   │   └── ...
+│   │   ├── biosample_result.csv         # The metadata file
+│   │   └── lineage-classification.csv   # The samples to lineages classification file
+│   └── ...
+└── ...
+</code></pre>
+
+<ol>
+<li>Create and activate conda environment:</li>
+</ol>
+<p><code>conda env create -f conda_envs/sars-cov-2_environment.yml</code></p>
+</li>
+<li>
+<p>Run the pipeline:</p>
+<p><code>nextflow pipeline.nf</code></p>
+</li>
+<li>
+<p>Inside the data folder you will find a summary file <code>dataset_summary.csv</code>. Select the most frequently occurring lineages along your dataset and write them down for the next step.</p>
+</li>
+<li>
+<p>Activate the conda environment:</p>
+<p><code>conda activate sars_work</code></p>
+</li>
+<li>
+<p>Run the graph analysis script (from the project's folder), replacing the string after the <code>--lineages</code> flag, with the lineages of interest in sequential order, separated by space, as shown below: </p>
+<p><code>--lineages B.1.1.7 B.1.617.2 AY.43 BA.1 AY.12 AY.4 AY.122 AY.9 BA.1.1</code>
+<code>python bin/graph_analysis.py \
+    --datafolder data/ \
+    --datasetname dataset.csv \
+    --graphsfolder data/graphs/ \
+    --lineages &lt;lineages in sequential order separated by space&gt; \
+    --export_arrow_edges \
+    --export_nodes_long_format
+    --plot_dates_vs_nodes</code></p>
+</li>
+<li>
+<p>If everything went well, a browser window should automatically pop up, showing the produced graph, like this depicted below, in a non-arranged form, that you should rearrange by drag and drop the nodes based on your preferences. After that we strongly recommend writing down the unique ids of the nodes of interest, separated by space (shown underneath the node's lineage(s)), in groups of interest:</p>
+<p><code>E.g. &lt;11 7 9 8&gt; &lt;51 90 72&gt;</code></p>
+<p></p>
+</li>
+<li>
+<p>Run the msa analysis script (from the project's folder), replacing the string after the <code>--nodes_of_interest</code> <code>--lineages</code> flag, with the lineages and the nodes of interest in sequential order, separated by space, as shown below:</p>
+<p><code>--lineages B.1.1.7 B.1.617.2 AY.43 BA.1 AY.12 AY.4 AY.122 AY.9 BA.1.1</code>
+<code>--nodes_of_interest 39 34 86</code>  <br />
+<code>python bin/msa.py \
+    --datafolder data \
+    --datasetname dataset.csv \
+    --msafilename MSA.fasta \
+    --graphsfolder data/graphs \
+    --nodesfilename nodes \
+    --treefilepath ../tree-of-life/files/life.json \
+    --lineages &lt;lineages in sequential order separated by space&gt; \
+    --nodes_of_interest &lt;nodes of interest in sequential order separated by space&gt;</code></p>
+<ul>
+<li>You can run the <code>msa.py</code> script as many times as it is necessary, while using different nodes of interest.</li>
+<li>Caution! Remember to change the <code>--treefilepath</code> file name along different running, since it will replace the previous file each time it executes.</li>
+</ul>
+</li>
+<li>
+<p>Go to the <code>tree-of-life</code> folder (from the project's folder) and start a local http server using python:</p>
+<p><code>cd ../tree-of-life
+python -m http.server</code>
+13. Open a browser of your choice and type <code>http://127.0.0.1:8000/</code>. If everything is all right, you will be able to see a tree graph such as the following:</p>
+<p></p>
+</li>
+</ol>
+<h1>Contributing</h1>
+<p>Project contribution are more than welcome. </p>
+<h1>License</h1>
+<p>This project is released under the MIT license. See the <a href="LICENSE.md">LICENSE</a> file for details.</p>
+<h1>Citations</h1>
+<p>If you use this project in your research, please cite:</p>
+<h1>Credits</h1></div>
+</div>

@@ -1,0 +1,71 @@
+<h2 class="title mb-0">miRkit
+<span style="float:right" class="tag is-link is-light"><a href="https://github.com/BiodataAnalysisGroup/miRkit.git">🏠 github</a></span>
+<span style="float:right" class="tag is-warning is-light"><a href="mailto:fpsom@certh.gr">🖂 fpsom@certh.gr</a></span>
+</h2>
+<span class="tag is-primary is-light">quot</span>
+<span class="tag is-primary is-light">mirkit</span>
+<span class="tag is-primary is-light">nikopech</span>
+<span class="tag is-primary is-light">mirnatool</span>
+<span class="tag is-primary is-light">save</span>
+<span class="tag is-primary is-light">saveimagehigh</span>
+<span class="tag is-primary is-light">github</span>
+<span class="tag is-primary is-light">biodataanalysisgroup</span>
+<div><div><p>miRkit was implemented in <a href="https://www.r-project.org/">R</a>.</p></div>
+<h5 class="subtitle is-4 mt-5"><p>Structure</p></h5>
+<div><p>miRkit repository consists of three folders:
+- <code>data</code>: This is where all the input files are stored.
+- <code>R</code>: This is where all the R scripts are stored.
+- <code>output</code>: This is where all the output files are stored. This folder is created automatically while executing the project.</p></div>
+<h5 class="subtitle is-4 mt-5"><p>Dependencies</p></h5>
+<div><p>Execute the following lines to install the required packages:
+- from CRAN:</p>
+<pre class="codehilite"><code>install.packages(c(&quot;data.table&quot;, &quot;tidyverse&quot;, &quot;gsubfn&quot;, &quot;yaml&quot;, &quot;enrichR&quot;, &quot;lubridate&quot;))
+</code></pre>
+
+<ul>
+<li>from Bioconductor:</li>
+</ul>
+<pre class="codehilite"><code>BiocManager::install(c(&quot;naniar&quot;, &quot;prada&quot;, &quot;ComplexHeatmap&quot;, &quot;multiMiR&quot;, &quot;limma&quot;))
+</code></pre></div>
+<h5 class="subtitle is-4 mt-5"><p>Installing</p></h5>
+<div><p>The project can be downloaded using git:</p>
+<pre class="codehilite"><code>git clone https://github.com/BiodataAnalysisGroup/miRkit.git
+</code></pre></div>
+<h5 class="subtitle is-4 mt-5"><p>Running the project</p></h5>
+<div><p><code>miRkit</code> is a collection of R scripts/functions as listed bellow:</p>
+<ul>
+<li><code>01_miRkit.R</code></li>
+<li><code>02a_qc.R</code> </li>
+<li><code>02b_diff_analysis.R</code></li>
+<li><code>02c_fa.R</code></li>
+<li><code>03a_save_as_pdf.R</code> </li>
+<li><code>03b_save_image.R</code></li>
+</ul>
+<p>In order to run the project:</p>
+<ol>
+<li>Set the <a href="https://github.com/BiodataAnalysisGroup/miRNAtool/tree/main/R">R</a> folder as your working directory</li>
+<li>Place the required input files inside the <code>data</code> directory and set the parameters inside the .yaml file. See instructions <a href="https://github.com/BiodataAnalysisGroup/miRNAtool/tree/main/data">here</a>. </li>
+<li>Use the first script which works as a wrapper by calling the required functions:</li>
+</ol>
+<pre class="codehilite"><code>source(&quot;01_miRkit.R&quot;)
+</code></pre></div>
+<h5 class="subtitle is-4 mt-5"><p>Additional scripts</p></h5>
+<div><ul>
+<li><code>initial_script.R</code>: Contains the full code of the initial version of the project. There is no need to execute this file.</li>
+</ul></div>
+<h5 class="subtitle is-4 mt-5"><p>Input</p></h5>
+<div><ul>
+<li>For extra details about the input please move to the <code>data</code> <a href="https://github.com/BiodataAnalysisGroup/miRNAtool/tree/main/data">folder</a> and checkout the correpsonding README.md file.</li>
+</ul></div>
+<h5 class="subtitle is-4 mt-5"><p>Output</p></h5>
+<div><ul>
+<li>For extra details about the output please move to the <code>output</code> <a href="https://github.com/BiodataAnalysisGroup/miRNAtool/tree/main/output">folder</a> and checkout the correpsonding README.md file</li>
+</ul></div>
+<h5 class="subtitle is-4 mt-5"><p>Acknowledgements</p></h5>
+<div><ul>
+<li><a href="https://github.com/nikopech/">nikopech</a><br />
+Scripts <code>save_as_pdf.R</code> and <code>save_image.R</code> were taken from nikopech's project <a href="https://github.com/nikopech/saveImageHigh">saveImageHigh</a></li>
+</ul></div>
+<h5 class="subtitle is-4 mt-5"><p>License</p></h5>
+<div><p>This project is licensed under the MIT License - see the <a href="https://github.com/BiodataAnalysisGroup/miRNAtool/blob/main/LICENSE">LICENSE</a> file for details.</p></div>
+</div>

@@ -1,0 +1,53 @@
+<h2 class="title mb-0">kmerAnalyzer
+<span style="float:right" class="tag is-link is-light"><a href="https://github.com/BiodataAnalysisGroup/kmerAnalyzer">🏠 github</a></span>
+<span style="float:right" class="tag is-warning is-light"><a href="mailto:fpsom@certh.gr">🖂 fpsom@certh.gr</a></span>
+</h2>
+<span class="tag is-primary is-light">mer</span>
+<span class="tag is-primary is-light">factor</span>
+<span class="tag is-primary is-light">csv</span>
+<span class="tag is-primary is-light">featuresextraction</span>
+<span class="tag is-primary is-light">detected</span>
+<span class="tag is-primary is-light">column</span>
+<span class="tag is-primary is-light">appears</span>
+<span class="tag is-primary is-light">kmeranalyzer</span>
+<div><div></div>
+<h5 class="subtitle is-4 mt-5"><p>A computational framework for pattern detection on unaligned sequences: An application on SARS-CoV-2 data</p></h5>
+<div><p><a href="https://opensource.org/licenses/MIT"></a></p></div>
+<h5 class="subtitle is-4 mt-5"><p>Overview</p></h5>
+<div><p>An alignment-free method capable of processing and counting k-mers in a reasonable time, while evaluating multiple values of the k parameter concurrently.</p></div>
+<h5 class="subtitle is-4 mt-5"><p>Python Version</p></h5>
+<div><p>kmerAnalyzer was initially implemented in <strong>Python 2.7</strong> version, but it seems to work pretty well in <strong>Python 3.8</strong> too.</p></div>
+<h5 class="subtitle is-4 mt-5"><p>Required Python Packages</p></h5>
+<div><ul>
+<li><a href="https://pandas.pydata.org/getting_started.html"><code>pandas</code></a> </li>
+<li><a href="https://numpy.org/install/"><code>numpy</code></a></li>
+</ul></div>
+<h5 class="subtitle is-4 mt-5"><p>Input files</p></h5>
+<div><p>The current application supports only <code>.fasta</code> files as input files.</p></div>
+<h5 class="subtitle is-4 mt-5"><p>How to execute</p></h5>
+<div><ol>
+<li>In order to execute the application, there must be a unique <code>fasta</code> file inside the <code>data/</code> folder, which will be used as an input to the current k-mer analyzer toolkit.</li>
+<li>Folder <code>Output/</code> needs to be empty. Otherwise, the application will remove everything (file or subfolder) inside it. In case the folder doesn't exist, it wil be created automatically.</li>
+<li>Specify the parameters inside <code>featuresExtraction.py</code> script in <strong>lines 21-22</strong>, <code>kmax</code> and <code>eval_factor</code>. <code>Eval_factor</code> parameter determines the strictness in the assessment of kmers of each length. Recommended values for <code>eval_factor</code> lie inside the interval [1,2]. For optimal results, it's highly recommended to select a value between [1.2, 1.5]. At any case, for values lower than 1, the application won't run properly</li>
+<li>Execute the python script <code>featuresExtraction.py</code></li>
+</ol></div>
+<h5 class="subtitle is-4 mt-5"><p>Output files</p></h5>
+<div><p>Assuming that the input file is called <code>filename.fasta</code>:</p>
+<ol>
+<li>Inside the <code>Output/</code> directory there is a <code>.csv</code> file called <code>clustData.csv</code> which is actually the data matrix that we aimed for. Every sequemce is being represented by a number k-mer based features. The value of every feature is the number of times each k-mer was detected in the current sequence. There's also a CSV file called <code>heades_to_IDS.csv</code>, which maps the headers of each sequence from fasta input to code names ID-1, ID-2 etc.</li>
+<li>Inside the <code>Output/filename/</code> sub-folder there are 3 <code>csv</code> files: </li>
+<li>File <code>output.csv</code> contains the list that is generated from the kmer-tree. Every row represents a k-mer. The first column is the k-mer itself, the second is the length of the k-mer, the third column its frequency (the number of times that was detected in the input data) and the fourth one is its evaluation in the tree. </li>
+<li>The two remaining files are associated with the sequences that every k-mer appears, and the number of times that each k-mer appears in every sequence occurs as well.</li>
+</ol></div>
+<h5 class="subtitle is-4 mt-5"><p>Extra comments</p></h5>
+<div><ul>
+<li>It's important to have a look at the lengths of the sequences, prior to executing kmerAnalyzer. For example, in the example dataset, the sequence with header <code>&gt;ERR525627.984.1 984 length=31</code> has length 31, so probably its better to either exclude this sequence (data filtering) or examine lower k-values, e.g. up to 20. However, if we set <code>kmax = 35</code>, the code seems to work properly.</li>
+<li>While executing kmerAnalyzer, a folder called <code>input</code> is created isnide the project direcoty, containing some necessary files for the execution process. The folder is deleted at the end of the process.</li>
+</ul></div>
+<h5 class="subtitle is-4 mt-5"><p>Data availability</p></h5>
+<div><p>SARS-CoV-2 data have been downloaded from <a href="https://www.ncbi.nlm.nih.gov/sars-cov-2/">NCBI SARS-CoV-2 Resources</a>.</p></div>
+<h5 class="subtitle is-4 mt-5"><p>Contributing</p></h5>
+<div><p>Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.</p></div>
+<h5 class="subtitle is-4 mt-5"><p>License</p></h5>
+<div><p>This project is licensed under the <a href="https://opensource.org/licenses/MIT">MIT</a> License - see the <a href="LICENSE">LICENSE</a> file for details</p></div>
+</div>

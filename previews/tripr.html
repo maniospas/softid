@@ -1,0 +1,70 @@
+<h2 class="title mb-0">tripr
+<span style="float:right" class="tag is-link is-light"><a href="https://github.com/BiodataAnalysisGroup/tripr">🏠 github</a></span>
+<span style="float:right" class="tag is-warning is-light"><a href="mailto:k.kardamiliotis@certh.gr">🖂 k.kardamiliotis@certh.gr</a></span>
+</h2>
+<span class="tag is-primary is-light">svg</span>
+<span class="tag is-primary is-light">spatiallibd</span>
+<span class="tag is-primary is-light">bioconductor</span>
+<span class="tag is-primary is-light">shields</span>
+<span class="tag is-primary is-light">tripr</span>
+<span class="tag is-primary is-light">badges</span>
+<span class="tag is-primary is-light">lifecycle</span>
+<span class="tag is-primary is-light">codecov</span>
+<div><div><!-- README.md is generated from README.Rmd. Please edit that file -->
+
+<!-- TODO: badges -->
+
+<!-- badges: start -->
+
+<!-- [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable) -->
+<!-- [![BioC status](http://bioconductor.org/shields/build/release/data-experiment/spatialLIBD.svg)](http://bioconductor.org/checkResults/release/data-experiment-LATEST/spatialLIBD/) -->
+<!-- [![BioC dev status](http://bioconductor.org/shields/build/devel/data-experiment/spatialLIBD.svg)](http://bioconductor.org/checkResults/devel/data-experiment-LATEST/spatialLIBD/) -->
+<!-- [![Codecov test coverage](https://codecov.io/gh/BiodataAnalysisGroup/tripr/branch/master/graph/badge.svg)](https://codecov.io/gh/BiodataAnalysisGroup/tripr?branch=master) -->
+
+<!-- [![Support site activity, last 6 months: tagged questions/avg. answers per question/avg. comments per question/accepted answers, or 0 if no tagged posts.](http://www.bioconductor.org/shields/posts/spatialLIBD.svg)](https://support.bioconductor.org/t/spatialLIBD/) -->
+<!-- [![GitHub issues](https://img.shields.io/github/issues/BiodataAnalysisGroup/tripr)](https://github.com/BiodataAnalysisGroup/tripr/issues) -->
+<!-- [![DOI](https://zenodo.org/badge/225913568.svg)](https://zenodo.org/badge/latestdoi/225913568) -->
+
+<!-- badges: end --></div>
+<h5 class="subtitle is-4 mt-5"><p>tripr <img src="inst/app/www/tripr.png" align="right" width="200" /></p></h5>
+<div><p>T-cell Receptor/Immunoglobulin Profiler (TRIP)</p>
+<p><a href="https://github.com/BiodataAnalysisGroup/tripr/actions/workflows/check-bioc.yml"></a></p></div>
+<h5 class="subtitle is-4 mt-5"><p>Description</p></h5>
+<div><p><code>tripr</code> is a <a href="http://bioconductor.org">Bioconductor</a> package, written in
+<a href="https://shiny.rstudio.com/">shiny</a> that provides analytics services on
+antigen receptor (B cell receptor immunoglobulin, BcR IG | T cell
+receptor, TR) gene sequence data. Every step of the analysis can be
+performed interactively, thus not requiring any programming skills. It
+takes as input the output files of the <a href="http://www.imgt.org/HighV-QUEST/home.action">IMGT/HighV-Quest
+tool</a>. Users can select to
+analyze the data from each of the input samples separately, or the
+combined data files from all samples and visualize the results
+accordingly.</p>
+<p>Functions for an <code>R</code> command-line use are also available.</p></div>
+<h5 class="subtitle is-4 mt-5"><p>Installation</p></h5>
+<div><!-- When accepted in Bioconductor -->
+
+<p><code>tripr</code> is distributed as a <a href="https://www.bioconductor.org/">Bioconductor</a> 
+package and requires <code>R</code> (version "4.5"), which can be installed on any 
+operating system from <a href="https://cran.r-project.org/">CRAN</a>, and 
+Bioconductor (version "3.21").</p>
+<p>To install <code>tripr</code> package enter the following commands in your <code>R</code> session:</p>
+<pre class="codehilite"><code class="language-r">if (!requireNamespace(&quot;BiocManager&quot;, quietly = TRUE)) {
+    install.packages(&quot;BiocManager&quot;)
+}
+
+BiocManager::install(&quot;tripr&quot;)
+
+## Check that you have a valid Bioconductor installation
+BiocManager::valid()
+</code></pre></div>
+<h5 class="subtitle is-4 mt-5"><p>Launching the app</p></h5>
+<div><p>Once <code>tripr</code> is successfully installed, it can be loaded as follow:</p>
+<pre class="codehilite"><code class="language-r">library(tripr)
+</code></pre></div>
+<h5 class="subtitle is-4 mt-5"><p>User Guide</p></h5>
+<div><p>To view documentation for the version of this package installed in your system, 
+start R and enter: </p>
+<pre class="codehilite"><code class="language-r">browseVignettes(&quot;tripr&quot;)
+</code></pre></div>
+</div>

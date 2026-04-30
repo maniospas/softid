@@ -1,0 +1,133 @@
+<h2 class="title mb-0">Multimedia Geotagging
+<span style="float:right" class="tag is-link is-light"><a href="https://github.com/MKLab-ITI/multimedia-geotagging">🏠 github</a></span>
+<span style="float:right" class="tag is-warning is-light"><a href="mailto:kordogeo@fel.cvut.cz">🖂 kordogeo@fel.cvut.cz</a></span>
+</h2>
+<span class="tag is-primary is-light">geotagging</span>
+<span class="tag is-primary is-light">term</span>
+<span class="tag is-primary is-light">locality</span>
+<span class="tag is-primary is-light">entropy</span>
+<span class="tag is-primary is-light">cellx</span>
+<span class="tag is-primary is-light">mlc</span>
+<span class="tag is-primary is-light">grids</span>
+<span class="tag is-primary is-light">sampling</span>
+<div><div><h1>Multimedia Geotagging</h1>
+<p>This repository contains the implementation of algorithms that estimate the geographic location of multimedia items based on their textual content. The approach is described in the paper <a href="https://www.researchgate.net/publication/318848293_Geotagging_Text_Content_With_Language_Models_and_Feature_Mining">Geotagging Text Content With Language Models and Feature Mining</a>.</p>
+<h2>Main Method</h2>
+
+<p>The approach is a refined language model, including feature selection and weighting schemes and heuristic techniques that improves the accuracy in finer granularities. It is a text-based method, in which a complex geographical-tag model is built from the tags, titles and the locations of a massive amount of geotagged images that are included in a training set, in order to estimate the location of each query image included in a test set.</p>
+<p>The main approach comprises two major processing steps, an offline and an online.</p>
+<h3>Offline Processing Step</h3>
+
+<ul>
+<li>
+<p>Pre-processing</p>
+<ul>
+<li>apply URL decoding, lowercase transformation, tokenization</li>
+<li>remove accents, punctuations and symbols (e.g. “.%!&amp;”)</li>
+<li>discard terms consisting of numerics or less than three characters</li>
+</ul>
+</li>
+<li>
+<p>Language Model</p>
+<ul>
+<li>divide earth surface in rectangular cells with a side length of 0.01°</li>
+<li>calculate term-cell probabilities based on the users that used the term inside the cell</li>
+</ul>
+</li>
+<li>
+<p>Feature selection</p>
+<ul>
+<li>calculate locality score of every term in the dataset</li>
+<li>locality is based on the term frequency and the neighbor users that have used it in the cell distribution</li>
+<li>the final set of selected terms is formed from the terms with locality score greater than zero </li>
+</ul>
+</li>
+<li>
+<p>Feature weighting using spatial entropy</p>
+<ul>
+<li>calculate spatial entropy values of every term applying the Shannon entropy formula in the term-cell probabilities</li>
+<li>spatial entropy weights derives from a Gaussian weight function over the spatial entropy of terms</li>
+<li>locality weights derives from the relative position in the rank of terms based on their locality score</li>
+<li>combine locality and spatial entropy weight to generate the final weights</li>
+</ul>
+</li>
+</ul>
+<h3>Online Processing Step</h3>
+
+<ul>
+<li>
+<p>Language Model based estimation (prior-estimation)</p>
+<ul>
+<li>the probability of each cell is calculated</li>
+<li>Most Likely Cell (MLC) considered the cell with the highest probability and used to produce the estimation</li>
+</ul>
+</li>
+<li>
+<p>Multiple Resolution Grids</p>
+<ul>
+<li>build different language models for multiple resolution grids (side length 0.01° and 0.001°)</li>
+<li>estimate the MLC combining the result of the individual language models</li>
+</ul>
+</li>
+<li>
+<p>Similarity Search</p>
+<ul>
+<li>determine the most similar training images within the MLC</li>
+<li>their center-of-gravity is the final location estimation</li>
+</ul>
+</li>
+</ul>
+<h2>Instructions</h2>
+
+<p>In order to make possible to run the project you have to set all necessary argument in <a href="https://github.com/socialsensor/multimedia-geotagging/blob/master/config.properties">configurations</a>, following the instruction for every argument. The default values may be used. </p>
+<p><em>Input File</em><br>
+The imput files must be in the same format as <a href="https://webscope.sandbox.yahoo.com/catalog.php?datatype=i&did=67">YFCC100M dataset</a>.</p>
+<p><em>Output Files</em><br>
+At the end of the training process, the algorithm creates a folder named <code>TermCellProbs</code> and inside the folder another folder named <code>scale_(s)</code>, named appropriately based on the scale <code>s</code> of the language model's cells. The format of this file is the following.</p>
+<pre class="codehilite"><code>term    cell1-lon_cell1-lat&gt;cell1-prob&gt;cell1-users  cell2-lon_cell2-lat&gt;cell2-prob&gt;cell2-users...
+</code></pre>
+
+<p><code>term</code>: the actual name of the term<br>
+<code>cellx</code>: the x most probable cell.<br>
+<code>cellx-lon_cellx-lat</code>: the longitude and latitude of center of the <code>cellx</code>, which is used as cell ID<br>
+<code>cellx-prob</code>: the probability of the <code>cellx</code> for the specific tag<br>
+<code>cellx-users</code>: the number of users that used the specific term in the <code>cellx</code></p>
+<p>The output of the feature weighting scheme is a folder with name <code>weights</code> containing two files, one for locality weights and one for spatial entropy weights, namely <code>locality_weights</code> and <code>spatial_entropy_weights</code>, respectively. Each row contains a term and its corresponding weight, separated by a tab character.</p>
+<p>The files that are described above are given as input in the Language Model estimation process. During this process, a folder named <code>resultsLM</code> and inside that folder two files named <code>resultsLM_scale(s)</code>are created, where are included the MLCs of the query images. Every row contains the imageID and the MLC (tab-separated) of the image that corresponds in the respective line in the test set. Also, a file named <code>resultsLM_scale(s)_conf_evid</code> is created in the same folder, containing the confidence and evidences that lead to estimated MLC, for every query image.</p>
+<p>Having estimated the MLCs for both granularity grids, the files are fed to the Multiple Resolution Grids technique, which produce a file named <code>resultsLM_mg(cs)-(fs)</code>, where <code>(cs)</code> and <code>(fs)</code> stands for coarser and finer granularity grid, respectively. Every row of this file contains the image id, the MLC of the coarser language model and the result of the Multiple Resolution Grids technique, separated with a <code>:</code>.</p>
+<p>In conclusion, the file that is created by the Multiple Resolution Grids technique is used for the final processes of the algorithm, Similarity Search. During this process, a folder named <code>similar_images</code> is created in the temp folder, containing the similarity values and the location of the images that containing in the MLG of every image in the test set. The final results are saved in the file specified in the arguments, and the records in each row are the ID of the query image, the real longitude and latitude, the estimated longitude and latitude, and they are tab-separated.</p>
+<h3>Evaluation Framework</h3>
+
+<p>This <a href="https://github.com/MKLab-ITI/multimedia-geotagging/tree/develop/src/main/java/gr/iti/mklab/mmcomms16">package</a> contains the implemetations of the sampling strategies described in the <a href="http://dl.acm.org/citation.cfm?doid=2983554.2983558">MMCommons 2016 paper</a>. In order to run the evaluation framework you have to set all necessary argument in <a href="https://github.com/MKLab-ITI/multimedia-geotagging/blob/master/eval.properties">configuration file</a>, following the instruction for every argument. To run the code, the <a href="https://github.com/MKLab-ITI/multimedia-geotagging/blob/master/src/test/java/gr/iti/mklab/main/Evaluation.java">Evaluation class</a> have to be executed.</p>
+<p>Additionally, in this <a href="https://github.com/MKLab-ITI/multimedia-geotagging/blob/master/samples/">folder</a>, the <a href="https://github.com/MKLab-ITI/multimedia-geotagging/blob/master/samples/samples.zip">zip file</a> that contains the generated collections from the different sampling strategies and the <a href="https://github.com/MKLab-ITI/multimedia-geotagging/blob/master/samples/building_concepts.txt">file</a> of the building concepts can be found. Keep in mind that the geographical uniform sampling, the user uniform sampling and text diversity sampling generates different files in every code execution because they involve random selections and permutations.</p>
+<h3>Demo Version</h3>
+
+<p>There have been developed a <a href="https://github.com/socialsensor/multimedia-geotagging/tree/demo">demo version</a> and a <a href="https://github.com/socialsensor/multimedia-geotagging/tree/storm">storm module</a> of the approach.</p>
+<h3>Citations</h3>
+
+<p>If you use this code for your research, please cite our paper.</p>
+<pre class="codehilite"><code>@article{kordopatis2017geotagging,
+  title={Geotagging Text Content With Language Models and Feature Mining},
+  author={Kordopatis-Zilos, Giorgos and Papadopoulos, Symeon and Kompatsiaris, Ioannis},
+  journal={Proceedings of the IEEE},
+  year={2017}
+}
+</code></pre>
+
+<p>If you use the evaluation framework, please cite our paper.</p>
+<pre class="codehilite"><code>@inproceedings{kordopatis2016depth,
+  title={In-depth exploration of geotagging performance using sampling strategies on YFCC100M},
+  author={Kordopatis-Zilos, Giorgos and Papadopoulos, Symeon and Kompatsiaris, Yiannis},
+  booktitle={Proceedings of the 2016 ACM Workshop on Multimedia COMMONS},
+  year={2016},
+}
+</code></pre>
+
+<h3>License</h3>
+
+<p>This project is licensed under the Apache License 2.0 - see the <a href="https://github.com/MKLab-ITI/multimedia-geotagging/blob/master/LICENSE">LICENSE</a> file for details</p>
+<h3>Contact for further details about the project</h3>
+
+<p>Giorgos Kordopatis-Zilos (georgekordopatis@iti.gr)<br>
+Symeon Papadopoulos (papadop@iti.gr)</p></div>
+</div>

@@ -6,7 +6,7 @@
     <title>CERTH Catalogue</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
     <style>
-      img {max-width:500px;display:none}
+      img { max-width: 500px; display: none }
       #search-bar {
         position: sticky;
         top: 0;
@@ -16,9 +16,71 @@
         border-bottom: 1px solid #eee;
         margin-bottom: 1rem;
       }
+      .box.hoverable {
+        transition: transform 0.2s, box-shadow 0.2s;
+        cursor: pointer;
+        margin-bottom: 6px;
+      }
+      .box.hoverable:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      }
+
+      /* Preview panel */
+      #preview-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.4);
+        z-index: 200;
+      }
+      #preview-overlay.is-active { display: block; }
+
+      #preview-panel {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: min(800px, 90vw);
+        background: white;
+        z-index: 201;
+        overflow-y: auto;
+        padding: 1.5rem;
+        box-shadow: -4px 0 24px rgba(0,0,0,0.15);
+        transform: translateX(100%);
+        transition: transform 0.25s ease;
+      }
+      #preview-panel.is-active { transform: translateX(0); }
+
+      #preview-panel img { display: block; max-width: 100%; }
+
+      #preview-close {
+        position: sticky;
+        top: 0;
+        float: right;
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+        line-height: 30px;
+        text-align: center;
+        cursor: pointer;
+        z-index: 1;
+        margin-bottom: 0.5rem;
+      }
     </style>
   </head>
   <body>
+
+  <!-- Preview overlay + panel -->
+  <div id="preview-overlay"></div>
+  <div id="preview-panel">
+    <button id="preview-close" aria-label="Close">&times;</button>
+    <div id="preview-content"></div>
+  </div>
+
   <div class="container">
     <div id="search-bar">
       <div class="field">
@@ -30,58 +92,30 @@
       </div>
     </div>
     <div class="fixed-grid has-1-cols" id="catalogue">
-      <div class="cell p-2 mt-5 mb-5" id="APNet"><article class="box"><h2 class="title">APNet
+      <div class="cell p-1" id="APNet"><article class="box hoverable" data-preview="previews/APNet.html"><h2 class="title mb-0">APNet
 <span style="float:right" class="tag is-link is-light"><a href="https://github.com/BiodataAnalysisGroup/APNet">🏠 github</a></span>
 <span style="float:right" class="tag is-warning is-light"><a href="mailto:vasileioubill95@certh.gr">🖂 vasileioubill95@certh.gr</a></span>
 </h2>
-<div class="tags"><span class="tag is-primary is-light">drivers</span>
-<span class="tag is-primary is-light">apnet</span>
-<span class="tag is-primary is-light">predictive</span>
-<span class="tag is-primary is-light">driver</span>
-<span class="tag is-primary is-light">covid</span>
-<span class="tag is-primary is-light">plasma</span>
-<span class="tag is-primary is-light">proteomic</span>
-<span class="tag is-primary is-light">bipartite</span>
-</div>
 <div><div>In this work we present APNet, a Deep Learning approach with biological explainability to discover predictive drivers of COVID-19 severity f...</div>
 <table>
 </table>
 </div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="BEEMUS"><article class="box"><h2 class="title">BEEMUS
+<div class="cell p-1" id="BEEMUS"><article class="box hoverable" data-preview="previews/BEEMUS.html"><h2 class="title mb-0">BEEMUS
 <span style="float:right" class="tag is-link is-light"><a href="https://github.com/BiodataAnalysisGroup/BEEMUS">🏠 github</a></span>
 <span style="float:right" class="tag is-warning is-light"><a href="mailto:fpsom@certh.gr">🖂 fpsom@certh.gr</a></span>
 </h2>
-<div class="tags"><span class="tag is-primary is-light">ay</span>
-<span class="tag is-primary is-light">interest</span>
-<span class="tag is-primary is-light">lineages</span>
-<span class="tag is-primary is-light">nodes</span>
-<span class="tag is-primary is-light">sequential</span>
-<span class="tag is-primary is-light">nc</span>
-<span class="tag is-primary is-light">ba</span>
-<span class="tag is-primary is-light">msa</span>
-</div>
 <div><div></div>
 <table>
 <tr><td><b>+ 2 more</b>&nbsp;&nbsp;</td>
 </tr></table>
 </div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="BPM"><article class="box"><h2 class="title">BPM
+<div class="cell p-1" id="BPM"><article class="box hoverable" data-preview="previews/BPM.html"><h2 class="title mb-0">BPM
 <span style="float:right" class="tag is-link is-light"><a href="https://github.com/BiodataAnalysisGroup/BPM">🏠 github</a></span>
 <span style="float:right" class="tag is-warning is-light"><a href="mailto:fpsom@certh.gr">🖂 fpsom@certh.gr</a></span>
 </h2>
-<div class="tags"><span class="tag is-primary is-light">mcl</span>
-<span class="tag is-primary is-light">timestamp</span>
-<span class="tag is-primary is-light">database</span>
-<span class="tag is-primary is-light">hellasgrid</span>
-<span class="tag is-primary is-light">option</span>
-<span class="tag is-primary is-light">phylogenetic</span>
-<span class="tag is-primary is-light">file</span>
-<span class="tag is-primary is-light">bpm</span>
-</div>
-<div><div>
-CONTENTS OF THIS FILE
+<div><div>CONTENTS OF THIS FILE
 
 Introduction
 Requirements
@@ -97,41 +131,22 @@ BPM (BLAST - Phylogenetic P...</div>
 </table>
 </div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="Computational_Verification"><article class="box"><h2 class="title">Computational Verification
+<div class="cell p-1" id="Computational_Verification"><article class="box hoverable" data-preview="previews/Computational_Verification.html"><h2 class="title mb-0">Computational Verification
 <span style="float:right" class="tag is-link is-light"><a href="https://github.com/MKLab-ITI/computational-verification">🏠 github</a></span>
 <span style="float:right" class="tag is-warning is-light"><a href="mailto:olgapapa@iti.gr">🖂 olgapapa@iti.gr</a></span>
 </h2>
-<div class="tags"><span class="tag is-primary is-light">quot</span>
-<span class="tag is-primary is-light">alexa</span>
-<span class="tag is-primary is-light">vmu</span>
-<span class="tag is-primary is-light">cl</span>
-<span class="tag is-primary is-light">tweet</span>
-<span class="tag is-primary is-light">based</span>
-<span class="tag is-primary is-light">features</span>
-<span class="tag is-primary is-light">retraining</span>
-</div>
 <div><div></div>
 <table>
 <tr><td><b>Usage</b>&nbsp;&nbsp;</td>
-<td>
-The framework performs feature extraction on a new set of tweets and then classify each of them as truthful/reliable or not. 
+<td>The framework performs feature extraction on a new set of tweets and then classify each of them as truthful/reliable or not. 
 Initialize pa...</td></tr><tr><td><b>+ 7 more</b>&nbsp;&nbsp;</td>
 </tr></table>
 </div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="ELIXIR_BFSP_Odyssey"><article class="box"><h2 class="title">ELIXIR-BFSP-Odyssey
+<div class="cell p-1" id="ELIXIR_BFSP_Odyssey"><article class="box hoverable" data-preview="previews/ELIXIR_BFSP_Odyssey.html"><h2 class="title mb-0">ELIXIR-BFSP-Odyssey
 <span style="float:right" class="tag is-link is-light"><a href="https://github.com/BiodataAnalysisGroup/ELIXIR-BFSP-Odyssey">🏠 github</a></span>
 <span style="float:right" class="tag is-warning is-light"><a href="mailto:nanastasiadou@certh.gr">🖂 nanastasiadou@certh.gr</a></span>
 </h2>
-<div class="tags"><span class="tag is-primary is-light">odyssey</span>
-<span class="tag is-primary is-light">remotes</span>
-<span class="tag is-primary is-light">biodiversity</span>
-<span class="tag is-primary is-light">norway</span>
-<span class="tag is-primary is-light">bfsp</span>
-<span class="tag is-primary is-light">npechl</span>
-<span class="tag is-primary is-light">mbiog</span>
-<span class="tag is-primary is-light">website</span>
-</div>
 <div><div></div>
 <table>
 <tr><td><b>Odyssey</b>&nbsp;&nbsp;</td>
@@ -147,19 +162,10 @@ Odyssey::run_odyssey()
 The code contained in this website is simultaneously available under the MIT licen...</td></tr></table>
 </div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="G_Class"><article class="box"><h2 class="title">G-Class
+<div class="cell p-1" id="G_Class"><article class="box hoverable" data-preview="previews/G_Class.html"><h2 class="title mb-0">G-Class
 <span style="float:right" class="tag is-link is-light"><a href="https://github.com/BiodataAnalysisGroup/GClass">🏠 github</a></span>
 <span style="float:right" class="tag is-warning is-light"><a href="mailto:fpsom@certh.gr">🖂 fpsom@certh.gr</a></span>
 </h2>
-<div class="tags"><span class="tag is-primary is-light">motifs</span>
-<span class="tag is-primary is-light">classification</span>
-<span class="tag is-primary is-light">protein</span>
-<span class="tag is-primary is-light">correlation</span>
-<span class="tag is-primary is-light">methodology</span>
-<span class="tag is-primary is-light">rules</span>
-<span class="tag is-primary is-light">procedure</span>
-<span class="tag is-primary is-light">sets</span>
-</div>
 <div><div>
 G-Class: A Divide and Conquer Application for Grid Protein Classification
 Protein classification has always been one of the major challenges...</div>
@@ -167,19 +173,10 @@ Protein classification has always been one of the major challenges...</div>
 </table>
 </div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="Goedel_numbering"><article class="box"><h2 class="title">Goedel numbering
+<div class="cell p-1" id="Goedel_numbering"><article class="box hoverable" data-preview="previews/Goedel_numbering.html"><h2 class="title mb-0">Goedel numbering
 <span style="float:right" class="tag is-link is-light"><a href="https://github.com/BiodataAnalysisGroup/godel-numbering">🏠 github</a></span>
 <span style="float:right" class="tag is-warning is-light"><a href="mailto:fpsom@certh.gr">🖂 fpsom@certh.gr</a></span>
 </h2>
-<div class="tags"><span class="tag is-primary is-light">quot</span>
-<span class="tag is-primary is-light">plots</span>
-<span class="tag is-primary is-light">mtab</span>
-<span class="tag is-primary is-light">strong</span>
-<span class="tag is-primary is-light">godel</span>
-<span class="tag is-primary is-light">specifying</span>
-<span class="tag is-primary is-light">biom</span>
-<span class="tag is-primary is-light">arxiv</span>
-</div>
 <div><div>
 </div>
 <table>
@@ -192,77 +189,43 @@ Protein classification has always been one of the major challenges...</div>
 - R: This is where all the R scri...</td></tr><tr><td><b>Dependencies</b>&nbsp;&nbsp;</td>
 <td>Execute the following line to install the required packages:
 - from CRAN:
-install.packages(c(&quot;seqinr&quot;, &quot;MASS&quot;, &quot;ggp...</td></tr><tr><td><b>Running the project</b>&nbsp;&nbsp;</td>
-<td>The analysis is implemented in two scripts:
-
-Biological-Sequences-and-Godel-numbers.R
-Specifying input: Line 16. Specify dataset_type parame...</td></tr><tr><td><b>Additional scripts</b>&nbsp;&nbsp;</td>
-<td>
-biom_data_150bp_to_fasta.R: Converts biom_data_150bp.rda into .fasta file.
-</td></tr><tr><td><b>Input</b>&nbsp;&nbsp;</td>
+install.packages(c(&quot;seqinr&quot;, &quot;MASS&quot;, &quot;ggp...</td></tr><tr><td><b>Input</b>&nbsp;&nbsp;</td>
 <td>
 Input files are stored inside data directory.
 </td></tr><tr><td><b>Output</b>&nbsp;&nbsp;</td>
 <td>
 Outputs are stored inside plots directory.
-</td></tr><tr><td><b>+ 3 more</b>&nbsp;&nbsp;</td>
+</td></tr><tr><td><b>+ 5 more</b>&nbsp;&nbsp;</td>
 </tr></table>
 </div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="GridCG"><article class="box"><h2 class="title">GridCG
+<div class="cell p-1" id="GridCG"><article class="box hoverable" data-preview="previews/GridCG.html"><h2 class="title mb-0">GridCG
 <span style="float:right" class="tag is-link is-light"><a href="https://github.com/BiodataAnalysisGroup/GridCG">🏠 github</a></span>
 <span style="float:right" class="tag is-warning is-light"><a href="mailto:fpsom@certh.gr">🖂 fpsom@certh.gr</a></span>
 </h2>
-<div class="tags"><span class="tag is-primary is-light">egi</span>
-<span class="tag is-primary is-light">blast</span>
-<span class="tag is-primary is-light">grid</span>
-<span class="tag is-primary is-light">nodes</span>
-<span class="tag is-primary is-light">automatic</span>
-<span class="tag is-primary is-light">tool</span>
-<span class="tag is-primary is-light">cg</span>
-<span class="tag is-primary is-light">scalable</span>
-</div>
-<div><div> Grid CG 
+<div><div>Grid CG 
 A scalable and modular Grid computing framework for Comparative Genomics  
 This projects contains a large-scale data analysis tool...</div>
 <table>
 </table>
 </div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="IgIDivA"><article class="box"><h2 class="title">IgIDivA
+<div class="cell p-1" id="IgIDivA"><article class="box hoverable" data-preview="previews/IgIDivA.html"><h2 class="title mb-0">IgIDivA
 <span style="float:right" class="tag is-link is-light"><a href="https://github.com/laurazara/IgIDivA">🏠 github</a></span>
 <span style="float:right" class="tag is-warning is-light"><a href="mailto:k.kardamiliotis@certh.gr">🖂 k.kardamiliotis@certh.gr</a></span>
 </h2>
-<div class="tags"><span class="tag is-primary is-light">quot</span>
-<span class="tag is-primary is-light">igidiva</span>
-<span class="tag is-primary is-light">packages</span>
-<span class="tag is-primary is-light">install</span>
-<span class="tag is-primary is-light">app</span>
-<span class="tag is-primary is-light">intraclonal</span>
-<span class="tag is-primary is-light">diversification</span>
-<span class="tag is-primary is-light">laurazara</span>
-</div>
 <div><div></div>
 <table>
 <tr><td><b>Overview</b>&nbsp;&nbsp;</td>
 <td>IgIDivA (Immunoglobulin Intraclonal Diversification Analysis) is a purpose-built tool for the analysis of the intraclonal diversification pr...</td></tr><tr><td><b>Installation</b>&nbsp;&nbsp;</td>
 <td>The IgIDivA scripts can be freely downloaded here.
-It requires R (version "4.1"), which can be installed on any operating system from CRAN. ...</td></tr></table>
+It requires R (version "4.1"), which can be installed on any operating system from CRAN....</td></tr></table>
 </div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="InterTads"><article class="box"><h2 class="title">InterTads
+<div class="cell p-1" id="InterTads"><article class="box hoverable" data-preview="previews/InterTads.html"><h2 class="title mb-0">InterTads
 <span style="float:right" class="tag is-link is-light"><a href="https://github.com/BiodataAnalysisGroup/InterTADs">🏠 github</a></span>
 <span style="float:right" class="tag is-warning is-light"><a href="mailto:k.kardamiliotis@certh.gr">🖂 k.kardamiliotis@certh.gr</a></span>
 </h2>
-<div class="tags"><span class="tag is-primary is-light">intertads</span>
-<span class="tag is-primary is-light">methylation</span>
-<span class="tag is-primary is-light">git</span>
-<span class="tag is-primary is-light">dna</span>
-<span class="tag is-primary is-light">mutation</span>
-<span class="tag is-primary is-light">physical</span>
-<span class="tag is-primary is-light">chromatin</span>
-<span class="tag is-primary is-light">topologically</span>
-</div>
 <div><div>InterTADs is an open-source tool written in R, 
 for integrating multi-omics data (e.g. DNA methylation, expression, mutation) 
 from the same...</div>
@@ -279,19 +242,10 @@ discuss what you would like to change.</td></tr><tr><td><b>License</b>&nbsp;&nbs
 License - see the LICENSE file for details</td></tr></table>
 </div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="Intermediate_CNN_Features"><article class="box"><h2 class="title">Intermediate CNN Features
+<div class="cell p-1" id="Intermediate_CNN_Features"><article class="box hoverable" data-preview="previews/Intermediate_CNN_Features.html"><h2 class="title mb-0">Intermediate CNN Features
 <span style="float:right" class="tag is-link is-light"><a href="https://github.com/MKLab-ITI/intermediate-cnn-features">🏠 github</a></span>
 <span style="float:right" class="tag is-warning is-light"><a href="mailto:kordogeo@fel.cvut.cz">🖂 kordogeo@fel.cvut.cz</a></span>
 </h2>
-<div class="tags"><span class="tag is-primary is-light">googlenet</span>
-<span class="tag is-primary is-light">caffe</span>
-<span class="tag is-primary is-light">bvlc</span>
-<span class="tag is-primary is-light">layer</span>
-<span class="tag is-primary is-light">vgg</span>
-<span class="tag is-primary is-light">video</span>
-<span class="tag is-primary is-light">cnn</span>
-<span class="tag is-primary is-light">tensorflow</span>
-</div>
 <div><div>This repository contains the implementation of the feature extraction process described in
 Near-Duplicate Video Retrieval by Aggregating Int...</div>
 <table>
@@ -300,43 +254,26 @@ Near-Duplicate Video Retrieval by Aggregating Int...</div>
 Python
 Caffe or Tensorflow 1.xx
 </td></tr><tr><td><b>Installation</b>&nbsp;&nbsp;</td>
-<td>
-Clone this repo:
+<td>Clone this repo:
 
 git clone https://github.com/MKLab-ITI/intermediate-cnn-features
 cd intermediate-cnn-features
 
 
 
-Install all dependencies...</td></tr><tr><td><b>Feature Extraction</b>&nbsp;&nbsp;</td>
-<td>
-
-Provide a file of videos or images to the corresponding argument. Each line 
-of the given file have to contain the full path to one video ...</td></tr><tr><td><b>Citation</b>&nbsp;&nbsp;</td>
+Install all dependencies...</td></tr><tr><td><b>Citation</b>&nbsp;&nbsp;</td>
 <td>If you use this code for your research, please cite our paper.
 @inproceedings{kordopatis2017near,
-  title={Near-Duplicate Video Retrieval by...</td></tr><tr><td><b>Related Projects</b>&nbsp;&nbsp;</td>
-<td>ViSiL NDVR-DML FIVR-200K</td></tr><tr><td><b>License</b>&nbsp;&nbsp;</td>
-<td>This project is licensed under the Apache License 2.0 - see the LICENSE file for details</td></tr><tr><td><b>Contact for further details about the project</b>&nbsp;&nbsp;</td>
-<td>Giorgos Kordopatis-Zilos (georgekordopatis@iti.gr) 
-Symeon Papadopoulos (papadop@iti.gr)</td></tr></table>
+  title={Near-Duplicate Video Retrieval by...</td></tr><tr><td><b>License</b>&nbsp;&nbsp;</td>
+<td>This project is licensed under the Apache License 2.0 - see the LICENSE file for details</td></tr><tr><td><b>+ 3 more</b>&nbsp;&nbsp;</td>
+</tr></table>
 </div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="JGNN"><article class="box"><h2 class="title">JGNN
+<div class="cell p-1" id="JGNN"><article class="box hoverable" data-preview="previews/JGNN.html"><h2 class="title mb-0">JGNN
 <span style="float:right" class="tag is-link is-light"><a href="https://github.com/MKLab-ITI/JGNN">🏠 github</a></span>
 <span style="float:right" class="tag is-warning is-light"><a href="mailto:maniospas@iti.gr">🖂 maniospas@iti.gr</a></span>
 </h2>
-<div class="tags"><span class="tag is-primary is-light">jgnn</span>
-<span class="tag is-primary is-light">jitpack</span>
-<span class="tag is-primary is-light">native</span>
-<span class="tag is-primary is-light">neural</span>
-<span class="tag is-primary is-light">java</span>
-<span class="tag is-primary is-light">networks</span>
-<span class="tag is-primary is-light">gnns</span>
-<span class="tag is-primary is-light">relational</span>
-</div>
-<div><div>  
-Resource efficient machine learning and graph neural networks in native Java.
+<div><div>Resource efficient machine learning and graph neural networks in native Java.
 Graph Neural Networks (GNNs) are getting more and more popu...</div>
 <table>
 <tr><td><b>:notebook: Citation</b>&nbsp;&nbsp;</td>
@@ -347,20 +284,11 @@ Graph Neural Networks (GNNs) are getting more and more popu...</div>
     p...</td></tr></table>
 </div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="MAI_BIAS"><article class="box"><h2 class="title">MAI-BIAS
+<div class="cell p-1" id="MAI_BIAS"><article class="box hoverable" data-preview="previews/MAI_BIAS.html"><h2 class="title mb-0">MAI-BIAS
 <span style="float:right" class="tag is-link is-light"><a href="https://mammoth-ai.eu/">🏠 mammoth-ai</a></span>
 <span style="float:right" class="tag is-link is-light"><a href="https://github.com/mammoth-eu/mammoth-commons">🏠 github</a></span>
 <span style="float:right" class="tag is-warning is-light"><a href="mailto:maniospas@iti.gr">🖂 maniospas@iti.gr</a></span>
 </h2>
-<div class="tags"><span class="tag is-primary is-light">quot</span>
-<span class="tag is-primary is-light">sudo</span>
-<span class="tag is-primary is-light">apt</span>
-<span class="tag is-primary is-light">launch</span>
-<span class="tag is-primary is-light">install</span>
-<span class="tag is-primary is-light">mai</span>
-<span class="tag is-primary is-light">summary</span>
-<span class="tag is-primary is-light">bias</span>
-</div>
 <div><div>MAI-BIAS modules and local runer
 
 
@@ -369,58 +297,37 @@ Graph Neural Networks (GNNs) are getting more and more popu...</div>
 This software is part of MAI-BIAS; a low-code toolkit for fairness analysis 
 and mitigation, with an ac...</div>
 <table>
-<tr><td><b>👥 Who is this for?</b>&nbsp;&nbsp;</td>
-<td>
-ML engineers and data scientists building or evaluating models in Python.
-Researchers studying AI bias across data modalities (tabular, vis...</td></tr><tr><td><b>✨ About</b>&nbsp;&nbsp;</td>
+<tr><td><b>✨ About</b>&nbsp;&nbsp;</td>
 <td>This repository is created by the MAMMOth
 project and holds the mammoth-commons library, which contains 
-supporting datatypes and decorators...</td></tr><tr><td><b>+ 3 more</b>&nbsp;&nbsp;</td>
+supporting datatypes and decorators...</td></tr><tr><td><b>+ 4 more</b>&nbsp;&nbsp;</td>
 </tr></table>
 </div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="Mongoose"><article class="box"><h2 class="title">Mongoose
+<div class="cell p-1" id="Mongoose"><article class="box hoverable" data-preview="previews/Mongoose.html"><h2 class="title mb-0">Mongoose
 <span style="float:right" class="tag is-link is-light"><a href="https://github.com/BiodataAnalysisGroup/Mongoose">🏠 github</a></span>
 <span style="float:right" class="tag is-warning is-light"><a href="mailto:ggeorav@certh.gr (main)">🖂 ggeorav@certh.gr (main)</a></span>
 </h2>
-<div class="tags"><span class="tag is-primary is-light">perturbation</span>
-<span class="tag is-primary is-light">modelling</span>
-<span class="tag is-primary is-light">mongoose</span>
-<span class="tag is-primary is-light">omic</span>
-<span class="tag is-primary is-light">unitednet</span>
-<span class="tag is-primary is-light">cell</span>
-<span class="tag is-primary is-light">mtl</span>
-<span class="tag is-primary is-light">modal</span>
-</div>
 <div><div></div>
 <table>
 <tr><td><b>Abstract</b>&nbsp;&nbsp;</td>
-<td> Perturbation modelling in single-cell data is crucial for studying molecular changes elicited due to molecular knockouts, chemical compound...</td></tr><tr><td><b>Workflow</b>&nbsp;&nbsp;</td>
+<td>Perturbation modelling in single-cell data is crucial for studying molecular changes elicited due to molecular knockouts, chemical compound...</td></tr><tr><td><b>Workflow</b>&nbsp;&nbsp;</td>
 <td>First you can download the DBiT-dataset</td></tr><tr><td><b>Contribute</b>&nbsp;&nbsp;</td>
 <td>We welcome and greatly appreciate any sort of feedback and/or contribution!
-If you have any questions, please either open an issue or write ...</td></tr></table>
+If you have any questions, please either open an issue or write...</td></tr></table>
 </div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="Multimedia_Geotagging"><article class="box"><h2 class="title">Multimedia Geotagging
+<div class="cell p-1" id="Multimedia_Geotagging"><article class="box hoverable" data-preview="previews/Multimedia_Geotagging.html"><h2 class="title mb-0">Multimedia Geotagging
 <span style="float:right" class="tag is-link is-light"><a href="https://github.com/MKLab-ITI/multimedia-geotagging">🏠 github</a></span>
 <span style="float:right" class="tag is-warning is-light"><a href="mailto:kordogeo@fel.cvut.cz">🖂 kordogeo@fel.cvut.cz</a></span>
 </h2>
-<div class="tags"><span class="tag is-primary is-light">geotagging</span>
-<span class="tag is-primary is-light">term</span>
-<span class="tag is-primary is-light">locality</span>
-<span class="tag is-primary is-light">entropy</span>
-<span class="tag is-primary is-light">cellx</span>
-<span class="tag is-primary is-light">mlc</span>
-<span class="tag is-primary is-light">grids</span>
-<span class="tag is-primary is-light">sampling</span>
-</div>
 <div><div>Multimedia Geotagging
 This repository contains the implementation of algorithms that estimate the geographic location of multimedia items ba...</div>
 <table>
 </table>
 </div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="Mutations_Meta_Analyser"><article class="box"><h2 class="title">Mutations-Meta-Analyser
+<div class="cell p-1" id="Mutations_Meta_Analyser"><article class="box hoverable" data-preview="previews/Mutations_Meta_Analyser.html"><h2 class="title mb-0">Mutations-Meta-Analyser
 <span style="float:right" class="tag is-link is-light"><a href="https://github.com/BiodataAnalysisGroup/Mutations-Meta-Analyser">🏠 github</a></span>
 <span style="float:right" class="tag is-warning is-light"><a href="mailto:fpsom@certh.gr">🖂 fpsom@certh.gr</a></span>
 </h2>
@@ -429,19 +336,10 @@ This repository contains the implementation of algorithms that estimate the geog
 </table>
 </div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="Near_Duplicate_Video_Retrieval_with_Deep_Metric_Learning"><article class="box"><h2 class="title">Near-Duplicate Video Retrieval with Deep Metric Learning
+<div class="cell p-1" id="Near_Duplicate_Video_Retrieval_with_Deep_Metric_Learning"><article class="box hoverable" data-preview="previews/Near_Duplicate_Video_Retrieval_with_Deep_Metric_Learning.html"><h2 class="title mb-0">Near-Duplicate Video Retrieval with Deep Metric Learning
 <span style="float:right" class="tag is-link is-light"><a href="https://github.com/MKLab-ITI/ndvr-dml">🏠 github</a></span>
 <span style="float:right" class="tag is-warning is-light"><a href="mailto:kordogeo@fel.cvut.cz">🖂 kordogeo@fel.cvut.cz</a></span>
 </h2>
-<div class="tags"><span class="tag is-primary is-light">npy</span>
-<span class="tag is-primary is-light">features</span>
-<span class="tag is-primary is-light">triplets</span>
-<span class="tag is-primary is-light">vcdb</span>
-<span class="tag is-primary is-light">video</span>
-<span class="tag is-primary is-light">triplet</span>
-<span class="tag is-primary is-light">cc</span>
-<span class="tag is-primary is-light">dml</span>
-</div>
 <div><div></div>
 <table>
 <tr><td><b>Prerequisites</b>&nbsp;&nbsp;</td>
@@ -449,8 +347,7 @@ This repository contains the implementation of algorithms that estimate the geog
 Python
 Tensorflow 1.xx
 </td></tr><tr><td><b>Installation</b>&nbsp;&nbsp;</td>
-<td>
-Clone this repo:
+<td>Clone this repo:
 
 git clone https://github.com/MKLab-ITI/ndvr-dml
 cd ndvr-dml
@@ -460,53 +357,30 @@ cd ndvr-dml
 You can install all the dependencies by
 
 pip install -r re...</td></tr><tr><td><b>Evaluation</b>&nbsp;&nbsp;</td>
-<td>
-Evaluate the performance of the system by providing the trained model path and the global features of the 
+<td>Evaluate the performance of the system by providing the trained model path and the global features of the 
 CC_WEB_VIDEO.
 
 python evaluation...</td></tr><tr><td><b>Citation</b>&nbsp;&nbsp;</td>
 <td>If you use this code for your research, please cite our paper.
 @inproceedings{kordopatis2017dml,
-  title={Near-Duplicate Video Retrieval wit...</td></tr><tr><td><b>Related Projects</b>&nbsp;&nbsp;</td>
-<td>Intermediate-CNN-Features - this repo was used to extract our features
-ViSiL - video similarity learning for fine-grained similarity calcula...</td></tr><tr><td><b>License</b>&nbsp;&nbsp;</td>
-<td>This project is licensed under the Apache License 2.0 - see the LICENSE file for details</td></tr><tr><td><b>Contact for further details about the project</b>&nbsp;&nbsp;</td>
-<td>Giorgos Kordopatis-Zilos (georgekordopatis@iti.gr) 
-Symeon Papadopoulos (papadop@iti.gr)</td></tr><tr><td><b>+ 3 more</b>&nbsp;&nbsp;</td>
+  title={Near-Duplicate Video Retrieval wit...</td></tr><tr><td><b>License</b>&nbsp;&nbsp;</td>
+<td>This project is licensed under the Apache License 2.0 - see the LICENSE file for details</td></tr><tr><td><b>+ 5 more</b>&nbsp;&nbsp;</td>
 </tr></table>
 </div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="Odysseus"><article class="box"><h2 class="title">Odysseus
+<div class="cell p-1" id="Odysseus"><article class="box hoverable" data-preview="previews/Odysseus.html"><h2 class="title mb-0">Odysseus
 <span style="float:right" class="tag is-link is-light"><a href="https://github.com/BiodataAnalysisGroup/odysseys">🏠 github</a></span>
 <span style="float:right" class="tag is-warning is-light"><a href="mailto:fpsom@certh.gr">🖂 fpsom@certh.gr</a></span>
 </h2>
-<div class="tags"><span class="tag is-primary is-light">odysseus</span>
-<span class="tag is-primary is-light">versatile</span>
-<span class="tag is-primary is-light">cloud</span>
-<span class="tag is-primary is-light">parallelization</span>
-<span class="tag is-primary is-light">resources</span>
-<span class="tag is-primary is-light">resource</span>
-<span class="tag is-primary is-light">bioinformatics</span>
-<span class="tag is-primary is-light">optimizing</span>
-</div>
 <div><div>Odysseus: Odysseus: a versatile high performance framework for optimizing bioinformatics workflow parallelization in hybrid cloud environmen...</div>
 <table>
 </table>
 </div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="UMIc"><article class="box"><h2 class="title">UMIc
+<div class="cell p-1" id="UMIc"><article class="box hoverable" data-preview="previews/UMIc.html"><h2 class="title mb-0">UMIc
 <span style="float:right" class="tag is-link is-light"><a href="https://github.com/BiodataAnalysisGroup/UMIc">🏠 github</a></span>
 <span style="float:right" class="tag is-warning is-light"><a href="mailto:nanastasiadou@certh.gr">🖂 nanastasiadou@certh.gr</a></span>
 </h2>
-<div class="tags"><span class="tag is-primary is-light">umi</span>
-<span class="tag is-primary is-light">quot</span>
-<span class="tag is-primary is-light">umic</span>
-<span class="tag is-primary is-light">umisproject</span>
-<span class="tag is-primary is-light">input</span>
-<span class="tag is-primary is-light">variable</span>
-<span class="tag is-primary is-light">read</span>
-<span class="tag is-primary is-light">max</span>
-</div>
 <div><div>UMIc is a framework, written in R, implementing a new proposed method for UMI deduplication and reads correction. The method works at nucleo...</div>
 <table>
 <tr><td><b>Prerequisites</b>&nbsp;&nbsp;</td>
@@ -515,49 +389,26 @@ Symeon Papadopoulos (papadop@iti.gr)</td></tr><tr><td><b>+ 3 more</b>&nbsp;&nbsp
 install.packages(c(&quot;tidyverse&quot;, &quot;data.table...</td></tr><tr><td><b>Installing</b>&nbsp;&nbsp;</td>
 <td>The project can be downloaded using git:
 git clone https://github.com/BiodataAnalysisGroup/UMIc
-</td></tr><tr><td><b>Running the project</b>&nbsp;&nbsp;</td>
-<td>The framework consists of three scripts:
-- UMIsProject.R 
-- casesWorkflows.R
-- functions.R
-In order to run the project, set the R folder as ...</td></tr><tr><td><b>License</b>&nbsp;&nbsp;</td>
-<td>This project is licensed under the MIT License - see the LICENSE file for details.</td></tr><tr><td><b>+ 2 more</b>&nbsp;&nbsp;</td>
+</td></tr><tr><td><b>License</b>&nbsp;&nbsp;</td>
+<td>This project is licensed under the MIT License - see the LICENSE file for details.</td></tr><tr><td><b>+ 3 more</b>&nbsp;&nbsp;</td>
 </tr></table>
 </div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="VB_Mitigator"><article class="box"><h2 class="title">VB-Mitigator
+<div class="cell p-1" id="VB_Mitigator"><article class="box hoverable" data-preview="previews/VB_Mitigator.html"><h2 class="title mb-0">VB-Mitigator
 <span style="float:right" class="tag is-link is-light"><a href="https://github.com/mever-team/vb-mitigator">🏠 github</a></span>
 <span style="float:right" class="tag is-link is-light"><a href="https://vb-mitigator.readthedocs.io/">🏠 readthedocs</a></span>
 <span style="float:right" class="tag is-warning is-light"><a href="mailto:gsarridis@iti.gr">🖂 gsarridis@iti.gr</a></span>
 </h2>
-<div class="tags"><span class="tag is-primary is-light">christos</span>
-<span class="tag is-primary is-light">strong</span>
-<span class="tag is-primary is-light">bias</span>
-<span class="tag is-primary is-light">mitigation</span>
-<span class="tag is-primary is-light">mitigator</span>
-<span class="tag is-primary is-light">koutlis</span>
-<span class="tag is-primary is-light">diou</span>
-<span class="tag is-primary is-light">methods</span>
-</div>
 <div><div></div>
 <table>
 <tr><td><b>+ 14 more</b>&nbsp;&nbsp;</td>
 </tr></table>
 </div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="ViSiL"><article class="box"><h2 class="title">ViSiL
+<div class="cell p-1" id="ViSiL"><article class="box hoverable" data-preview="previews/ViSiL.html"><h2 class="title mb-0">ViSiL
 <span style="float:right" class="tag is-link is-light"><a href="https://github.com/MKLab-ITI/visil">🏠 github</a></span>
 <span style="float:right" class="tag is-warning is-light"><a href="mailto:kordogeo@fel.cvut.cz">🖂 kordogeo@fel.cvut.cz</a></span>
 </h2>
-<div class="tags"><span class="tag is-primary is-light">video</span>
-<span class="tag is-primary is-light">queries</span>
-<span class="tag is-primary is-light">videos</span>
-<span class="tag is-primary is-light">quot</span>
-<span class="tag is-primary is-light">query</span>
-<span class="tag is-primary is-light">visil</span>
-<span class="tag is-primary is-light">similarity</span>
-<span class="tag is-primary is-light">target</span>
-</div>
 <div><div></div>
 <table>
 <tr><td><b>Prerequisites</b>&nbsp;&nbsp;</td>
@@ -565,8 +416,7 @@ In order to run the project, set the R folder as ...</td></tr><tr><td><b>License
 Python 3
 Tensorflow 1.xx (tested with 1.8-1.15)
 </td></tr><tr><td><b>Installation</b>&nbsp;&nbsp;</td>
-<td>
-Clone this repo:
+<td>Clone this repo:
 
 git clone https://github.com/MKLab-ITI/visil
 cd visil
@@ -576,36 +426,22 @@ cd visil
 You can install all the dependencies by
 
 pip install -r requirem...</td></tr><tr><td><b>Evaluation</b>&nbsp;&nbsp;</td>
-<td>
-
-We also provide code to reproduce the experiments in the paper.
+<td>We also provide code to reproduce the experiments in the paper.
 
 
 First, download the videos of the dataset you want. The supported option...</td></tr><tr><td><b>Citation</b>&nbsp;&nbsp;</td>
 <td>If you use this code for your research, please consider citing our paper:
 @inproceedings{kordopatis2019visil,
-  title={{ViSiL}: Fine-grained...</td></tr><tr><td><b>Related Projects</b>&nbsp;&nbsp;</td>
-<td>DnS - improved performance and better computational efficiency
-FIVR-200K - download our FIVR-200K dataset</td></tr><tr><td><b>License</b>&nbsp;&nbsp;</td>
-<td>This project is licensed under the Apache License 2.0 - see the LICENSE file for details</td></tr><tr><td><b>Contact for further details about the project</b>&nbsp;&nbsp;</td>
-<td>Giorgos Kordopatis-Zilos (georgekordopatis@iti.gr) </td></tr><tr><td><b>+ 5 more</b>&nbsp;&nbsp;</td>
+  title={{ViSiL}: Fine-grained...</td></tr><tr><td><b>License</b>&nbsp;&nbsp;</td>
+<td>This project is licensed under the Apache License 2.0 - see the LICENSE file for details</td></tr><tr><td><b>+ 7 more</b>&nbsp;&nbsp;</td>
 </tr></table>
 </div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="align_paths"><article class="box"><h2 class="title">align-paths
+<div class="cell p-1" id="align_paths"><article class="box hoverable" data-preview="previews/align_paths.html"><h2 class="title mb-0">align-paths
 <span style="float:right" class="tag is-link is-light"><a href="https://github.com/BiodataAnalysisGroup/align-paths">🏠 github</a></span>
 <span style="float:right" class="tag is-warning is-light"><a href="mailto:fpsom@certh.gr">🖂 fpsom@certh.gr</a></span>
 </h2>
-<div class="tags"><span class="tag is-primary is-light">decomposition</span>
-<span class="tag is-primary is-light">species</span>
-<span class="tag is-primary is-light">artificial</span>
-<span class="tag is-primary is-light">worldscientific</span>
-<span class="tag is-primary is-light">recsys</span>
-<span class="tag is-primary is-light">journalcode</span>
-<span class="tag is-primary is-light">ijait</span>
-</div>
-<div><div>
-Publication:
+<div><div>Publication:
 "Inference of Pathway Decomposition Across Multiple Species Through Gene Clustering"
 
 International Journal of Artificial Inte...</div>
@@ -613,80 +449,43 @@ International Journal of Artificial Inte...</div>
 </table>
 </div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="fairbench"><article class="box"><h2 class="title">fairbench
+<div class="cell p-1" id="fairbench"><article class="box hoverable" data-preview="previews/fairbench.html"><h2 class="title mb-0">fairbench
 <span style="float:right" class="tag is-link is-light"><a href="https://github.com/mever-team/FairBench">🏠 github</a></span>
 <span style="float:right" class="tag is-link is-light"><a href="https://fairbench.readthedocs.io/">🏠 readthedocs</a></span>
 <span style="float:right" class="tag is-warning is-light"><a href="mailto:maniospas@iti.gr">🖂 maniospas@iti.gr</a></span>
 </h2>
-<div class="tags"><span class="tag is-primary is-light">fb</span>
-<span class="tag is-primary is-light">sensitive</span>
-<span class="tag is-primary is-light">fairbench</span>
-<span class="tag is-primary is-light">mammoth</span>
-<span class="tag is-primary is-light">strong</span>
-<span class="tag is-primary is-light">abroca</span>
-<span class="tag is-primary is-light">rbo</span>
-<span class="tag is-primary is-light">yhat</span>
-</div>
-<div><div>
-
-
-
-
- 
-This software is part of MAI-BIAS; a low-code toolkit for
+<div><div>This software is part of MAI-BIAS; a low-code toolkit for
 fairness analysis and mitigation, with an accompanying suite of coding
 tool...</div>
 <table>
-<tr><td><b>👥 Who is this for?</b>&nbsp;&nbsp;</td>
-<td>
-ML engineers and data scientists building or evaluating models in Python.
-Researchers studying AI bias across data modalities (tabular, vis...</td></tr><tr><td><b>✨ About</b>&nbsp;&nbsp;</td>
+<tr><td><b>✨ About</b>&nbsp;&nbsp;</td>
 <td>FairBench can be imported in Python AI projects to
 offer standardized exploration of more than 300 
-fairness metrics. It also produces repor...</td></tr><tr><td><b>+ 5 more</b>&nbsp;&nbsp;</td>
+fairness metrics. It also produces repor...</td></tr><tr><td><b>+ 6 more</b>&nbsp;&nbsp;</td>
 </tr></table>
 </div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="k_taxatree"><article class="box"><h2 class="title">k-taxatree
+<div class="cell p-1" id="k_taxatree"><article class="box hoverable" data-preview="previews/k_taxatree.html"><h2 class="title mb-0">k-taxatree
 <span style="float:right" class="tag is-link is-light"><a href="https://github.com/BiodataAnalysisGroup/k-taxatree">🏠 github</a></span>
 <span style="float:right" class="tag is-warning is-light"><a href="mailto:fpsom@certh.gr">🖂 fpsom@certh.gr</a></span>
 </h2>
-<div class="tags"><span class="tag is-primary is-light">unassigned</span>
-<span class="tag is-primary is-light">quot</span>
-<span class="tag is-primary is-light">taxatree</span>
-<span class="tag is-primary is-light">compare</span>
-<span class="tag is-primary is-light">emp</span>
-<span class="tag is-primary is-light">final</span>
-<span class="tag is-primary is-light">validation</span>
-<span class="tag is-primary is-light">subset</span>
-</div>
 <div><div>k-taxatree is a classification workflow written in R, predicting the labels of the first four taxonomic levels (kingdom, phylum, class, orde...</div>
 <table>
-<tr><td><b>Dataset</b>&nbsp;&nbsp;</td>
-<td>The project utilizes data from the Earth Microbiome Project and retrieved using the R package empdata. A dataset of 91k sequences of 150bp-l...</td></tr><tr><td><b>Prerequisites</b>&nbsp;&nbsp;</td>
+<tr><td><b>Prerequisites</b>&nbsp;&nbsp;</td>
 <td>The packages needed to be installed, in order to run the project are:
 - from CRAN
 install.packages(c(&quot;parallel&quot;, &quot;data.table&...</td></tr><tr><td><b>Installing</b>&nbsp;&nbsp;</td>
 <td>The project can be downloaded using git:
 git clone https://github.com/BiodataAnalysisGroup/k-taxatree
-</td></tr><tr><td><b>Running the project</b>&nbsp;&nbsp;</td>
-<td>The project consists of 9 main scripts in the folder R-scripts containing the code required to perform all the steps from selecting the appr...</td></tr><tr><td><b>License</b>&nbsp;&nbsp;</td>
-<td>This project is licensed under the MIT License - see the LICENSE file for details.</td></tr></table>
+</td></tr><tr><td><b>License</b>&nbsp;&nbsp;</td>
+<td>This project is licensed under the MIT License - see the LICENSE file for details.</td></tr><tr><td><b>+ 2 more</b>&nbsp;&nbsp;</td>
+</tr></table>
 </div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="kmerAnalyzer"><article class="box"><h2 class="title">kmerAnalyzer
+<div class="cell p-1" id="kmerAnalyzer"><article class="box hoverable" data-preview="previews/kmerAnalyzer.html"><h2 class="title mb-0">kmerAnalyzer
 <span style="float:right" class="tag is-link is-light"><a href="https://github.com/BiodataAnalysisGroup/kmerAnalyzer">🏠 github</a></span>
 <span style="float:right" class="tag is-warning is-light"><a href="mailto:fpsom@certh.gr">🖂 fpsom@certh.gr</a></span>
 </h2>
-<div class="tags"><span class="tag is-primary is-light">mer</span>
-<span class="tag is-primary is-light">factor</span>
-<span class="tag is-primary is-light">csv</span>
-<span class="tag is-primary is-light">featuresextraction</span>
-<span class="tag is-primary is-light">detected</span>
-<span class="tag is-primary is-light">column</span>
-<span class="tag is-primary is-light">appears</span>
-<span class="tag is-primary is-light">kmeranalyzer</span>
-</div>
 <div><div></div>
 <table>
 <tr><td><b>Overview</b>&nbsp;&nbsp;</td>
@@ -696,19 +495,10 @@ git clone https://github.com/BiodataAnalysisGroup/k-taxatree
 </tr></table>
 </div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="lineagespot"><article class="box"><h2 class="title">lineagespot
+<div class="cell p-1" id="lineagespot"><article class="box hoverable" data-preview="previews/lineagespot.html"><h2 class="title mb-0">lineagespot
 <span style="float:right" class="tag is-link is-light"><a href="https://github.com/BiodataAnalysisGroup/lineagespot">🏠 github</a></span>
 <span style="float:right" class="tag is-warning is-light"><a href="mailto:nanastasiadou@certh.gr">🖂 nanastasiadou@certh.gr</a></span>
 </h2>
-<div class="tags"><span class="tag is-primary is-light">devtools</span>
-<span class="tag is-primary is-light">lineagespot</span>
-<span class="tag is-primary is-light">variant</span>
-<span class="tag is-primary is-light">identify</span>
-<span class="tag is-primary is-light">broadinstitute</span>
-<span class="tag is-primary is-light">hc</span>
-<span class="tag is-primary is-light">articles</span>
-<span class="tag is-primary is-light">raw</span>
-</div>
 <div><div>Lineagespot is a framework written in R, and aims to identify SARS-CoV-2 related mutations based on a single (or a list) of variant(s) file(...</div>
 <table>
 <tr><td><b>Installation</b>&nbsp;&nbsp;</td>
@@ -720,19 +510,10 @@ devtools::install_github(&quot;BiodataAnalysisGroup/lineagespot&quot;)
 Pechlivanis, N., Tsagiopoulou, M., Maniou, M.C. et al. Detecting SARS-CoV-2 lineages an...</td></tr></table>
 </div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="lncAPNet"><article class="box"><h2 class="title">lncAPNet
+<div class="cell p-1" id="lncAPNet"><article class="box hoverable" data-preview="previews/lncAPNet.html"><h2 class="title mb-0">lncAPNet
 <span style="float:right" class="tag is-link is-light"><a href="https://github.com/BiodataAnalysisGroup/lncAPNet">🏠 github</a></span>
 <span style="float:right" class="tag is-warning is-light"><a href="mailto:vasileioubill95@certh.gr">🖂 vasileioubill95@certh.gr</a></span>
 </h2>
-<div class="tags"><span class="tag is-primary is-light">strong</span>
-<span class="tag is-primary is-light">lncrna</span>
-<span class="tag is-primary is-light">lncapnet</span>
-<span class="tag is-primary is-light">interpretation</span>
-<span class="tag is-primary is-light">priors</span>
-<span class="tag is-primary is-light">apnet</span>
-<span class="tag is-primary is-light">activity</span>
-<span class="tag is-primary is-light">patient</span>
-</div>
 <div><div>lncAPNet is an extension of the Activity PASNet (APNet) framework that incorporates long non-coding RNAs (lncRNAs) into explainable, network...</div>
 <table>
 <tr><td><b>Overview</b>&nbsp;&nbsp;</td>
@@ -744,88 +525,47 @@ It...</td></tr><tr><td><b>Installation</b>&nbsp;&nbsp;</td>
 </tr></table>
 </div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="metaDIEA"><article class="box"><h2 class="title">metaDIEA
+<div class="cell p-1" id="metaDIEA"><article class="box hoverable" data-preview="previews/metaDIEA.html"><h2 class="title mb-0">metaDIEA
 <span style="float:right" class="tag is-link is-light"><a href="https://github.com/BiodataAnalysisGroup/metaDIEA">🏠 github</a></span>
 <span style="float:right" class="tag is-warning is-light"><a href="mailto:fpsom@certh.gr">🖂 fpsom@certh.gr</a></span>
 </h2>
-<div class="tags"><span class="tag is-primary is-light">isoform</span>
-<span class="tag is-primary is-light">monitoring</span>
-<span class="tag is-primary is-light">widely</span>
-<span class="tag is-primary is-light">strong</span>
-<span class="tag is-primary is-light">rna</span>
-<span class="tag is-primary is-light">algorithms</span>
-<span class="tag is-primary is-light">sequencing</span>
-<span class="tag is-primary is-light">several</span>
-</div>
-<div><div>RNA sequencing has become the standard technique for high resolution genome-wide monitoring of gene expression. As such, it often comprises ...</div>
+<div><div>RNA sequencing has become the standard technique for high resolution genome-wide monitoring of gene expression. As such, it often comprises...</div>
 <table>
 <tr><td><b>License</b>&nbsp;&nbsp;</td>
 <td>This project is licensed under the MIT License.</td></tr></table>
 </div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="miRkit"><article class="box"><h2 class="title">miRkit
+<div class="cell p-1" id="miRkit"><article class="box hoverable" data-preview="previews/miRkit.html"><h2 class="title mb-0">miRkit
 <span style="float:right" class="tag is-link is-light"><a href="https://github.com/BiodataAnalysisGroup/miRkit.git">🏠 github</a></span>
 <span style="float:right" class="tag is-warning is-light"><a href="mailto:fpsom@certh.gr">🖂 fpsom@certh.gr</a></span>
 </h2>
-<div class="tags"><span class="tag is-primary is-light">quot</span>
-<span class="tag is-primary is-light">mirkit</span>
-<span class="tag is-primary is-light">nikopech</span>
-<span class="tag is-primary is-light">mirnatool</span>
-<span class="tag is-primary is-light">save</span>
-<span class="tag is-primary is-light">saveimagehigh</span>
-<span class="tag is-primary is-light">github</span>
-<span class="tag is-primary is-light">biodataanalysisgroup</span>
-</div>
 <div><div>miRkit was implemented in R.</div>
 <table>
 <tr><td><b>Structure</b>&nbsp;&nbsp;</td>
 <td>miRkit repository consists of three folders:
 - data: This is where all the input files are stored.
-- R: This is where all the R scripts are ...</td></tr><tr><td><b>Dependencies</b>&nbsp;&nbsp;</td>
+- R: This is where all the R scripts are...</td></tr><tr><td><b>Dependencies</b>&nbsp;&nbsp;</td>
 <td>Execute the following lines to install the required packages:
 - from CRAN:
 install.packages(c(&quot;data.table&quot;, &quot;tidyverse&quot;,...</td></tr><tr><td><b>Installing</b>&nbsp;&nbsp;</td>
 <td>The project can be downloaded using git:
 git clone https://github.com/BiodataAnalysisGroup/miRkit.git
-</td></tr><tr><td><b>Running the project</b>&nbsp;&nbsp;</td>
-<td>miRkit is a collection of R scripts/functions as listed bellow:
-
-01_miRkit.R
-02a_qc.R 
-02b_diff_analysis.R
-02c_fa.R
-03a_save_as_pdf.R 
-03b_s...</td></tr><tr><td><b>Additional scripts</b>&nbsp;&nbsp;</td>
-<td>
-initial_script.R: Contains the full code of the initial version of the project. There is no need to execute this file.
 </td></tr><tr><td><b>Input</b>&nbsp;&nbsp;</td>
 <td>
 For extra details about the input please move to the data folder and checkout the correpsonding README.md file.
 </td></tr><tr><td><b>Output</b>&nbsp;&nbsp;</td>
 <td>
 For extra details about the output please move to the output folder and checkout the correpsonding README.md file
-</td></tr><tr><td><b>Acknowledgements</b>&nbsp;&nbsp;</td>
-<td>
-nikopech
-Scripts save_as_pdf.R and save_image.R were taken from nikopech's project saveImageHigh
 </td></tr><tr><td><b>License</b>&nbsp;&nbsp;</td>
-<td>This project is licensed under the MIT License - see the LICENSE file for details.</td></tr></table>
+<td>This project is licensed under the MIT License - see the LICENSE file for details.</td></tr><tr><td><b>+ 3 more</b>&nbsp;&nbsp;</td>
+</tr></table>
 </div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="pygrank"><article class="box"><h2 class="title">pygrank
+<div class="cell p-1" id="pygrank"><article class="box hoverable" data-preview="previews/pygrank.html"><h2 class="title mb-0">pygrank
 <span style="float:right" class="tag is-link is-light"><a href="https://github.com/MKLab-ITI/pygrank">🏠 github</a></span>
 <span style="float:right" class="tag is-link is-light"><a href="https://pygrank.readthedocs.io/en/latest/">🏠 readthedocs</a></span>
 <span style="float:right" class="tag is-warning is-light"><a href="mailto:maniospas@iti.gr">🖂 maniospas@iti.gr</a></span>
 </h2>
-<div class="tags"><span class="tag is-primary is-light">pygrank</span>
-<span class="tag is-primary is-light">strong</span>
-<span class="tag is-primary is-light">ranking</span>
-<span class="tag is-primary is-light">softx</span>
-<span class="tag is-primary is-light">node</span>
-<span class="tag is-primary is-light">fast</span>
-<span class="tag is-primary is-light">upgrade</span>
-<span class="tag is-primary is-light">backend</span>
-</div>
 <div><div>
 Fast node ranking algorithms on large graphs.
 Author: Emmanouil (Manios) Krasanakis
@@ -834,25 +574,14 @@ License: Apache 2.0
 
 </div>
 <table>
-<tr><td><b>:notebook: Citation</b>&nbsp;&nbsp;</td>
-<td>If pygrank has been useful in your research and you would like to cite it in a scientific publication, please refer to the following paper:
-...</td></tr><tr><td><b>+ 4 more</b>&nbsp;&nbsp;</td>
+<tr><td><b>+ 5 more</b>&nbsp;&nbsp;</td>
 </tr></table>
 </div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="synth4bench"><article class="box"><h2 class="title">synth4bench
+<div class="cell p-1" id="synth4bench"><article class="box hoverable" data-preview="previews/synth4bench.html"><h2 class="title mb-0">synth4bench
 <span style="float:right" class="tag is-link is-light"><a href="https://github.com/BiodataAnalysisGroup/synth4bench">🏠 github</a></span>
 <span style="float:right" class="tag is-warning is-light"><a href="mailto:sfragkoul@certh.gr">🖂 sfragkoul@certh.gr</a></span>
 </h2>
-<div class="tags"><span class="tag is-primary is-light">bam</span>
-<span class="tag is-primary is-light">readcount</span>
-<span class="tag is-primary is-light">variant</span>
-<span class="tag is-primary is-light">synthetic</span>
-<span class="tag is-primary is-light">biology</span>
-<span class="tag is-primary is-light">somatic</span>
-<span class="tag is-primary is-light">href</span>
-<span class="tag is-primary is-light">truth</span>
-</div>
 <div><div>
   
 
@@ -860,17 +589,9 @@ License: Apache 2.0
 </div>
 <table>
 <tr><td><b>Abstract</b>&nbsp;&nbsp;</td>
-<td> 
-Somatic variant calling algorithms are essential for detecting genomic alterations. However, evaluating their performance can be challengi...</td></tr><tr><td><b>Description</b>&nbsp;&nbsp;</td>
-<td>
-  
-
-
-
-Our framekwork addresses the challenge of variant calling, particularly for low-alle frequency variants (≤10%). The goal is to develo...</td></tr><tr><td><b>Installation</b>&nbsp;&nbsp;</td>
-<td>
-
-Create the Conda environment:
+<td>Somatic variant calling algorithms are essential for detecting genomic alterations. However, evaluating their performance can be challengi...</td></tr><tr><td><b>Description</b>&nbsp;&nbsp;</td>
+<td>Our framekwork addresses the challenge of variant calling, particularly for low-alle frequency variants (≤10%). The goal is to develo...</td></tr><tr><td><b>Installation</b>&nbsp;&nbsp;</td>
+<td>Create the Conda environment:
 bash
 conda env create -f environment.yml
 conda activate synth4bench
@@ -886,19 +607,10 @@ S.-C. Frag...</td></tr><tr><td><b>+ 5 more</b>&nbsp;&nbsp;</td>
 </tr></table>
 </div></article></div>
 
-<div class="cell p-2 mt-5 mb-5" id="tripr"><article class="box"><h2 class="title">tripr
+<div class="cell p-1" id="tripr"><article class="box hoverable" data-preview="previews/tripr.html"><h2 class="title mb-0">tripr
 <span style="float:right" class="tag is-link is-light"><a href="https://github.com/BiodataAnalysisGroup/tripr">🏠 github</a></span>
 <span style="float:right" class="tag is-warning is-light"><a href="mailto:k.kardamiliotis@certh.gr">🖂 k.kardamiliotis@certh.gr</a></span>
 </h2>
-<div class="tags"><span class="tag is-primary is-light">svg</span>
-<span class="tag is-primary is-light">spatiallibd</span>
-<span class="tag is-primary is-light">bioconductor</span>
-<span class="tag is-primary is-light">shields</span>
-<span class="tag is-primary is-light">tripr</span>
-<span class="tag is-primary is-light">badges</span>
-<span class="tag is-primary is-light">lifecycle</span>
-<span class="tag is-primary is-light">codecov</span>
-</div>
 <div><div>
 
 
@@ -919,10 +631,8 @@ S.-C. Frag...</td></tr><tr><td><b>+ 5 more</b>&nbsp;&nbsp;</td>
 <tr><td><b>Description</b>&nbsp;&nbsp;</td>
 <td>tripr is a Bioconductor package, written in
 shiny that provides analytics services on
-antigen receptor (B cell receptor immunoglobulin, BcR ...</td></tr><tr><td><b>Installation</b>&nbsp;&nbsp;</td>
-<td>
-
-tripr is distributed as a Bioconductor 
+antigen receptor (B cell receptor immunoglobulin, BcR...</td></tr><tr><td><b>Installation</b>&nbsp;&nbsp;</td>
+<td>tripr is distributed as a Bioconductor 
 package and requires R (version "4.5"), which can be installed on any 
 operating system from CRAN,...</td></tr><tr><td><b>+ 3 more</b>&nbsp;&nbsp;</td>
 </tr></table>
@@ -963,14 +673,56 @@ tripr: {"rmd":1.44,"edit":1.44,"todo":1.44,"badges":4.33,"start":1.24,"lifecycle
 };</script>
     </div>
   </div>
+
   <script>
     const entries = Array.from(document.querySelectorAll('#catalogue .cell'));
     const input = document.getElementById('search-input');
     const hint = document.getElementById('search-hint');
     let debounce;
 
+    /* ── Preview panel ── */
+    const overlay = document.getElementById('preview-overlay');
+    const panel   = document.getElementById('preview-panel');
+    const content = document.getElementById('preview-content');
+    const closeBtn = document.getElementById('preview-close');
+
+    const previewCache = {};
+    function openPreview(box) {
+      const path = box.dataset.preview;
+      const load = previewCache[path]
+        ? Promise.resolve(previewCache[path])
+        : fetch(path)
+            .then(r => { if (!r.ok) throw new Error(); return r.text(); })
+            .then(html => { previewCache[path] = html; return html; });
+      load
+        .then(html => {
+          content.innerHTML = html;
+          overlay.classList.add('is-active');
+          panel.classList.add('is-active');
+        })
+        .catch(() => {
+          content.innerHTML = box.innerHTML;
+          overlay.classList.add('is-active');
+          panel.classList.add('is-active');
+        });
+    }
+
+    function closePreview() {
+      overlay.classList.remove('is-active');
+      panel.classList.remove('is-active');
+    }
+
+    document.querySelectorAll('.box.hoverable').forEach(box => {
+      box.addEventListener('click', () => openPreview(box));
+    });
+
+    closeBtn.addEventListener('click', closePreview);
+    overlay.addEventListener('click', closePreview);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closePreview(); });
+
+    /* ── Search ── */
     function search(raw) {
-      const terms = raw.trim().toLowerCase().split(/\s+/).filter(t=>t.length>=2);
+      const terms = raw.trim().toLowerCase().split(/\s+/).filter(t => t.length >= 2);
       if (!terms.length) {
         entries.forEach(e => { e.style.display = ''; e.style.order = ''; });
         hint.textContent = '';
@@ -980,26 +732,23 @@ tripr: {"rmd":1.44,"edit":1.44,"todo":1.44,"badges":4.33,"start":1.24,"lifecycle
         const id = entry.id;
         const kws = kwdata[id] ?? {};
         let score = 0;
-        for(const term of terms) {
+        for (const term of terms) {
           let included = false;
           for (const [kw, weight] of Object.entries(kws)) {
-            if (kw.startsWith(term)) {
-              score += weight;
-              included = true;
-            }
+            if (kw.startsWith(term)) { score += weight; included = true; }
           }
-          if(!included) return { entry, score: 0 };
+          if (!included) return { entry, score: 0 };
         }
         return { entry, score };
       });
-      scored.forEach(s => s.entry.style.display=s.score>0?'':'none');
-      const visible = scored.filter(s=>s.score>0).sort((a, b) => b.score-a.score);
-      visible.forEach(({ entry }, i) => entry.style.order=i);
+      scored.forEach(s => s.entry.style.display = s.score > 0 ? '' : 'none');
+      const visible = scored.filter(s => s.score > 0).sort((a, b) => b.score - a.score);
+      visible.forEach(({ entry }, i) => entry.style.order = i);
       const catalogue = document.getElementById('catalogue');
       catalogue.style.display = 'flex';
       catalogue.style.flexDirection = 'column';
       hint.textContent = visible.length
-        ? `Showing ${visible.length} result${visible.length>1?'s':''}`
+        ? `Showing ${visible.length} result${visible.length > 1 ? 's' : ''}`
         : 'No results found';
     }
 

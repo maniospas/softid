@@ -1,0 +1,56 @@
+<h2 class="title mb-0">k-taxatree
+<span style="float:right" class="tag is-link is-light"><a href="https://github.com/BiodataAnalysisGroup/k-taxatree">🏠 github</a></span>
+<span style="float:right" class="tag is-warning is-light"><a href="mailto:fpsom@certh.gr">🖂 fpsom@certh.gr</a></span>
+</h2>
+<span class="tag is-primary is-light">unassigned</span>
+<span class="tag is-primary is-light">quot</span>
+<span class="tag is-primary is-light">taxatree</span>
+<span class="tag is-primary is-light">compare</span>
+<span class="tag is-primary is-light">emp</span>
+<span class="tag is-primary is-light">final</span>
+<span class="tag is-primary is-light">validation</span>
+<span class="tag is-primary is-light">subset</span>
+<div><div><p>k-taxatree is a classification workflow written in <a href="https://www.r-project.org/">R</a>, predicting the labels of the first four taxonomic levels (kingdom, phylum, class, order) of metagenomic data with a multi-label Random Forest as the underlying model. The latter accepts as input 6-mer count vectors and as such a method to determine the appropriate k-length was also implemented.</p></div>
+<h5 class="subtitle is-4 mt-5"><p>Dataset</p></h5>
+<div><p>The project utilizes data from the Earth Microbiome Project and retrieved using the R package <a href="https://github.com/nikopech/empdata">empdata</a>. A dataset of 91k sequences of 150bp-length targeted on the 16S rRNA gene of the V4 region. The dataset was split in two subsets, train-test and validation, consisting of 30% and 70% of the initial dataset respectefully. The subsets are available in the <a href="https://github.com/BiodataAnalysisGroup/k-taxatree/tree/main/emp-data">emp-data</a> folder.</p>
+<p>All data sets were collected from the ftp site of the Earth Microbiome Project.</p>
+<p>Sample processing, sequencing, and core amplicon data analysis were performed by the Earth Microbiome Project 
+(www.earthmicrobiome.org), and all amplicon sequence data and metadata have been made public through 
+the EMP data portal (qiita.microbio.me/emp).</p>
+<p>Please cite the following publication if you use any of them:</p>
+<p>Thompson, L., Sanders, J., McDonald, D. et al. A communal catalogue reveals
+Earth’s multiscale microbial diversity. Nature 551, 457–463 (2017).
+https://doi.org/10.1038/nature24621</p></div>
+<h5 class="subtitle is-4 mt-5"><p>Prerequisites</p></h5>
+<div><p>The packages needed to be installed, in order to run the project are:
+- from CRAN</p>
+<pre class="codehilite"><code>install.packages(c(&quot;parallel&quot;, &quot;data.table&quot;, &quot;cluster&quot;, &quot;Rfast&quot;, &quot;plyr&quot;, &quot;caret&quot;, &quot;stats&quot;, &quot;UBL&quot;, &quot;splitstackshape&quot;, &quot;mlr&quot;, &quot;mldr&quot;, &quot;dplyr&quot;, &quot;hash&quot;, &quot;stringr&quot;, &quot;randomForestSRC&quot;))
+</code></pre></div>
+<h5 class="subtitle is-4 mt-5"><p>Installing</p></h5>
+<div><p>The project can be downloaded using git:</p>
+<pre class="codehilite"><code>git clone https://github.com/BiodataAnalysisGroup/k-taxatree
+</code></pre></div>
+<h5 class="subtitle is-4 mt-5"><p>Running the project</p></h5>
+<div><p>The project consists of 9 main scripts in the folder <a href="https://github.com/BiodataAnalysisGroup/k-taxatree/tree/main/R-scripts">R-scripts</a> containing the code required to perform all the steps from selecting the appropriate k-length and constructing the kmer matrix to predicting the labels of the validation subset. In detail:
+- <code>01_k_selection_tool.R</code>: selection of the optimal k-length 
+- <code>02_kmer_matrix_creation.R</code>: creation of the whole 6-mer matrix (4095 features)
+- <code>03_feature_selection.R</code>: steps to select the most informative features (340 features)
+- <code>04_model_hp_optimization.R</code>: stratified 10 times repeated holdout framework to determine the <code>mtry</code>, <code>ntree</code>, <code>predict.threshold</code> to achive the highest macro f1-score 
+- <code>05_final_model.R</code>: creation of the final model
+- <code>06_unassigned_predictions.R</code>: utilizing the final model to predict labels for the yet unassigned sequences of the input dataset
+- <code>07_validation_predictions.R</code>: utilizing the final model to make predictions for the validation subset
+- <code>count_kmers_functions.R</code>: helper functions for creating the kmer matrix
+- <code>multilabel_functions.R</code>: helper functions for the machine learning workflow.</p>
+<p>The folder <a href="https://github.com/BiodataAnalysisGroup/k-taxatree/tree/main/extra-scripts">extra-scripts</a> contains a few extra scripts used to:
+- <code>0_data_for_local_usage.R</code>: create a subset of the training-test set for local usage, used to test the rest of the workflow in a local machine
+- <code>creating_train_test_validation.R</code>: perform the split on the initial dataset
+- <code>blast_results.R</code>: assign taxonomies on the yet unassigned sequences of the dataset using BLAST 
+- <code>compare_unassigned_blast.R</code>: compare the k-taxatree predictions with the BLAST results on the unassigned sequences
+- <code>compare_unassigned_rdp.R</code>: compare the RDP predictions with the BLAST results on the unassigned sequences.</p>
+<p>The project provides the input datasets and the outputs generated in every step of the workflow. The folder <a href="https://github.com/BiodataAnalysisGroup/k-taxatree/tree/main/emp-data">emp-data</a> includes the datasets retrieved from the Earth Microbiome Project Repository. The <a href="https://github.com/BiodataAnalysisGroup/k-taxatree/tree/main/Output">Output</a> folder contains several subfolders with the outputs generated by the different scripts. </p>
+<p>The workflow was run on an Ubuntu server of 141GB RAM and 32 cores and required a total of approximately 20 days. </p>
+<p>Given the optimal hyperparameters (<code>mtry</code> = 17, <code>ntree</code> = 300, <code>predict.threshold</code> = 0.2) the user can recreate the final-model using the <code>05_final_model.R</code> script. Alternatively, the model is provided in the <code>model.rds</code> file in the <a href="https://github.com/BiodataAnalysisGroup/k-taxatree/tree/main/Output/final-model">final-model</a> folder and can be used to make predictions. The latter is fully implemented in the scripts <code>06_unassigned_predictions.R</code> and <code>07_validation_predictions.R</code>.</p>
+<p>For more details of the individual scripts, please refer to the <a href="https://github.com/BiodataAnalysisGroup/k-taxatree/wiki">wiki</a>.</p></div>
+<h5 class="subtitle is-4 mt-5"><p>License</p></h5>
+<div><p>This project is licensed under the MIT License - see the <a href="LICENSE">LICENSE</a> file for details.</p></div>
+</div>

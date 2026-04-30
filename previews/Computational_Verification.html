@@ -1,0 +1,155 @@
+<h2 class="title mb-0">Computational Verification
+<span style="float:right" class="tag is-link is-light"><a href="https://github.com/MKLab-ITI/computational-verification">🏠 github</a></span>
+<span style="float:right" class="tag is-warning is-light"><a href="mailto:olgapapa@iti.gr">🖂 olgapapa@iti.gr</a></span>
+</h2>
+<span class="tag is-primary is-light">quot</span>
+<span class="tag is-primary is-light">alexa</span>
+<span class="tag is-primary is-light">vmu</span>
+<span class="tag is-primary is-light">cl</span>
+<span class="tag is-primary is-light">tweet</span>
+<span class="tag is-primary is-light">based</span>
+<span class="tag is-primary is-light">features</span>
+<span class="tag is-primary is-light">retraining</span>
+<div><div></div>
+<h5 class="subtitle is-4 mt-5"><p>computational-verification #</p></h5>
+<div><p>A framework for "learning" how to classify social content as truthful/reliable or not. 
+Features are extracted from the tweet text (Tweet-based features TF) and the user who published it (User-based features UB). 
+A two level classification model is trained.</p></div>
+<h5 class="subtitle is-4 mt-5"><p>Dataset ###</p></h5>
+<div><hr />
+<p>Evaluations are conducted on a publicly available verification corpus (VC) of fake and real tweets collected for the needs of the MediaEval 2015 Verifying Multimedia Use (VMU) and MediaEval 2016 Verifying Multimedia Use (VMU) task. 
+The VMU 2015 consist of tweets related to 17 events that comprise in total 193 cases of real images, 218 cases of misused (fake) images and two cases of misused videos, and are associated with 6,225 real
+and 9,404 fake tweets posted by 5,895 and 9,025 unique users respectively. For dataset details refer to https://github.com/MKLab-ITI/image-verification-corpus</p></div>
+<h5 class="subtitle is-4 mt-5"><p>Features ###</p></h5>
+<div><hr />
+<p>| <strong>Tweet-based features</strong> | <strong>User-based features</strong> |
+| :---: | :---:|
+| #words |  #friends |
+| length of text | #followers |
+| #question marks | follower-friend ratio |
+| #exclamation marks | #tweets|
+| contains question mark | #media content|
+| contains exclamation mark | has profile image |
+| has ``please'' | has header image |
+| has colon | has a URL |
+| contains happy emoticon | has location|
+| contains sad emoticon | has existing location|
+| #uppercase chars | has bio description |
+| #pos senti words |  tweet ratio |
+| #neg senti words | account age |
+| #slangs | is verified |
+| #nouns | #times listed | WOT score |
+| contains 1st pers.pron. | in-degree centrality|
+| contains 2nd pers.pron. | harmonic centralit |
+| contains 3rd pers.pron. | alexa country rank |
+| readability | alexa delta rank | 
+| #retweets | alexa popularity |
+| #hashtags | alexa reach rank |
+| has external link |
+| #mentions |
+| #URLs |
+| WOT score |
+| in-degree centrality |
+| harmonic centralit |
+| alexa country rank |
+| alexa delta rank |
+| alexa popularity |</p></div>
+<h5 class="subtitle is-4 mt-5"><p>Agreement-based retraining technique ###</p></h5>
+<div><hr />
+<p><strong>CL1:</strong> classifier build with tweet-based features. <br />
+<strong>CL2:</strong> classifier build with user-based features. <br />
+<strong>CL_ag:</strong> Agreement-based model build with the agreed samples resulted using CL1 and CL2. <br />
+<strong>CL_tot:</strong>  Agreement-based model build with the entire (total) set of initial training samples extending it with the set of agreed samples resulted using CL1 and CL2.</p></div>
+<h5 class="subtitle is-4 mt-5"><p>Input data ##</p></h5>
+<div><hr />
+<p><em>Features files:</em> <br />
+    - tweetsFeatsVMU2015.txt: the tweet-based features in JSON format of the VMU 2015. <br />
+    - userFeatsVMU2015.txt: the user-based features in JSON format of the VMU 2015. <br />
+    - tweetsFeatsVMU2016.txt: the tweet-based features in JSON format of the VMU 2016. <br />
+    - userFeatsVMU2016.txt: the user-based features in JSON format of the VMU 2016. <br /> </p>
+<p><em>Annotation files:</em> <br />
+    - VMU2015Train.txt: the annotations of the VMU 2015 dataset used for training.<br />
+    - VMU2015Test.txt: the annotations of the VMU 2015 dataset used for testing.<br />
+    - VMU2016Train.txt: the annotations of the VMU 2016 dataset used for training.<br />
+    - VMU2016Test.txt: the annotations of the VMU 2016 dataset used for testing.<br /></p>
+<pre class="codehilite"><code> Annotation files are in JSON format: {&quot;id&quot;:&quot;&quot;,&quot;label&quot;:&quot;&quot;,&quot;event&quot;:&quot;&quot;}
+</code></pre></div>
+<h5 class="subtitle is-4 mt-5"><p>Usage</p></h5>
+<div><hr />
+<p>The framework performs feature extraction on a new set of tweets and then classify each of them as truthful/reliable or not. </p>
+<p><strong>Initialize parameters</strong> <br /></p>
+<pre class="codehilite"><code>DoubleVerifyBagging dvb = new DoubleVerifyBagging(); 
+setVerbose(boolean): false or real. Print just average results or also intermediate detailed results.
+Agreement-based retraining technique: (default 5)
+    1 - Classify disagreed on agreed samples without bagging 
+    2 - Classify disagreed on agreed samples with bagging
+    3 - Classify disagreed on the entire (total) set of initial training samples extending it with the set of agreed samples with bagging 
+    4 - Classify disagreed on the entire (total) set of initial training samples extending it with the set of agreed samples without bagging 
+    5 - All above   
+setRunConcatenated(boolean): false or real. Perform classification using simple concatenation of the user-based and tweet-based feature vectors into a single-level classifier.
+setClassifier(String): RF for Random Forest or LG for Logistic regression.
+</code></pre>
+
+<p>Main class <em>TweetVerificationMain</em> in <em>gr.iti.mklab</em> package. Provide command line arguments:</p>
+<p><strong>1. Feature extraction</strong></p>
+<pre class="codehilite"><code>Input arguments:
+
+    - tweetsFile: path of a text file containing the tweet objects as they are returned by the Twitter API in JSON format.
+
+    - feature_folder: (optional) Path of a folder where the extracted features will be stored. Default value: [current_directory + /Features/&quot;].
+
+Output: (The feature files are created into the output folder:)
+    - tweetsFeats.txt: containing the extracted tweet-based features. One line per tweet. 
+    - userFeats.txt: containing the extracted user-based features. One line per tweet.
+</code></pre>
+
+<p><strong>2. Training and Classification</strong></p>
+<pre class="codehilite"><code>Input arguments:
+
+    - trainLabels: A text file containing the labels of the training items. Annotation files should be in JSON format: {&quot;id&quot;:&quot;&quot;,&quot;label&quot;:&quot;&quot;,&quot;event&quot;:&quot;&quot;}. 
+    - testLabels: A text file containing the labels of the testing items. Annotation files should be in JSON format: {&quot;id&quot;:&quot;&quot;,&quot;label&quot;:&quot;&quot;,&quot;event&quot;:&quot;&quot;}.
+
+    - feature_folder: (optional) Path of the folder where the extracted features are stored. Two files are stored into the folder: 
+        1. tweetsFeats.txt: containing the extracted tweet-based features. One line per tweet.  
+        2. userFeats.txt: containing the extracted user-based features. One line per tweet.  
+        Default value of feature_folder current_directory + /Features/
+
+    - outputFolder: (optional) Path of the folder where the final evaluation results will be stored. Default value: [current_directory + /Run/]
+
+Output:
+    1. AverageResults.txt: Average accuracy (ratio of correctly classified samples over total number of test samples) of 
+        CL: the selected classifier among CL1 and CL2.
+        CL_ag : the overall accuracy using CL_ag agreement-based retraining model.
+        CL_tot : the overall accuracy using CL_tot agreement-based retraining model.
+
+    2. CL_ag_predictions.txt: tweet ID and fake/real label using CL_ag agreement-based retraining model.
+    3. CL_tot_predictions.txt: tweet ID and fake/real label using CL_tot agreement-based retraining model.
+</code></pre></div>
+<h5 class="subtitle is-4 mt-5"><p>Citations</p></h5>
+<div><p>Please cite the following papers in your publications if you use the implementation:</p>
+<pre class="codehilite"><code>@inproceedings{boididou2017learning,
+    title={Learning to Detect Misleading Content on Twitter},
+    author={Boididou, Christina and Papadopoulos, Symeon and Apostolidis, Lazaros and Kompatsiaris, Yiannis},
+    booktitle={Proceedings of the 2017 ACM on International Conference on Multimedia Retrieval},
+    pages={278--286},
+    year={2017},
+    organization={ACM}
+}
+
+@article{boididou2018detection,
+  author = {Detection and visualization of misleading content on Twitter},
+  title = {Boididou, Christina and Papadopoulos, Symeon and Zampoglou, Markos and Apostolidis, Lazaros and Papadopoulou, Olga and Kompatsiaris, Yiannis},
+  journal = {International Journal of Multimedia Information Retrieval},
+  volume={7},
+  number={1},
+  pages={71--86},
+  year={2018},
+  doi = &quot;10.1007/s13735-017-0143-x&quot;,     
+  publisher={Springer}
+}
+</code></pre></div>
+<h5 class="subtitle is-4 mt-5"><p>Contact for further details</p></h5>
+<div><hr />
+<p>Olga Papadopoulou (<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#111;&#108;&#103;&#97;&#112;&#97;&#112;&#97;&#64;&#105;&#116;&#105;&#46;&#103;&#114;">&#111;&#108;&#103;&#97;&#112;&#97;&#112;&#97;&#64;&#105;&#116;&#105;&#46;&#103;&#114;</a>) <br />
+Symeon Papadopoulos (<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#112;&#97;&#112;&#97;&#100;&#111;&#112;&#64;&#105;&#116;&#105;&#46;&#103;&#114;">&#112;&#97;&#112;&#97;&#100;&#111;&#112;&#64;&#105;&#116;&#105;&#46;&#103;&#114;</a>)</p></div>
+</div>

@@ -1,0 +1,56 @@
+<h2 class="title mb-0">IgIDivA
+<span style="float:right" class="tag is-link is-light"><a href="https://github.com/laurazara/IgIDivA">🏠 github</a></span>
+<span style="float:right" class="tag is-warning is-light"><a href="mailto:k.kardamiliotis@certh.gr">🖂 k.kardamiliotis@certh.gr</a></span>
+</h2>
+<span class="tag is-primary is-light">quot</span>
+<span class="tag is-primary is-light">igidiva</span>
+<span class="tag is-primary is-light">packages</span>
+<span class="tag is-primary is-light">install</span>
+<span class="tag is-primary is-light">app</span>
+<span class="tag is-primary is-light">intraclonal</span>
+<span class="tag is-primary is-light">diversification</span>
+<span class="tag is-primary is-light">laurazara</span>
+<div><div></div>
+<h5 class="subtitle is-4 mt-5"><p>Overview</p></h5>
+<div><p><code>IgIDivA</code> (Immunoglobulin Intraclonal Diversification Analysis) is a purpose-built tool for the analysis of the intraclonal diversification process using high-throughput sequencing data. It is written in <a href="https://shiny.rstudio.com/">shiny</a>. Every step of the analysis can be performed interactively, thus not requiring any programming skills. It takes as input the output files "clonotypes_computation" and "grouped_alignment_nt" from the <a href="https://bio.tools/TRIP_-_T-cell_Receptor_Immunoglobulin_Profiler"><code>tripr</code></a> package.<br />
+Functions for an <code>R</code> command-line use are also available.<br />
+The UserGuide of IgIDivA can be found <a href="https://rpubs.com/laura_zara/911248">here</a> and an example dataset to be used as Input of IgIDivA can be found <a href="https://doi.org/10.5281/zenodo.6616046">here</a>.</p></div>
+<h5 class="subtitle is-4 mt-5"><p>Installation</p></h5>
+<div><p>The <code>IgIDivA</code> scripts can be freely downloaded <a href="https://github.com/laurazara/IgIDivA">here</a>.
+It requires <code>R</code> (version "4.1"), which can be installed on any operating system from <a href="https://cran.r-project.org/">CRAN</a>. <code>IgIDivA</code> has been successfully tested in Windows 10, macOS 10.15 and Linux WSL.
+All the packages that need to be installed in your <code>R</code> session are the following:</p>
+<pre class="codehilite"><code class="language-r">install.packages(&quot;shiny&quot;)
+install.packages(&quot;shinyFiles&quot;)
+install.packages(&quot;fs&quot;)
+install.packages(&quot;pdftools&quot;)
+install.packages(&quot;purrr&quot;)
+install.packages(&quot;DT&quot;)
+install.packages(&quot;bslib&quot;)
+install.packages(&quot;shinyhelper&quot;)
+install.packages(&quot;data.table&quot;)
+install.packages(&quot;stringr&quot;)
+install.packages(&quot;RGenetics&quot;)
+install.packages(&quot;dplyr&quot;)
+install.packages(&quot;ggsci&quot;)
+install.packages(&quot;tidygraph&quot;)
+install.packages(&quot;ggraph&quot;)
+install.packages(&quot;igraph&quot;)
+install.packages(&quot;ggplot2&quot;)
+install.packages(&quot;ggpubr&quot;)
+install.packages(&quot;rstatix&quot;)
+install.packages(&quot;shinyvalidate&quot;)
+</code></pre>
+
+<p>All the scripts need to be downloaded in the same folder, and the input should be saved in a folder called <code>Input</code>  </p>
+<p>To run the app, open the script <code>app.R</code> in your <code>R</code> session and press the button <code>Run App</code>.   </p>
+<p>Alternatively, <code>IgIDivA</code> can be installed using a <code>conda</code> environment. We recommend to use <a href="https://docs.conda.io/en/latest/miniconda.html">Miniconda</a> to install all the dependencies. The dependencies can be found in .yml format <a href="https://github.com/laurazara/IgIDivA">in the IgIDivA GitHub repository</a>. The yml file and the <code>IgIDivA</code> scripts need to be stored in the working folder. After downloading all the files, a terminal should be opened and the following commands should be written:  </p>
+<pre class="codehilite"><code class="language-r">conda env create -f IgIDivA.yml 
+conda activate IgIDivA
+R
+install.packages(c(&quot;shinyvalidate&quot;, &quot;RGenetics&quot;,&quot;rstatix&quot;))
+q()
+Rscript app.R
+</code></pre>
+
+<p>This will produce a url that can be copied in a web browser and will direct the user to the IgIDivA app.</p></div>
+</div>

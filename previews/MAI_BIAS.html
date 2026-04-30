@@ -1,0 +1,208 @@
+<h2 class="title mb-0">MAI-BIAS
+<span style="float:right" class="tag is-link is-light"><a href="https://mammoth-ai.eu/">🏠 mammoth-ai</a></span>
+<span style="float:right" class="tag is-link is-light"><a href="https://github.com/mammoth-eu/mammoth-commons">🏠 github</a></span>
+<span style="float:right" class="tag is-warning is-light"><a href="mailto:maniospas@iti.gr">🖂 maniospas@iti.gr</a></span>
+</h2>
+<span class="tag is-primary is-light">quot</span>
+<span class="tag is-primary is-light">sudo</span>
+<span class="tag is-primary is-light">apt</span>
+<span class="tag is-primary is-light">launch</span>
+<span class="tag is-primary is-light">install</span>
+<span class="tag is-primary is-light">mai</span>
+<span class="tag is-primary is-light">summary</span>
+<span class="tag is-primary is-light">bias</span>
+<div><div><h1>MAI-BIAS modules and local runer</h1>
+<p><a href="https://mammoth-eu.github.io/mammoth-commons/index.html"></a><a href="https://github.com/mammoth-eu/mammoth-commons/actions/workflows/integration.yml"></a>
+
+<a href="code_of_conduct.md"></a>
+<a href="https://pepy.tech/projects/mai-bias"></a></p>
+<p>This software is part of MAI-BIAS; a low-code toolkit for fairness analysis 
+and mitigation, with an accompanying suite of coding tools. Our ecosystem 
+operates in multidimensional and multi-attribute settings 
+(safeguarding multiple races, genders, etc), and across multiple data modalities 
+(like tabular data, images, text, graphs). Learn more 
+<a href="https://mammoth-eu.github.io/mammoth-commons/">here</a>.</p>
+<p><em>This repository holds the toolkit's local runner, as well as implementation
+and documentation of 40+ modules.</em></p></div>
+<h5 class="subtitle is-4 mt-5"><p>👥 Who is this for?</p></h5>
+<div><ul>
+<li><em>ML engineers and data scientists</em> building or evaluating models in Python.</li>
+<li><em>Researchers</em> studying AI bias across data modalities (tabular, vision, LLMs, etc).</li>
+<li><em>Bias auditors and compliance teams</em> needing standardized, traceable fairness reports, and system comparison across different datasets, parameters, and over time.</li>
+<li><em>Policymakers and analysts</em> who seek reproducible evidence for decision‑making.</li>
+</ul></div>
+<h5 class="subtitle is-4 mt-5"><p>✨ About</p></h5>
+<div><p>This repository is created by the <a href="https://mammoth-ai.eu/">MAMMOth</a>
+project and holds the mammoth-commons library, which contains 
+supporting datatypes and decorators for developing fairness modules.
+It also hosts a catalogue of 40+ modules. 
+Finally, find a desktop application that runs those modules in your 
+local machine.</p>
+<p></p></div>
+<h5 class="subtitle is-4 mt-5"><p>🔗 Links</p></h5>
+<div><ul>
+<li>
+<p><a href="https://mammoth-eu.github.io/mammoth-commons/">MAI-BIAS portal</a></p>
+</li>
+<li>
+<p><a href="https://github.com/mammoth-eu/mammoth-toolkit-releases">Server deployment repository</a></p>
+</li>
+<li>
+<p><a href="CONTRIBUTING.md">Contribute</a></p>
+</li>
+</ul></div>
+<h5 class="subtitle is-4 mt-5"><p>⚡ Manual local runner installation</p></h5>
+<div><ol>
+<li>Make <strong>sure</strong> you are on Python 3.11. Most modules also work in Python 3.13 or later too.</li>
+<li>Install the <em>mai-bias</em> package.</li>
+<li>Launch the desktop app.</li>
+</ol>
+<pre class="codehilite"><code class="language-bash"># may need to replace python with python3
+python --version
+pip install mai-bias
+python -m mai_bias.app
+</code></pre>
+
+<p>You can try this boostrapping command:</p>
+<pre class="codehilite"><code class="language-bash">curl -fsSL https://raw.githubusercontent.com/mammoth-eu/mammoth-commons/dev/mai_bias.sh -o mai_bias.sh &amp;&amp; chmod +x mai_bias.sh &amp;&amp; ./mai_bias.sh
+</code></pre>
+
+<p>Modules will install further missing dependencies they need to run. <strong>This may take some time, especially for modules depending on torch or tensorflow.</strong></p>
+<p></p>
+<details><summary>Ubuntu: Example of full installation pipeline</summary>
+
+
+<pre class="codehilite"><code class="language-bash">sudo add-apt-repository ppa:deadsnakes/ppa -y
+sudo apt update
+sudo apt install python3.13
+sudo apt install python3.13-pip
+sudo apt install python3.13-venv
+python3 -m venv venv
+source venv/bin/activate
+python3 install mai-bias
+python3 -m mai_bias.app
+</code></pre>
+
+
+</details>
+
+<details><summary>Windows: WSL missing .so files</summary>
+
+If you are in WSL, you are likely to get errors like this *ImportError: libGL.so.1: cannot open shared object file: No such file or directory*.
+This is due to the lack of a graphical environment. Install one like like below, including missing font symbols needed to properly display certain UI element.
+
+
+<pre class="codehilite"><code class="language-bash">sudo apt update
+sudo apt install fonts-noto-color-emoji fonts-symbola
+sudo apt install libgl1
+sudo apt install libxkbcommon-x11-0
+sudo apt install libegl1
+sudo apt install libnss3
+sudo apt install libxcomposite1
+sudo apt install libxdamage1
+sudo apt install libxrender1
+sudo apt install libxrandr2
+sudo apt install libxtst6
+sudo apt install libxi6
+sudo apt install libasound2
+sudo apt install libxkbfile-dev
+sudo apt install --reinstall qt6-wayland libxcb-cursor0 libxkbcommon-x11-0
+sudo apt install libx11-xcb1 libxcb-xinerama0 libxcb-cursor0
+</code></pre>
+
+
+
+</details>
+
+<details><summary>The app never opens</summary>
+
+First time, it needs to hypdrate itself with some images. 
+If it crashes nonetheless, there could be an issue with
+GPU acceleration in your environment. Try starting the 
+app with the following command
+as a first remedy (after making a virtual environment as
+described above, if not there).
+
+
+<pre class="codehilite"><code class="language-bash">python -m mai_bias.app_safe
+</code></pre>
+
+
+
+</details>
+
+<details><summary>MAC: Illegal hardware instruction</summary> 
+
+We have encountered this error in at least one M2 machine.
+This is likely due to a mismatch between Python's x86-x64 vs arm64e
+choice. Please make sure that you have a matching architecture
+between the system and python. Ideally install the latter
+through *brew*.
+
+</details>
+
+<details><summary>VSCode launch profile</summary>  
+
+
+<pre class="codehilite"><code class="language-json">{
+    &quot;version&quot;: &quot;0.2.0&quot;,
+    &quot;configurations&quot;: [
+        {
+            &quot;name&quot;: &quot;Python Debugger: Current File&quot;,
+            &quot;type&quot;: &quot;debugpy&quot;,
+            &quot;request&quot;: &quot;launch&quot;,
+            &quot;program&quot;: &quot;${file}&quot;,
+            &quot;console&quot;: &quot;integratedTerminal&quot;,
+            &quot;justMyCode&quot;: false,
+            &quot;cwd&quot;: &quot;${workspaceFolder}&quot;,
+        },
+        {
+            &quot;name&quot;: &quot;Python: Test&quot;,
+            &quot;type&quot;: &quot;debugpy&quot;,
+            &quot;request&quot;: &quot;launch&quot;,
+            &quot;program&quot;: &quot;${file}&quot;,
+            &quot;console&quot;: &quot;integratedTerminal&quot;,
+            &quot;justMyCode&quot;: false,
+            &quot;cwd&quot;: &quot;${workspaceFolder}&quot;,
+            &quot;env&quot;: {
+                &quot;PYTHONPATH&quot;: &quot;${workspaceFolder}&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;MAI-BIAS Desktop&quot;,
+            &quot;type&quot;: &quot;debugpy&quot;,
+            &quot;request&quot;: &quot;launch&quot;,
+            &quot;module&quot;: &quot;mai_bias.app&quot;,
+            &quot;justMyCode&quot;: false
+        },
+        {
+            &quot;name&quot;: &quot;MAI-BIAS Terminal&quot;,
+            &quot;type&quot;: &quot;debugpy&quot;,
+            &quot;request&quot;: &quot;launch&quot;,
+            &quot;module&quot;: &quot;mai_bias.cli&quot;,
+            &quot;justMyCode&quot;: false
+        }
+    ]
+}
+</code></pre>
+
+
+</details></div>
+<h5 class="subtitle is-4 mt-5"><p>📜 License</p></h5>
+<div><p>This repository is distributed under the Apache 2.0 License, Copyright 2026 MAMMOth.</p>
+<p>Third-party licenses:</p>
+<ul>
+<li>
+<p>Some of the icons in <code>docs/icons/</code> are used by modules and
+and are released by <em>tabler-icons</em> under the MIT license 
+here: https://github.com/tabler/tabler-icons</p>
+</li>
+<li>
+<p>The file <code>mammoth_commons/custom_kfp.py</code> was adjusted from the KFP project to
+handle additional metadata needed for interoperability with the demonstrator 
+and our metaprogramming decorators. Modifications were made on an original 
+version that is released under Apache 2.0 License under the KFP project here: 
+https://github.com/kubeflow/pipelines</p>
+</li>
+</ul></div>
+</div>

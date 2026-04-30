@@ -4,7 +4,7 @@ from builder.core import Entry, raw_tool
 import re
 
 @raw_tool
-def keep_common_sections(entries: list[Entry], min_section_count: float|int=2):
+def keep_common_sections(entries: list[Entry], min_section_count: float|int=2, max_section_title_size: int=20):
     """keep only sections whose titles appear multiple times across entries"""
     count_section_names: dict[str,int] = dict()
     if isinstance(min_section_count, float):
@@ -16,7 +16,7 @@ def keep_common_sections(entries: list[Entry], min_section_count: float|int=2):
     #print({k for k, v in count_section_names.items() if v<min_section_count})
     for entry in entries:
         prev_sections = entry.unparsed_sections
-        entry.unparsed_sections = {k: v for k, v in prev_sections.items() if k in allowed}
+        entry.unparsed_sections = {k: v for k, v in prev_sections.items() if k in allowed and len(k)<=max_section_title_size}
         diff_sections = len(prev_sections)-len(entry.unparsed_sections)
         if diff_sections<=1:
             entry.unparsed_sections = prev_sections

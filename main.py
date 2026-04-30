@@ -16,8 +16,9 @@ if __name__ == "__main__":
         "builder.tools.generic.get_md",
         "builder.tools.generic.remove_section_images",
         "builder.tools.index.keywords",
+        "builder.tools.format.bulma.create_previews",
         "builder.tools.index.keep_common_sections",
-        "builder.tools.format.bulma.keywords",
+        #"builder.tools.format.bulma.keywords",
         "builder.tools.format.bulma.short_sections",
         "builder.tools.format.bulma.container",
     ]

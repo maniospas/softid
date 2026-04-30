@@ -1,0 +1,144 @@
+<h2 class="title mb-0">VB-Mitigator
+<span style="float:right" class="tag is-link is-light"><a href="https://github.com/mever-team/vb-mitigator">🏠 github</a></span>
+<span style="float:right" class="tag is-link is-light"><a href="https://vb-mitigator.readthedocs.io/">🏠 readthedocs</a></span>
+<span style="float:right" class="tag is-warning is-light"><a href="mailto:gsarridis@iti.gr">🖂 gsarridis@iti.gr</a></span>
+</h2>
+<span class="tag is-primary is-light">christos</span>
+<span class="tag is-primary is-light">strong</span>
+<span class="tag is-primary is-light">bias</span>
+<span class="tag is-primary is-light">mitigation</span>
+<span class="tag is-primary is-light">mitigator</span>
+<span class="tag is-primary is-light">koutlis</span>
+<span class="tag is-primary is-light">diou</span>
+<span class="tag is-primary is-light">methods</span>
+<div><div><div align=center><div align=left></div>
+<h5 class="subtitle is-4 mt-5"><p>Visual Bias Mitigator (VB-Mitigator)</p></h5>
+<div><p><a href="https://mammoth-eu.github.io/mammoth-commons/index.html"></a></p>
+<p>This software is part of MAI-BIAS; a low-code toolkit for
+fairness analysis and mitigation, with an accompanying suite of coding
+tools. Our ecosystem operates in multidimensional and multi-attribute
+settings (safeguarding multiple races, genders, etc), and across multiple
+data modalities (like tabular data, images, text, graphs). Learn more
+<a href="https://mammoth-eu.github.io/mammoth-commons/index.html">here</a>.</p>
+<hr />
+<!--The Visual Bias Mitigator is an open-source framework designed to empower researchers in the field of bias mitigation in  computer vision. This codebase provides a comprehensive environment where users can easily implement, run, and evaluate existing visual bias mitigation methods.
+
+With the increasing awareness of bias in AI systems, it is crucial for researchers to have access to robust tools that facilitate the exploration and development of mitigation approaches. The Visual Bias Mitigator (VB-Mitigator) serves this purpose by offering:
+
+- 🚀 **Implemented Methods**: A collection of established visual bias mitigation methods that can be directly utilized, allowing researchers to replicate and understand their functionality.
+- 🔧 **Extensibility**: Researchers can exploit this code-base to develop custom bias mitigation approaches tailored to their specific needs. The framework is designed with flexibility in mind, enabling easy integration of new approaches.
+- 📊 **Performance Comparison**: The framework facilitates the performance comparison between custom methods and state-of-the-art. 
+
+The aim of this repository is to facilitate research in the domain of visual bias mitigation. By providing a comprehensive codebase that allows researchers to easily implement and build upon existing methodologies, we encourage the development of new approaches for addressing biases in computer vision tasks.--></div>
+<h5 class="subtitle is-4 mt-5"><p>🌍 Overview</p></h5>
+<div><p><strong>VB-Mitigator</strong> is an open-source <strong>platform for evaluating, comparing, and developing visual bias mitigation methods</strong> in computer vision.  </p>
+<p>It empowers researchers, engineers, and industry teams to <strong>build fairer AI systems</strong>, benchmark state-of-the-art approaches, and innovate new strategies to address bias in real-world models.</p>
+<p>The framework provides:</p>
+<ul>
+<li>🚀 <strong>Pre-implemented Methods</strong>: Use or replicate established bias mitigation approaches like BAdd, MAVias, and FLAC  </li>
+<li>🔧 <strong>Extensibility</strong>: Integrate custom methods or datasets with minimal effort  </li>
+<li>📊 <strong>Performance Comparison</strong>: Evaluate your approach against baselines across multiple datasets and metrics  </li>
+</ul>
+<p>VB-Mitigator is designed to <strong>bridge research and real-world deployment</strong>, making it easy to explore and reduce bias in computer vision systems.</p>
+<hr /></div>
+<h5 class="subtitle is-4 mt-5"><p>🎯 Who is this for?</p></h5>
+<div><ul>
+<li><strong>AI researchers</strong> exploring bias mitigation and fairness  </li>
+<li><strong>ML engineers</strong> building attribute classification, face recognition, or other CV pipelines  </li>
+</ul>
+<hr /></div>
+<h5 class="subtitle is-4 mt-5"><p>💡 Why VB-Mitigator matters</p></h5>
+<div><ul>
+<li>✅ <strong>Accelerates research</strong> by providing a ready-to-use framework  </li>
+<li>✅ <strong>Supports reproducibility</strong> with prebuilt methods and datasets  </li>
+<li>✅ <strong>Flexible platform</strong> for both experimentation and benchmarking  </li>
+</ul>
+<hr /></div>
+<h5 class="subtitle is-4 mt-5"><p>🔥 Key Features</p></h5>
+<div><ul>
+<li>Collection of <strong>state-of-the-art bias mitigation methods</strong>  </li>
+<li><strong>Easy-to-extend codebase</strong> for custom approaches  </li>
+<li><strong>Dataset-agnostic</strong> evaluation pipeline  </li>
+<li><strong>Standardized metrics and logs</strong> for fair comparison  </li>
+<li>Supports <strong>rapid prototyping and reproducibility</strong>  </li>
+</ul>
+<hr /></div>
+<h5 class="subtitle is-4 mt-5"><p>⚡ Quick Start</p></h5>
+<div><p>Get started with Visual Bias Mitigator quickly:</p></div>
+<h5 class="subtitle is-4 mt-5"><ol>
+<li>Clone the Git Repository</li>
+</ol></h5>
+<div><pre class="codehilite"><code class="language-bash">git clone https://github.com/gsarridis/vb-mitigator.git
+</code></pre></div>
+<h5 class="subtitle is-4 mt-5"><ol>
+<li>Create a Virtual Environment and Install Required Packages</li>
+</ol></h5>
+<div><p>You can use either <code>pip</code> or <code>conda</code> to create a virtual environment and install dependencies:</p>
+<pre class="codehilite"><code class="language-bash"># create a virtual conda environment
+conda create -n vb-mitigator python=3.11
+
+# activate the environment
+conda activate vb-mitigator
+
+# install the required packages
+pip install -r requirements.txt
+</code></pre></div>
+<h5 class="subtitle is-4 mt-5"><ol>
+<li>Run a Sample Script</li>
+</ol></h5>
+<div><pre class="codehilite"><code class="language-bash"># run BAdd method on UTKFace dataset
+bash ./scripts/utkface/badd/badd.sh
+</code></pre></div>
+<h5 class="subtitle is-4 mt-5"><ol>
+<li>Check Logs for Results and Metrics</li>
+</ol></h5>
+<div><p>The output is stored in the <code>outputs/utkface_baselines/badd</code> directory.</p></div>
+<h5 class="subtitle is-4 mt-5"><p><strong>Output Structure:</strong></p></h5>
+<div><pre class="codehilite"><code>├── outputs
+│   ├── utkface_baselines
+│   │   ├── badd
+│   │   │   ├── logs.csv
+│   │   │   ├── out.log
+│   │   │   ├── best.pth
+│   │   │   ├── latest.pth
+│   │   │   └── train.events
+</code></pre></div>
+<h5 class="subtitle is-4 mt-5"><p>📖 Documentation</p></h5>
+<div><p>You can find the complete documentation for VB-Mitigator <a href="https://vb-mitigator.readthedocs.io/">here</a>.</p></div>
+<h5 class="subtitle is-4 mt-5"><p>📖 Citations</p></h5>
+<div><pre class="codehilite"><code>@article{sarridis2025vb,
+  title={Vb-mitigator: An open-source framework for evaluating and advancing visual bias mitigation},
+  author={Sarridis, Ioannis and Koutlis, Christos and Papadopoulos, Symeon and Diou, Christos},
+  journal={arXiv preprint arXiv:2507.18348},
+  year={2025}
+}
+
+@article{sarridis2024flac,
+  title={Flac: Fairness-aware representation learning by suppressing attribute-class associations},
+  author={Sarridis, Ioannis and Koutlis, Christos and Papadopoulos, Symeon and Diou, Christos},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year={2024},
+  publisher={IEEE}
+}
+
+@article{sarridis2024badd,
+  title={BAdd: Bias Mitigation through Bias Addition},
+  author={Sarridis, Ioannis and Koutlis, Christos and Papadopoulos, Symeon and Diou, Christos},
+  journal={arXiv preprint arXiv:2408.11439},
+  year={2024}
+}
+
+@article{sarridis2024mavias,
+  title={MAVias: Mitigate any Visual Bias},
+  author={Sarridis, Ioannis and Koutlis, Christos and Papadopoulos, Symeon and Diou, Christos},
+  journal={arXiv preprint arXiv:2412.06632},
+  year={2024}
+}
+</code></pre>
+
+<p><strong>Maintainer:</strong> Ioannis Sarridis (gsarridis@iti.gr)<br></p></div>
+<h5 class="subtitle is-4 mt-5"><p>🙏 Acknowledgments</p></h5>
+<div><p>This research was supported by the EU Horizon Europe projects MAMMOth
+(grant no. 101070285), ELIAS (grant no. 101120237), and ELLIOT (grant no. 101214398).</p>
+<div align="center">   </div></div>
+</div>

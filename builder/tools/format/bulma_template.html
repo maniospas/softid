@@ -6,7 +6,7 @@
     <title>CERTH Catalogue</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
     <style>
-      img {max-width:500px;display:none}
+      img { max-width: 500px; display: none }
       #search-bar {
         position: sticky;
         top: 0;
@@ -16,9 +16,71 @@
         border-bottom: 1px solid #eee;
         margin-bottom: 1rem;
       }
+      .box.hoverable {
+        transition: transform 0.2s, box-shadow 0.2s;
+        cursor: pointer;
+        margin-bottom: 6px;
+      }
+      .box.hoverable:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      }
+
+      /* Preview panel */
+      #preview-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.4);
+        z-index: 200;
+      }
+      #preview-overlay.is-active { display: block; }
+
+      #preview-panel {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: min(800px, 90vw);
+        background: white;
+        z-index: 201;
+        overflow-y: auto;
+        padding: 1.5rem;
+        box-shadow: -4px 0 24px rgba(0,0,0,0.15);
+        transform: translateX(100%);
+        transition: transform 0.25s ease;
+      }
+      #preview-panel.is-active { transform: translateX(0); }
+
+      #preview-panel img { display: block; max-width: 100%; }
+
+      #preview-close {
+        position: sticky;
+        top: 0;
+        float: right;
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+        line-height: 30px;
+        text-align: center;
+        cursor: pointer;
+        z-index: 1;
+        margin-bottom: 0.5rem;
+      }
     </style>
   </head>
   <body>
+
+  <!-- Preview overlay + panel -->
+  <div id="preview-overlay"></div>
+  <div id="preview-panel">
+    <button id="preview-close" aria-label="Close">&times;</button>
+    <div id="preview-content"></div>
+  </div>
+
   <div class="container">
     <div id="search-bar">
       <div class="field">
@@ -33,14 +95,56 @@
       {{CONTENTS}}
     </div>
   </div>
+
   <script>
     const entries = Array.from(document.querySelectorAll('#catalogue .cell'));
     const input = document.getElementById('search-input');
     const hint = document.getElementById('search-hint');
     let debounce;
 
+    /* ── Preview panel ── */
+    const overlay = document.getElementById('preview-overlay');
+    const panel   = document.getElementById('preview-panel');
+    const content = document.getElementById('preview-content');
+    const closeBtn = document.getElementById('preview-close');
+
+    const previewCache = {};
+    function openPreview(box) {
+      const path = box.dataset.preview;
+      const load = previewCache[path]
+        ? Promise.resolve(previewCache[path])
+        : fetch(path)
+            .then(r => { if (!r.ok) throw new Error(); return r.text(); })
+            .then(html => { previewCache[path] = html; return html; });
+      load
+        .then(html => {
+          content.innerHTML = html;
+          overlay.classList.add('is-active');
+          panel.classList.add('is-active');
+        })
+        .catch(() => {
+          content.innerHTML = box.innerHTML;
+          overlay.classList.add('is-active');
+          panel.classList.add('is-active');
+        });
+    }
+
+    function closePreview() {
+      overlay.classList.remove('is-active');
+      panel.classList.remove('is-active');
+    }
+
+    document.querySelectorAll('.box.hoverable').forEach(box => {
+      box.addEventListener('click', () => openPreview(box));
+    });
+
+    closeBtn.addEventListener('click', closePreview);
+    overlay.addEventListener('click', closePreview);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closePreview(); });
+
+    /* ── Search ── */
     function search(raw) {
-      const terms = raw.trim().toLowerCase().split(/\s+/).filter(t=>t.length>=2);
+      const terms = raw.trim().toLowerCase().split(/\s+/).filter(t => t.length >= 2);
       if (!terms.length) {
         entries.forEach(e => { e.style.display = ''; e.style.order = ''; });
         hint.textContent = '';
@@ -50,26 +154,23 @@
         const id = entry.id;
         const kws = kwdata[id] ?? {};
         let score = 0;
-        for(const term of terms) {
+        for (const term of terms) {
           let included = false;
           for (const [kw, weight] of Object.entries(kws)) {
-            if (kw.startsWith(term)) {
-              score += weight;
-              included = true;
-            }
+            if (kw.startsWith(term)) { score += weight; included = true; }
           }
-          if(!included) return { entry, score: 0 };
+          if (!included) return { entry, score: 0 };
         }
         return { entry, score };
       });
-      scored.forEach(s => s.entry.style.display=s.score>0?'':'none');
-      const visible = scored.filter(s=>s.score>0).sort((a, b) => b.score-a.score);
-      visible.forEach(({ entry }, i) => entry.style.order=i);
+      scored.forEach(s => s.entry.style.display = s.score > 0 ? '' : 'none');
+      const visible = scored.filter(s => s.score > 0).sort((a, b) => b.score - a.score);
+      visible.forEach(({ entry }, i) => entry.style.order = i);
       const catalogue = document.getElementById('catalogue');
       catalogue.style.display = 'flex';
       catalogue.style.flexDirection = 'column';
       hint.textContent = visible.length
-        ? `Showing ${visible.length} result${visible.length>1?'s':''}`
+        ? `Showing ${visible.length} result${visible.length > 1 ? 's' : ''}`
         : 'No results found';
     }
 

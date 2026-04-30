@@ -1,0 +1,20 @@
+<h2 class="title mb-0">APNet
+<span style="float:right" class="tag is-link is-light"><a href="https://github.com/BiodataAnalysisGroup/APNet">🏠 github</a></span>
+<span style="float:right" class="tag is-warning is-light"><a href="mailto:vasileioubill95@certh.gr">🖂 vasileioubill95@certh.gr</a></span>
+</h2>
+<span class="tag is-primary is-light">drivers</span>
+<span class="tag is-primary is-light">apnet</span>
+<span class="tag is-primary is-light">predictive</span>
+<span class="tag is-primary is-light">driver</span>
+<span class="tag is-primary is-light">covid</span>
+<span class="tag is-primary is-light">plasma</span>
+<span class="tag is-primary is-light">proteomic</span>
+<span class="tag is-primary is-light">bipartite</span>
+<div><div><p>In this work we present APNet, a Deep Learning approach with biological explainability to discover predictive drivers of COVID-19 severity focusing on distinct publicly available plasma proteomic datasets generated with the Olink Proximity Extension Assay (PEA) technology. This modular pipeline has the following structure:
+-   APNet initially converts high-throughput omics expression matrices, such as plasma proteomics, into activity matrices that reflect the regulatory strength of transcription factors and signal drivers. This involves Bayesian-based differential expression and activity analysis through NetBID2 for bulk-omics and scMINER for single-cell data, utilizing SJARACNe co-expression graphs.
+-   Then, APNet associates differentially active drivers with biological pathways using the Enrichr Knowledge Graph (KG).
+-   Next, APNet employs PASNet, a deep learning approach, to provide interpretable predictions for patient classification. APNet uses the differentially active drivers and their associated pathways as inputs, applying sparse regularization to hierarchical driver-pathway connections. The interpretability is further improved by including Shapley values (SHAP).
+-   Finally, APNet assembles bipartite driver-pathway networks based on SJARACNe co-expression graphs, incorporating information from earlier modules such as Mutual Information for driver-driver interactions and PASNet predictive weights for driver-pathway connections. These bipartite networks are valuable for investigating mechanistic hypotheses, using graph representation learning, shortest path retrieval and signal propagation simulation.
+To ensure generalizability and avoid over-fitting, we deployed APNet in three distinct Olink plasma proteomic datasets (&gt;1420 proteins, &gt; 800 cases separating training, validation and testing tasks per dataset) and discovered predictive drivers of severity in COVID-19, confirming biological ground truths but also uncovering nascent information with biological credence. APNet discovered more joint proteomic perturbations than typical differential expression analysis across the three datasets. Also, APNet outperformed state-of-the-art Machine Learning models that had performed predictions on these datasets and alternative iterations of APNet based on differential expression or on Random Forest. Part of the predictive drivers that APNet uncovered were traced to circulating blood cells based on a validation study using activity-transformed single-cell RNA-seq (scRNA-seq) data. Finally, analysis of APNet’s bipartite graphs uncovered information about ACAA1, a highly predictive but relatively unexplored by the literature driver, with syndecan SDC1, the keratin KRT18 and the mitochondrial co-chaperone GRPEL1 reflecting liver damage which emerges in severe cases of COVID-19.</p>
+<p>Guidelines to run APNet:</p></div>
+</div>

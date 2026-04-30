@@ -1,0 +1,134 @@
+<h2 class="title mb-0">fairbench
+<span style="float:right" class="tag is-link is-light"><a href="https://github.com/mever-team/FairBench">🏠 github</a></span>
+<span style="float:right" class="tag is-link is-light"><a href="https://fairbench.readthedocs.io/">🏠 readthedocs</a></span>
+<span style="float:right" class="tag is-warning is-light"><a href="mailto:maniospas@iti.gr">🖂 maniospas@iti.gr</a></span>
+</h2>
+<span class="tag is-primary is-light">fb</span>
+<span class="tag is-primary is-light">sensitive</span>
+<span class="tag is-primary is-light">fairbench</span>
+<span class="tag is-primary is-light">mammoth</span>
+<span class="tag is-primary is-light">strong</span>
+<span class="tag is-primary is-light">abroca</span>
+<span class="tag is-primary is-light">rbo</span>
+<span class="tag is-primary is-light">yhat</span>
+<div><div><p><a href="https://mammoth-eu.github.io/mammoth-commons/index.html"></a>
+
+
+<a href="https://fairbench.readthedocs.io/"></a>
+<a href="https://github.com/psf/black"></a>
+<a href="code_of_conduct.md"></a> </p>
+<p>This software is part of MAI-BIAS; a low-code toolkit for
+fairness analysis and mitigation, with an accompanying suite of coding
+tools. Our ecosystem operates in multidimensional and multi-attribute 
+settings (safeguarding multiple races, genders, etc), and across multiple 
+data modalities (like tabular data, images, text, graphs). Learn more 
+<a href="https://mammoth-eu.github.io/mammoth-commons/index.html">here</a>.</p></div>
+<h5 class="subtitle is-4 mt-5"><p>👥 Who is this for?</p></h5>
+<div><ul>
+<li><strong>ML engineers and data scientists</strong> building or evaluating models in Python.</li>
+<li><strong>Researchers</strong> studying AI bias across data modalities (tabular, vision, LLMs, etc).</li>
+<li><strong>Bias auditors and compliance teams</strong> needing standardized, traceable fairness reports, and system comparison across different datasets, parameters, and over time.</li>
+<li><strong>Policymakers and analysts</strong> who want reproducible evidence for decision‑making. Consider using the low‑code MAI‑BIAS toolkit for a higher level perspective.</li>
+</ul></div>
+<h5 class="subtitle is-4 mt-5"><p>✨ About</p></h5>
+<div><p>FairBench can be imported in Python AI projects to
+offer standardized exploration of more than 300 
+fairness metrics. It also produces reports that organize
+many of those metrics, and which can be viewed in various formats 
+(e.g., in the terminal, in the browser) as part of ongoing 
+reporting by developers, auditors, and eventually policymakers
+with a certain degree of technical background.</p>
+<p>Fairness exploration is not limited to one or a few measures at a time,
+though single-measure computations are still available, in line with other
+industrial frameworks. Instead, FairBench computations are traceable in that 
+they let users explore intermediate quantities leading to problematic values. 
+When reporting focuses on one metric that may miss the bigger picture, it is
+accompanied by caveats and recommendations extracted through the help of 
+social scientists. </p>
+<p>FairBench is independent of data modality and downstream task.
+For example, it supports -among others- regression and multiclass outputs 
+from most popular computational framework, and contains out-of-the-box
+experiments for tabular, image, and graph data. 
+It can also be used in uncovering LLM biases.</p>
+<p>If you have some coding experience with Python stacks like
+Pandas and NumPy, the library can be installed in your environment 
+and called directly from your code. But it also
+supports many fairness analysis functionalities
+for immediate use by non-technical people in the low-code environment of the
+<a href="https://mammoth-eu.github.io/mammoth-commons/index.html">MAI-BIAS toolkit</a>.</p></div>
+<h5 class="subtitle is-4 mt-5"><p>🚀 Highlights</p></h5>
+<div><p>🧱 Build measures from simpler blocks<br>
+📈 Fairness reports and stamps <br>
+⚖️ Multivalue multiattribute <br>
+🧪 Backtrack,filter, and reorganize computations<br>
+🖥️ ML and LLM compatible: <em>numpy,pandas,torch,tensorflow,jax,transformers,ollama</em></p>
+<p><em>FairBench strives to be compatible with the latest Python release, 
+but compatibility delays of third-party ML libraries usually 
+mean that only the language's previous release is tested and
+stable (currently 3.12).</em></p></div>
+<h5 class="subtitle is-4 mt-5"><p>🔗 Material</p></h5>
+<div><ul>
+<li><a href="https://fairbench.readthedocs.io/">Documentation</a>: quickstart, how to use FairBench, and test it in your browser</li>
+<li><a href="https://discord.gg/WwQWFSjSWZ">Discord</a> server invite. </li>
+<li><a href="benchmarks/README.md">Benchmarks</a></li>
+</ul></div>
+<h5 class="subtitle is-4 mt-5"><p>⚡ Quick measure</p></h5>
+<div><p>Non‑technical users can run the same 
+analysis through the MAI‑BIAS toolkit without writing code.
+See the higher-level toolkit <a href="https://mammoth-eu.github.io/mammoth-commons/examples/model.html">workflow</a>
+and <a href="https://mammoth-eu.github.io/mammoth-commons/examples/share.html">example results</a>.</p>
+<pre class="codehilite"><code class="language-python">import fairbench as fb
+
+x, y, yhat = fb.bench.tabular.compas(test_size=0.5, predict=&quot;probabilities&quot;)
+sensitive = fb.Dimensions(fb.categories @ x[&quot;race&quot;])
+
+# more than 300 standardized measures generated by name and packed into a report
+abroca = fb.quick.pairwise_maxbarea_auc(scores=yhat, labels=y, sensitive=sensitive)
+print(abroca.float())
+abroca.roc.show()
+</code></pre>
+
+<p></p></div>
+<h5 class="subtitle is-4 mt-5"><p>⚡ Full report</p></h5>
+<div><p>Non‑technical users can run the same 
+analysis through the MAI‑BIAS toolkit without writing code.
+See the higher-level toolkit <a href="https://mammoth-eu.github.io/mammoth-commons/examples/model.html">workflow</a>
+and <a href="https://mammoth-eu.github.io/mammoth-commons/examples/share.html">example results</a>.</p>
+<pre class="codehilite"><code class="language-python">import fairbench as fb
+
+x, y, yhat = fb.bench.tabular.compas(test_size=0.5)
+
+sensitive = fb.Dimensions(fb.categories @ x[&quot;sex&quot;], fb.categories @ x[&quot;race&quot;])
+sensitive = sensitive.intersectional().strict()
+report = fb.reports.pairwise(predictions=yhat, labels=y, sensitive=sensitive)
+report.filter(fb.investigate.Stamps).show(env=fb.export.Html(horizontal=True), depth=1)
+</code></pre>
+
+<p></p></div>
+<h5 class="subtitle is-4 mt-5"><p>📜 Attributions</p></h5>
+<div><pre class="codehilite"><code>@inproceedings{krasanakis2024towards,
+  title={Towards Standardizing AI Bias Exploration},
+  author={Krasanakis, Emmanouil and Papadopoulos, Symeon},
+  booktitle={Workshop on AI bias: Measurements, Mitigation, Explanation Strategies (AIMMES)},
+  year={2024}
+}
+</code></pre>
+
+<p><strong>Project:</strong> <a href="https://mammoth-ai.eu/">MAMMOth</a> <br>
+<strong>Maintainer:</strong> Emmanouil (Manios) Krasanakis (maniospas@hotmail.com)<br>
+<strong>License:</strong> Apache 2.0<br>
+<strong>Contributors:</strong> Giannis Sarridis</p>
+<p>This project includes modified code originally licensed under the MIT License:</p>
+<ul>
+<li>
+<p>ReBias. (Copyright © 2020-present NAVER Corp)<br>
+Modifications © 2024 Emmanouil Krasanakis.<br>
+See <a href="fairbench/bench/vision/datasets/mnist/">fairbench/bench/vision/datasets/mnist/</a> for details.</p>
+</li>
+<li>
+<p>rbo. (Copyright © 2019 Changyao Chen)<br>
+Modifications © 2025 Emmanouil Krasanakis.<br>
+See <a href="fairbench/fallbacks/rbo.py">fairbench/fallbacks/rbo.py</a> for details.</p>
+</li>
+</ul></div>
+</div>

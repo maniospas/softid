@@ -1,0 +1,53 @@
+<h2 class="title mb-0">lncAPNet
+<span style="float:right" class="tag is-link is-light"><a href="https://github.com/BiodataAnalysisGroup/lncAPNet">🏠 github</a></span>
+<span style="float:right" class="tag is-warning is-light"><a href="mailto:vasileioubill95@certh.gr">🖂 vasileioubill95@certh.gr</a></span>
+</h2>
+<span class="tag is-primary is-light">strong</span>
+<span class="tag is-primary is-light">lncrna</span>
+<span class="tag is-primary is-light">lncapnet</span>
+<span class="tag is-primary is-light">interpretation</span>
+<span class="tag is-primary is-light">priors</span>
+<span class="tag is-primary is-light">apnet</span>
+<span class="tag is-primary is-light">activity</span>
+<span class="tag is-primary is-light">patient</span>
+<div><div><p><strong>lncAPNet</strong> is an extension of the Activity PASNet (<strong>APNet</strong>) framework that incorporates <strong>long non-coding RNAs (lncRNAs)</strong> into explainable, network-based patient stratification and supervised clustering using transcriptomic data.</p>
+<p>This repository hosts the implementation and resources for the <strong>lncAPNet</strong> computational pipeline.</p>
+<hr /></div>
+<h5 class="subtitle is-4 mt-5"><p>Overview</p></h5>
+<div><p>lncAPNet is a novel computational pipeline built upon the recently reported <strong>Activity PASNet (APNet)</strong> framework<br />
+(<a href="https://doi.org/10.1093/bioinformatics/btaf063">Gavriilidis et al., 2025</a>).<br />
+It performs <strong>explainable AI (XAI)-driven supervised clustering of patient cohorts</strong> by integrating:</p>
+<ul>
+<li>Transcriptomic analysis  </li>
+<li>Biological priors  </li>
+<li>The concept of <strong>differential activity</strong></li>
+</ul>
+<p>The original APNet framework integrates:
+- <strong>SJARACNe</strong> for gene regulatory network inference<br />
+- <strong>NetBID2</strong> for driver activity analysis<br />
+- <strong>PASNet</strong>, a sparse and interpretable deep learning architecture for patient classification  </p>
+<p>These components are supported by biological priors and post hoc visualization modules for clinical bioinformatics applications.</p>
+<hr /></div>
+<h5 class="subtitle is-4 mt-5"><p>Extensions Introduced by lncAPNet</p></h5>
+<div><p>lncAPNet expands the APNet toolbox by explicitly modeling <strong>lncRNA-driven regulatory mechanisms</strong>. The key extensions include:</p>
+<ul>
+<li>Graph-based, nonlinear interpretation of <strong>lncRNA–mRNA regulatory relationships</strong> using the SJARACNe / NetBID2 framework  </li>
+<li>Integration of an <strong>lncRNA-specific knowledge graph (lncRNAlyzr-KG)</strong> into the biological priors<br />
+  (Evangelista et al., 2025)  </li>
+<li>Identification and interpretation of <strong>lncRNA-associated regulons</strong> derived from NetBID2 analysis  </li>
+<li>Enhanced explainability of lncRNA contributions to patient stratification and disease mechanisms  </li>
+</ul>
+<hr /></div>
+<h5 class="subtitle is-4 mt-5"><p>Pipeline Status</p></h5>
+<div><p>🚧 <strong>Under active development</strong></p>
+<ul>
+<li>Installation instructions: <em>Under construction</em>  </li>
+<li>A <strong>Nextflow-based implementation</strong> of the lncAPNet pipeline is planned for future release to improve scalability, portability, and reproducibility.</li>
+</ul>
+<hr /></div>
+<h5 class="subtitle is-4 mt-5"><p>Installation</p></h5>
+<div><pre class="codehilite"><code class="language-text">Under construction
+</code></pre></div>
+<h5 class="subtitle is-4 mt-5"><p><strong>bioRxiv</strong> link as pre-print:</p></h5>
+<div><p>(<a href="https://doi.org/10.64898/2025.12.18.695074">Vasileiou V. et al., 2026</a>)</p></div>
+</div>

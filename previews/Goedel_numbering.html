@@ -1,0 +1,76 @@
+<h2 class="title mb-0">Goedel numbering
+<span style="float:right" class="tag is-link is-light"><a href="https://github.com/BiodataAnalysisGroup/godel-numbering">🏠 github</a></span>
+<span style="float:right" class="tag is-warning is-light"><a href="mailto:fpsom@certh.gr">🖂 fpsom@certh.gr</a></span>
+</h2>
+<span class="tag is-primary is-light">quot</span>
+<span class="tag is-primary is-light">plots</span>
+<span class="tag is-primary is-light">mtab</span>
+<span class="tag is-primary is-light">strong</span>
+<span class="tag is-primary is-light">godel</span>
+<span class="tag is-primary is-light">specifying</span>
+<span class="tag is-primary is-light">biom</span>
+<span class="tag is-primary is-light">arxiv</span>
+<div><div><p><a href="https://mybinder.org/v2/gh/BiodataAnalysisGroup/godel-numbering/main?filepath=Biological-Sequences-and-Godel-numbers.ipynb"></a></p>
+<p><a href="https://opensource.org/licenses/MIT"></a></p></div>
+<h5 class="subtitle is-4 mt-5"><p>Godel numbers and DNA</p></h5>
+<div><p>This material is made available under the <a href="https://opensource.org/licenses/MIT">MIT license</a>. Please see <a href="LICENSE.md">LICENSE</a> for more details.</p></div>
+<h5 class="subtitle is-4 mt-5"><p>Citation</p></h5>
+<div><ul>
+<li>(<em>arXiv preprint</em>) Argyris Nicolaidis and Fotis Psomopoulos, "DNA coding and Gödel numbering", arXiv:1909.13574, 2019 (<em><a href="https://arxiv.org/abs/1909.13574">link</a></em>)</li>
+</ul></div>
+<h5 class="subtitle is-4 mt-5"><p>Structure</p></h5>
+<div><p>godel-numbering repository consists of four folders:
+- <code>data</code>: This is where all the input files are stored.
+- <code>R</code>: This is where all the R scripts are stored.
+- <code>plots</code>: This is where all the output files are stored. This folder is created automatically while executing the project. There are also some examples of outputs in zip format.
+- <code>lit</code>: some literature stuff</p></div>
+<h5 class="subtitle is-4 mt-5"><p>Dependencies</p></h5>
+<div><p>Execute the following line to install the required packages:
+- from CRAN:</p>
+<pre class="codehilite"><code>install.packages(c(&quot;seqinr&quot;, &quot;MASS&quot;, &quot;ggplot2&quot;, &quot;ggpubr&quot;, &quot;stringr&quot;, &quot;combinat&quot; , &quot;microseq&quot;))
+</code></pre>
+
+<p>or run <code>install.R</code> script.</p></div>
+<h5 class="subtitle is-4 mt-5"><p>Setting up</p></h5>
+<div><p>The project can be downloaded using git:</p>
+<pre class="codehilite"><code>git clone https://github.com/BiodataAnalysisGroup/godel-numbering.git
+</code></pre></div>
+<h5 class="subtitle is-4 mt-5"><p>Extra files</p></h5>
+<div><ul>
+<li>Download <strong>S1_L001</strong> and <strong>S10_L001</strong> samples from <a href="https://www.ebi.ac.uk/arrayexpress/experiments/E-MTAB-6962/samples/">E-MTAB-6962 - RNA-seq dataset</a>, which correspond to ERR2681749_1.fastq.gz and ERR2681763_1.fastq.gz files respectively. </li>
+<li><strong>Store both files in a single directoy.</strong>.</li>
+</ul></div>
+<h5 class="subtitle is-4 mt-5"><p>Running the project</p></h5>
+<div><p>The analysis is implemented in two scripts:</p>
+<ul>
+<li><code>Biological-Sequences-and-Godel-numbers.R</code></li>
+<li><strong>Specifying input</strong>: Line 16. Specify <code>dataset_type</code> parameter depending on which dataset to run the analysis for. </li>
+<li>
+<p><strong>Outputs</strong>: Plots and statistical stuff array inside <code>plots</code> directoy.</p>
+</li>
+<li>
+<p><code>e-mtab-data.R</code></p>
+</li>
+<li><strong>Specifying input</strong>:<ol>
+<li>Line 17. Specify the directory in your computer, in which <a href="https://www.ebi.ac.uk/arrayexpress/experiments/E-MTAB-6962/samples/">E-MTAB-6962 - RNA-seq dataset</a> files are stored.</li>
+<li>Line 26: Specify whether to run the analysis for S1_L001 or S10_L001 sample.</li>
+</ol>
+</li>
+<li><strong>Outputs</strong>: Plots and statistical stuff array inside <code>plots</code> directoy.</li>
+</ul>
+<p>In order to run the project:
+1. Set the main project folder as your working directory.
+2. Execute either <code>Biological-Sequences-and-Godel-numbers.R</code>or <code>e-mtab-data.R</code>, depending on which analysis you would like to run.</p></div>
+<h5 class="subtitle is-4 mt-5"><p>Additional scripts</p></h5>
+<div><ul>
+<li><code>biom_data_150bp_to_fasta.R</code>: Converts <code>biom_data_150bp.rda</code> into .fasta file.</li>
+</ul></div>
+<h5 class="subtitle is-4 mt-5"><p>Input</p></h5>
+<div><ul>
+<li>Input files are stored inside <code>data</code> directory.</li>
+</ul></div>
+<h5 class="subtitle is-4 mt-5"><p>Output</p></h5>
+<div><ul>
+<li>Outputs are stored inside <code>plots</code> directory.</li>
+</ul></div>
+</div>

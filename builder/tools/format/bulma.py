@@ -1,3 +1,5 @@
+import os
+
 from builder.core import Entry, tool
 from urllib.parse import urlsplit
 import re
@@ -9,7 +11,7 @@ def banner(entry: Entry):
         stars = f'&nbsp;<span style="float:right">{entry.metadata.get("stars")} ⭐</span>'
     else:
         stars = ""
-    entry.contents += f'<h2 class="title">{entry.name}{stars}\n'
+    entry.contents += f'<h2 class="title mb-0">{entry.name}{stars}\n'
     entry.contents += ''
     found_tags = set()
     for url in entry.urls:
@@ -24,13 +26,11 @@ def banner(entry: Entry):
     entry.contents += "</h2>\n"
 
 @tool
-def keywords(entry: Entry, top:int=8):
+def keywords(entry: Entry, top_keywords:int=8):
     """adds the top keywords as tags"""
     if not entry.keywords: return
-    entry.contents += '<div class="tags">'
-    for k, v in sorted(entry.keywords.items(), key=lambda x: x[1], reverse=True)[:min(top, len(entry.keywords))]:
+    for k, v in sorted(entry.keywords.items(), key=lambda x: x[1], reverse=True)[:min(top_keywords, len(entry.keywords))]:
         entry.contents += f'<span class="tag is-primary is-light">{k}</span>\n'
-    entry.contents += "</div>\n"
 
 def shorter(item: str):
     clean = re.sub(r'<[^>]+>', '', item)
@@ -39,22 +39,37 @@ def shorter(item: str):
         return clean
     return clean[:first_pos].strip() + '...'
 
-@tool
-def sections(entry: Entry):
-    """moves all current sections to html contents"""
-    contents = '<div>'+"\n".join((desc) for desc in entry.unparsed_sections.get('#Description', ""))+'</div>\n'
-    for k ,v in entry.unparsed_sections.items():
+def section_contents(unparsed_sections: dict[str, list[str]]):
+    contents = '<div>' + "\n".join((desc) for desc in unparsed_sections.get('#Description', "")) + '</div>\n'
+    for k, v in unparsed_sections.items():
         if k.startswith('#'): continue
         contents += f'<h5 class="subtitle is-4 mt-5">{k}</h5>\n'
         for item in v:
             contents += f'<div>{(item)}</div>\n'
-    contents = '<div style="max-height:300px; overflow-y:auto">'+contents+'</div>'
-    entry.contents += contents
+    contents = '<div>' + contents + '</div>'
+    return contents
+
+@tool
+def sections(entry: Entry):
+    """moves all current sections to html contents"""
+    entry.contents += section_contents(entry.unparsed_sections)
     entry.unparsed_sections = dict()
 
 @tool
+def create_previews(entry: Entry, top_keywords:int=8):
+    """creates a preview section"""
+    os.makedirs("./previews", exist_ok=True)
+    path = f"previews/{entry.normal_name()}.html"
+    with open(path, 'w') as file:
+        contents = entry.contents
+        for k, v in sorted(entry.keywords.items(), key=lambda x: x[1], reverse=True)[:min(top_keywords, len(entry.keywords))]:
+            contents += f'<span class="tag is-primary is-light">{k}</span>\n'
+        file.write(contents+section_contents(entry.unparsed_sections))
+    entry.metadata["preview"] = path
+
+@tool
 def short_sections(entry: Entry):
-    """moves a previoew of all current sections to html contents"""
+    """moves a preview of all current sections to html contents while generating a corresponding html"""
     contents = '<div>'+"\n".join(shorter(desc) for desc in entry.unparsed_sections.get('#Description', ""))+'</div>\n'
     contents += "<table>\n"
     for k ,v in entry.unparsed_sections.items():
@@ -70,4 +85,8 @@ def short_sections(entry: Entry):
 @tool
 def container(entry: Entry):
     """adds all generated content in the form of a boxed entry with appropriate id - should be the last step"""
-    entry.contents = f'<div class="cell p-2 mt-5 mb-5" id="{entry.normal_name()}"><article class="box">{entry.contents}</article></div>\n'
+    preview = entry.metadata.get('preview', '')
+    if preview:
+        entry.contents = f'<div class="cell p-1" id="{entry.normal_name()}"><article class="box hoverable" data-preview="{preview}">{entry.contents}</article></div>\n'
+    else:
+        entry.contents = f'<div class="cell p-1" id="{entry.normal_name()}"><article class="box">{entry.contents}</article></div>\n'
