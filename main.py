@@ -30,5 +30,5 @@ if __name__ == "__main__":
 
     with open("builder/tools/format/bulma_template.html") as file:
         template = file.read()
-    with open("export.html", "w") as file:
+    with open("index.html", "w") as file:
         file.write(template.replace("{{CONTENTS}}", text))
