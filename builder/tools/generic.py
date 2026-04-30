@@ -1,4 +1,4 @@
-from builder.core import Entry, tool, shared_config
+from builder.core import Entry, tool, shared_config, raw_tool
 import re
 import os
 import markdown
@@ -76,3 +76,9 @@ def remove_section_images(entry: Entry):
     for section in entry.unparsed_sections.values():
         for i, content in enumerate(section):
             section[i] = img_pattern.sub('', content)
+
+
+@raw_tool
+def sort(entries: list[Entry]):
+    """sort entries by name"""
+    entries.sort(key=lambda e: e.name)

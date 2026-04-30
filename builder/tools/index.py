@@ -4,7 +4,7 @@ from builder.core import Entry, raw_tool
 import re
 
 @raw_tool
-def keep_common_sections(entries: list[Entry], min_section_count: float|int=3):
+def keep_common_sections(entries: list[Entry], min_section_count: float|int=2):
     """keep only sections whose titles appear multiple times across entries"""
     count_section_names: dict[str,int] = dict()
     if isinstance(min_section_count, float):
@@ -15,11 +15,17 @@ def keep_common_sections(entries: list[Entry], min_section_count: float|int=3):
     allowed = {k for k, v in count_section_names.items() if v>=min_section_count}
     #print({k for k, v in count_section_names.items() if v<min_section_count})
     for entry in entries:
-        entry.unparsed_sections = {k: v for k, v in entry.unparsed_sections.items() if k in allowed}
+        prev_sections = entry.unparsed_sections
+        entry.unparsed_sections = {k: v for k, v in prev_sections.items() if k in allowed}
+        diff_sections = len(prev_sections)-len(entry.unparsed_sections)
+        if diff_sections<=1:
+            entry.unparsed_sections = prev_sections
+        elif diff_sections:
+            entry.unparsed_sections[f"+ {diff_sections} more"] = []
 
 
 @raw_tool
-def keywords(entries: list[Entry], cutoff=0.8):
+def keywords(entries: list[Entry], cutoff=1):
     """identifies and tf-idf weighs keywords by considering all sections across all software"""
     import nltk
     nltk.download('stopwords')
@@ -41,6 +47,9 @@ def keywords(entries: list[Entry], cutoff=0.8):
     stop_words.add("h5")
     stop_words.add("em")
     stop_words.add("it")
+    stop_words.add("pre")
+    stop_words.add("span")
+    stop_words.add("code")
 
     df: dict[str,int] = dict()
 

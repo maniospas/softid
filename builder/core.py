@@ -17,6 +17,7 @@ class Entry:
         self.unparsed_sections: dict[str,list[str]] = dict()
         self.keywords: dict[str,float] = dict()
         self._cached_contents: dict[str, str] = dict()
+        self.metadata: dict[str, str] = dict()
 
     def normal_name(self):
         return self.name.replace(" ", "_").replace("-", "_")
@@ -46,7 +47,7 @@ def process(entries: list[Entry], tools: list[str]):
     for entry in entries:
         kwdata += "\n"+entry.normal_name()+": {"
         for k, v in entry.keywords.items():
-            kwdata += f"\""+k+"\":"+str(v)+","
+            kwdata += f"\"{k}\":{v:.2f},"
         kwdata += "},"
     kwdata += "\n};</script>"
     return "\n".join(entry.contents for entry in entries)+kwdata
